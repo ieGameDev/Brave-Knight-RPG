@@ -1,5 +1,3 @@
-using CameraLogic;
-using Infrastructure;
 using Infrastructure.GameBootstrap;
 using Services.Input;
 using UnityEngine;
@@ -18,11 +16,8 @@ namespace Characters.Player
         private void Awake() =>
             _inputService = Bootstrap.Input;
 
-        private void Start()
-        {
+        private void Start() => 
             _camera = Camera.main;
-            _camera?.GetComponent<CameraFollow>().Follow(gameObject);
-        }
 
         private void Update() => 
             PlayerMovement();

@@ -7,12 +7,15 @@ namespace Infrastructure.GameBootstrap
 {
     public class Bootstrap : MonoBehaviour
     {
-        private GameStateMachine _stateMachine;
         public static IInputService Input;
+        
+        [SerializeField] private LoadingScreen _loadingScreen;
 
+        private GameStateMachine _stateMachine;
+        
         private void Awake()
         {
-            _stateMachine = new GameStateMachine(new SceneLoader());
+            _stateMachine = new GameStateMachine(new SceneLoader(), _loadingScreen);
             _stateMachine.Enter<BootstrapState>();
             
             DontDestroyOnLoad(this);
