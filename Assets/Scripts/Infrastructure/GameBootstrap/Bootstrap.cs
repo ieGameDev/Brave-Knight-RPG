@@ -1,6 +1,7 @@
 using Infrastructure.GameStates;
 using Services.Input;
 using UnityEngine;
+using Utils;
 
 namespace Infrastructure.GameBootstrap
 {
@@ -11,7 +12,7 @@ namespace Infrastructure.GameBootstrap
 
         private void Awake()
         {
-            _stateMachine = new GameStateMachine();
+            _stateMachine = new GameStateMachine(new SceneLoader());
             _stateMachine.Enter<BootstrapState>();
             
             DontDestroyOnLoad(this);
