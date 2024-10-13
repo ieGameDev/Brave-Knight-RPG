@@ -1,4 +1,6 @@
-using Infrastructure.GameBootstrap;
+using Infrastructure.DI;
+using Services.AssetsManager;
+using Services.Factory;
 using Services.Input;
 using UnityEngine;
 using Utils;
@@ -11,12 +13,14 @@ namespace Infrastructure.GameStates
         
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
+        private readonly DiContainer _container;
 
-        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+        public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, DiContainer container)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
-            
+            _container = container;
+
             RegisterServices();
         }
 
@@ -32,7 +36,9 @@ namespace Infrastructure.GameStates
 
         private void RegisterServices()
         {
-            Bootstrap.Input = InitialInputService();
+            _container.RegisterSingle(InitialInputService());
+            _container.RegisterSingle<IAssetsProvider>(new AssetsProvider());
+            _container.RegisterSingle<IGameFactory>(new GameFactory(_container.Single<IAssetsProvider>()));
         }
         
         private static IInputService InitialInputService()

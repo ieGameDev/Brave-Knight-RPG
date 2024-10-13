@@ -1,4 +1,3 @@
-using Infrastructure.GameBootstrap;
 using Services.Input;
 using UnityEngine;
 
@@ -13,11 +12,11 @@ namespace Characters.Player
         private IInputService _inputService;
         private Camera _camera;
 
-        private void Awake() =>
-            _inputService = Bootstrap.Input;
-
-        private void Start() => 
-            _camera = Camera.main;
+        public void Construct(Camera mainCamera, IInputService inputService)
+        {
+            _camera = mainCamera;
+            _inputService = inputService;
+        }
 
         private void Update() => 
             PlayerMovement();

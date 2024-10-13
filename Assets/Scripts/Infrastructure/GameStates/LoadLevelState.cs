@@ -1,4 +1,5 @@
 using CameraLogic;
+using Services.Factory;
 using UnityEngine;
 using Utils;
 
@@ -6,18 +7,20 @@ namespace Infrastructure.GameStates
 {
     public class LoadLevelState : IPayLoadedState<string>
     {
-        private const string PlayerPath = "Player/Player";
-        private const string HUDPath = "Player/HUD";
+        private const string PlayerInitialPointTag = "PlayerInitialPoint";
         
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingScreen _loadingScreen;
+        private readonly IGameFactory _gameFactory;
 
-        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingScreen loadingScreen)
+        public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingScreen loadingScreen,
+            IGameFactory gameFactory)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _loadingScreen = loadingScreen;
+            _gameFactory = gameFactory;
         }
 
         public void Enter(string sceneName)
@@ -31,29 +34,19 @@ namespace Infrastructure.GameStates
 
         private void OnLoaded()
         {
-            GameObject initialPoint = GameObject.FindWithTag("PlayerInitialPoint");
-            GameObject player = Instantiate(PlayerPath, initialPoint.transform.position);
-            
-            Instantiate(HUDPath);
-            
+            GameObject player = InitialPlayer();
             CameraFollow(player);
-
+            InitialHUD();
             _stateMachine.Enter<GameLoopState>();
         }
 
-        private static void CameraFollow(GameObject player) => 
-            Camera.main?.GetComponent<CameraFollow>().Follow(player);
-
-        private static GameObject Instantiate(string path)
-        {
-            GameObject playerPrefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(playerPrefab);
-        }
+        private GameObject InitialPlayer() =>
+            _gameFactory.CreatePlayer(GameObject.FindWithTag(PlayerInitialPointTag));
         
-        private static GameObject Instantiate(string path, Vector3 position)
-        {
-            GameObject playerPrefab = Resources.Load<GameObject>(path);
-            return Object.Instantiate(playerPrefab, position, Quaternion.identity);
-        }
+        private void CameraFollow(GameObject player) => 
+            Camera.main?.GetComponent<CameraFollow>().Follow(player);
+        
+        private void InitialHUD() => 
+            _gameFactory.CreatePlayerHUD();
     }
 }
