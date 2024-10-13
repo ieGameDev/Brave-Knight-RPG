@@ -7,15 +7,16 @@ namespace Characters.Player
     public class PlayerMove : MonoBehaviour
     {
         [SerializeField] private CharacterController _characterController;
-        [SerializeField] private float _movementSpeed;
 
-        private IInputService _inputService;
         private Camera _camera;
+        private IInputService _inputService;
+        private float _movementSpeed;
 
-        public void Construct(Camera mainCamera, IInputService inputService)
+        public void Construct(Camera mainCamera, IInputService inputService, float movementSpeed)
         {
             _camera = mainCamera;
             _inputService = inputService;
+            _movementSpeed = movementSpeed;
         }
 
         private void Update() => 

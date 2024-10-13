@@ -1,5 +1,6 @@
 using Characters.Player;
 using Infrastructure.DI;
+using ScriptableObjects;
 using Services.AssetsManager;
 using Services.Input;
 using UnityEngine;
@@ -24,7 +25,11 @@ namespace Services.Factory
             IInputService input = DiContainer.Instance.Single<IInputService>();
             
             PlayerMove playerMove = _player.GetComponent<PlayerMove>();
-            playerMove.Construct(camera, input);
+            PlayerData playerData = Resources.Load<PlayerData>(AssetAddress.PlayerDataPath);
+
+            float movementSpeed = playerData.MovementSpeed;
+            
+            playerMove.Construct(camera, input, movementSpeed);
             
             return _player;
         }
