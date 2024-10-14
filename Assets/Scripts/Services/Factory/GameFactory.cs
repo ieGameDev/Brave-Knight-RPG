@@ -1,8 +1,10 @@
+using System.Collections.Generic;
 using Characters.Player;
 using Infrastructure.DI;
 using ScriptableObjects;
 using Services.AssetsManager;
 using Services.Input;
+using Services.Progress;
 using UnityEngine;
 
 namespace Services.Factory
@@ -11,30 +13,55 @@ namespace Services.Factory
     {
         private readonly IAssetsProvider _assetProvider;
 
-        private GameObject _player;
+        public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
+        public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
-        public GameFactory(IAssetsProvider assetProvider) => 
+        public GameFactory(IAssetsProvider assetProvider)
+        {
             _assetProvider = assetProvider;
+        }
 
         public GameObject CreatePlayer(GameObject initialPoint)
         {
-            _player = _assetProvider.Instantiate(AssetAddress.PlayerPath,
+            GameObject player = _assetProvider.Instantiate(AssetAddress.PlayerPath,
                 initialPoint.transform.position + Vector3.up * 0.2f);
-            
+
+            RegisterProgressWatchers(player);
+
             Camera camera = Camera.main;
             IInputService input = DiContainer.Instance.Single<IInputService>();
-            
-            PlayerMove playerMove = _player.GetComponent<PlayerMove>();
+
+            PlayerMove playerMove = player.GetComponent<PlayerMove>();
             PlayerData playerData = Resources.Load<PlayerData>(AssetAddress.PlayerDataPath);
 
             float movementSpeed = playerData.MovementSpeed;
-            
+
             playerMove.Construct(camera, input, movementSpeed);
-            
-            return _player;
+
+            return player;
         }
 
-        public GameObject CreatePlayerHUD() => 
+        public void CreatePlayerHUD() =>
             _assetProvider.Instantiate(AssetAddress.HUDPath);
+
+        public void CleanUp()
+        {
+            ProgressReaders.Clear();
+            ProgressWriters.Clear();
+        }
+
+        private void RegisterProgressWatchers(GameObject player)
+        {
+            foreach (ISavedProgressReader progressReader in player.GetComponentsInChildren<ISavedProgressReader>())
+                Register(progressReader);
+        }
+
+        private void Register(ISavedProgressReader progressReader)
+        {
+            if (progressReader is ISavedProgress progressWriter)
+                ProgressWriters.Add(progressWriter);
+
+            ProgressReaders.Add(progressReader);
+        }
     }
 }

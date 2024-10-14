@@ -11,7 +11,7 @@ namespace Infrastructure.GameStates
     public class BootstrapState : IState
     {
         private const string InitialScene = "Initial";
-        
+
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly DiContainer _container;
@@ -25,25 +25,26 @@ namespace Infrastructure.GameStates
             RegisterServices();
         }
 
-        public void Enter() => 
+        public void Enter() =>
             _sceneLoader.LoadScene(InitialScene, EnterLoadLevel);
 
         public void Exit()
         {
         }
 
-        private void EnterLoadLevel() => 
+        private void EnterLoadLevel() =>
             _stateMachine.Enter<LoadProgressState>();
 
         private void RegisterServices()
         {
             _container.RegisterSingle(InitialInputService());
             _container.RegisterSingle<IAssetsProvider>(new AssetsProvider());
-            _container.RegisterSingle<IProgressService>(new ProgressService());
-            _container.RegisterSingle<ISaveLoadService>(new SaveLoadService());
             _container.RegisterSingle<IGameFactory>(new GameFactory(_container.Single<IAssetsProvider>()));
+            _container.RegisterSingle<IProgressService>(new ProgressService());
+            _container.RegisterSingle<ISaveLoadService>(new SaveLoadService(_container.Single<IProgressService>(),
+                _container.Single<IGameFactory>()));
         }
-        
+
         private static IInputService InitialInputService()
         {
             if (Application.isEditor)

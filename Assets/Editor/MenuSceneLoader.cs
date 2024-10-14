@@ -6,15 +6,22 @@ namespace Editor
 {
     public class MenuSceneLoader : MonoBehaviour
     {
-        private const string MenuItemName = "\ud83c\udfae ieGameDev/Scenes";
+        private const string MenuItemName = "\ud83c\udfae ieGameDev";
 
-        [MenuItem(MenuItemName + "/Initial", priority = 1000)]
-        public static void LoadInitia() =>
+        [MenuItem(MenuItemName + "/Scenes/Initial", priority = 0)]
+        public static void LoadInitial() =>
             TryLoadScene(0);
 
-        [MenuItem(MenuItemName + "/TestLevel", priority = 1001)]
+        [MenuItem(MenuItemName + "/Scenes/TestLevel", priority = 1)]
         public static void LoadMain() =>
             TryLoadScene(1);
+
+        [MenuItem(MenuItemName + "/Clear PlayerPrefs", priority = 1)]
+        public static void ClearPlayPrefs()
+        {
+            PlayerPrefs.DeleteAll();
+            PlayerPrefs.Save();
+        }
 
         private static void TryLoadScene(int index)
         {

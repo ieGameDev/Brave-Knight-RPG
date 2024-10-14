@@ -17,14 +17,14 @@ namespace Infrastructure.GameStates
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, container),
-                
+
                 [typeof(LoadProgressState)] =
                     new LoadProgressState(this, container.Single<IProgressService>(),
                         container.Single<ISaveLoadService>()),
-                
-                [typeof(LoadLevelState)] =
-                    new LoadLevelState(this, sceneLoader, loadingScreen, container.Single<IGameFactory>()),
-                
+
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingScreen,
+                    container.Single<IGameFactory>(), container.Single<IProgressService>()),
+
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };
         }
