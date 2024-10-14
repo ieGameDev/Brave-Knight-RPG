@@ -1,10 +1,14 @@
+using Data;
+using Extensions;
 using Services.Input;
+using Services.Progress;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Characters.Player
 {
     [RequireComponent(typeof(CharacterController))]
-    public class PlayerMove : MonoBehaviour
+    public class PlayerMove : MonoBehaviour, ISavedProgress
     {
         [SerializeField] private CharacterController _characterController;
 
@@ -19,8 +23,28 @@ namespace Characters.Player
             _movementSpeed = movementSpeed;
         }
 
-        private void Update() => 
+        private void Update() =>
             PlayerMovement();
+
+        public void SaveProgress(PlayerProgress progress) =>
+            progress.WorldData.PositionOnLevel = new PositionOnLevel(CurrentLevel(), transform.position.VectorData());
+
+        public void LoadProgress(PlayerProgress progress)
+        {
+            if (CurrentLevel() != progress.WorldData.PositionOnLevel.Level) return;
+            
+            Vector3Data savedPosition = progress.WorldData.PositionOnLevel.Position;
+            
+            if (savedPosition != null)
+                TransferPlayer(position: savedPosition);
+        }
+
+        private void TransferPlayer(Vector3Data position)
+        {
+            _characterController.enabled = false;
+            transform.position = position.UnityVector();
+            _characterController.enabled = true;
+        }
 
         private void PlayerMovement()
         {
@@ -39,5 +63,8 @@ namespace Characters.Player
 
             _characterController.Move(movementVector * (_movementSpeed * Time.deltaTime));
         }
+
+        private static string CurrentLevel() =>
+            SceneManager.GetActiveScene().name;
     }
 }

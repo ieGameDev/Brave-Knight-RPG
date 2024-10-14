@@ -2,6 +2,7 @@ using Infrastructure.DI;
 using Services.AssetsManager;
 using Services.Factory;
 using Services.Input;
+using Services.Progress;
 using UnityEngine;
 using Utils;
 
@@ -38,6 +39,7 @@ namespace Infrastructure.GameStates
         {
             _container.RegisterSingle(InitialInputService());
             _container.RegisterSingle<IAssetsProvider>(new AssetsProvider());
+            _container.RegisterSingle<IProgressService>(new ProgressService());
             _container.RegisterSingle<IGameFactory>(new GameFactory(_container.Single<IAssetsProvider>()));
         }
         
