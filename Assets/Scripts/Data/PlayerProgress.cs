@@ -6,5 +6,10 @@ namespace Data
     public class PlayerProgress
     {
         public WorldData WorldData;
+
+        public PlayerProgress(string level)
+        {
+            WorldData = new WorldData(level);
+        }
     }
 }

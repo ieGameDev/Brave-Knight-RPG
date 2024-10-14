@@ -13,5 +13,8 @@ namespace Data
             Level = level;
             Position = position;
         }
+
+        public PositionOnLevel(string level) => 
+            Level = level;
     }
 }

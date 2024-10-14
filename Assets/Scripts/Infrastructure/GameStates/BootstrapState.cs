@@ -33,13 +33,14 @@ namespace Infrastructure.GameStates
         }
 
         private void EnterLoadLevel() => 
-            _stateMachine.Enter<LoadLevelState, string>("TestLevel");
+            _stateMachine.Enter<LoadProgressState>();
 
         private void RegisterServices()
         {
             _container.RegisterSingle(InitialInputService());
             _container.RegisterSingle<IAssetsProvider>(new AssetsProvider());
             _container.RegisterSingle<IProgressService>(new ProgressService());
+            _container.RegisterSingle<ISaveLoadService>(new SaveLoadService());
             _container.RegisterSingle<IGameFactory>(new GameFactory(_container.Single<IAssetsProvider>()));
         }
         

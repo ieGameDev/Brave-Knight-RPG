@@ -37,6 +37,7 @@ namespace Infrastructure.GameStates
             GameObject player = InitialPlayer();
             CameraFollow(player);
             InitialHUD();
+            
             _stateMachine.Enter<GameLoopState>();
         }
 

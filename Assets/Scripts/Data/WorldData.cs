@@ -6,5 +6,10 @@ namespace Data
     public class WorldData
     {
         public PositionOnLevel PositionOnLevel;
+
+        public WorldData(string level)
+        {
+            PositionOnLevel = new PositionOnLevel(level);
+        }
     }
 }
