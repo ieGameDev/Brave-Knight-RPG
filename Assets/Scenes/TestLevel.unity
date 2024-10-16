@@ -272,7 +272,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a640db9999eb4dd28515d802ef963323, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _distance: 16
+  _distance: 20
   _offSetY: 2
   _rotationAngleX: 50
 --- !u!1001 &726048222
