@@ -495,6 +495,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trigger: {fileID: 5322707479971136782}
   _moveToPlayer: {fileID: 742209152820707363}
+  _coolDown: 2
 --- !u!114 &3154492711147045077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1001,6 +1002,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7578214221571377509}
+  - component: {fileID: 3377911430539319387}
   m_Layer: 0
   m_Name: SceletonModel
   m_TagString: Untagged
@@ -1028,6 +1030,27 @@ Transform:
   - {fileID: 5706810545989346951}
   m_Father: {fileID: 2468889828458600031}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &3377911430539319387
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4469579925325587877}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.72, y: 1.21, z: 0.76}
+  m_Center: {x: 0, y: 0.7, z: 0}
 --- !u!1 &4551969249441211520
 GameObject:
   m_ObjectHideFlags: 0
