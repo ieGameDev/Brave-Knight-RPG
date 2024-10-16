@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Characters.Player;
 using Infrastructure.DI;
@@ -15,6 +16,8 @@ namespace Services.Factory
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
+        public GameObject Player { get; set; }
+        public event Action PlayerCreated;
 
         public GameFactory(IAssetsProvider assetProvider)
         {
@@ -23,22 +26,23 @@ namespace Services.Factory
 
         public GameObject CreatePlayer(GameObject initialPoint)
         {
-            GameObject player = _assetProvider.Instantiate(AssetAddress.PlayerPath,
+            Player = _assetProvider.Instantiate(AssetAddress.PlayerPath,
                 initialPoint.transform.position + Vector3.up * 0.2f);
-
-            RegisterProgressWatchers(player);
+            
+            RegisterProgressWatchers(Player);
 
             Camera camera = Camera.main;
             IInputService input = DiContainer.Instance.Single<IInputService>();
 
-            PlayerMove playerMove = player.GetComponent<PlayerMove>();
+            PlayerMove playerMove = Player.GetComponent<PlayerMove>();
             PlayerData playerData = Resources.Load<PlayerData>(AssetAddress.PlayerDataPath);
 
             float movementSpeed = playerData.MovementSpeed;
 
             playerMove.Construct(camera, input, movementSpeed);
 
-            return player;
+            PlayerCreated?.Invoke();
+            return Player;
         }
 
         public void CreatePlayerHUD() =>

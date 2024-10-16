@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Infrastructure.DI;
 using Services.Progress;
@@ -9,6 +10,9 @@ namespace Services.Factory
     {
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
+        GameObject Player { get; set; }
+
+        event Action PlayerCreated;
         
         GameObject CreatePlayer(GameObject initialPoint);
         void CreatePlayerHUD();
