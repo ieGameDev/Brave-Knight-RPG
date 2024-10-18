@@ -33,7 +33,14 @@ namespace Infrastructure.GameStates
             _progressService.Progress = _saveLoadService.LoadProgress() ?? NewProgress();
         }
 
-        private PlayerProgress NewProgress() =>
-            new("TestLevel");
+        private PlayerProgress NewProgress()
+        {
+            PlayerProgress progress = new PlayerProgress("TestLevel");
+            
+            progress.PlayerState.MaxHP = 100f;
+            progress.PlayerState.ResetHP();
+            
+            return progress;
+        }
     }
 }

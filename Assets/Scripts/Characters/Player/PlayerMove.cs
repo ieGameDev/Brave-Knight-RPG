@@ -26,7 +26,7 @@ namespace Characters.Player
         private void Update() =>
             PlayerMovement();
 
-        public void SaveProgress(PlayerProgress progress) =>
+        public void UpdateProgress(PlayerProgress progress) =>
             progress.WorldData.PositionOnLevel = new PositionOnLevel(CurrentLevel(), transform.position.VectorData());
 
         public void LoadProgress(PlayerProgress progress)

@@ -1,4 +1,5 @@
 using System.Linq;
+using Characters.Player;
 using Infrastructure.DI;
 using Services.Factory;
 using UnityEngine;
@@ -12,6 +13,7 @@ namespace Characters.Enemy
         [SerializeField] private float _attackCooldown;
         [SerializeField] private float _cleavage;
         [SerializeField] private float _effectiveDistance;
+        [SerializeField] private float _damage;
 
         private IGameFactory _gameFactory;
         private Transform _playerTransform;
@@ -43,7 +45,7 @@ namespace Characters.Enemy
         {
             if (Hit(out Collider hit))
             {
-                
+                hit.transform.GetComponent<PlayerHealth>().TakeDamage(_damage);
             }
         }
 

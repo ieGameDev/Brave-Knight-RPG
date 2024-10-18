@@ -15,7 +15,7 @@ namespace Services.Factory
         event Action PlayerCreated;
         
         GameObject CreatePlayer(GameObject initialPoint);
-        void CreatePlayerHUD();
+        GameObject CreatePlayerHUD();
 
         void CleanUp();
     }

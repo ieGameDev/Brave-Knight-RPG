@@ -45,7 +45,7 @@ namespace Services.Factory
             return Player;
         }
 
-        public void CreatePlayerHUD() =>
+        public GameObject CreatePlayerHUD() =>
             _assetProvider.Instantiate(AssetAddress.HUDPath);
 
         public void CleanUp()

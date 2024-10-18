@@ -21,7 +21,7 @@ namespace Services.Progress
         public void SaveProgress()
         {
             foreach (ISavedProgress progressWriter in _factory.ProgressWriters)
-                progressWriter.SaveProgress(_progressService.Progress);
+                progressWriter.UpdateProgress(_progressService.Progress);
             
             PlayerPrefs.SetString(ProgressKey, _progressService.Progress.ToJson());
         }

@@ -4,7 +4,7 @@ namespace Services.Progress
 {
     public interface ISavedProgress : ISavedProgressReader
     {
-        void SaveProgress(PlayerProgress progress);
+        void UpdateProgress(PlayerProgress progress);
     }
 
     public interface ISavedProgressReader
