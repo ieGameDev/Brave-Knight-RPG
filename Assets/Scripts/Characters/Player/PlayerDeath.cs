@@ -8,6 +8,7 @@ namespace Characters.Player
     {
         [SerializeField] private PlayerHealth _playerHealth;
         [SerializeField] private PlayerMove _playerMove;
+        [SerializeField] private PlayerAttack _playerAttack;
         [SerializeField] private PlayerAnimator _playerAnimator;
         [SerializeField] private GameObject _deathFx;
 
@@ -27,14 +28,17 @@ namespace Characters.Player
                 Die();
         }
 
+        public void DeathFx() =>
+            Instantiate(_deathFx, 
+                transform.position + Vector3.up * 1.3f - Vector3.forward * 1.3f, Quaternion.identity);
+
         private void Die()
         {
             _isDead = true;
 
             _playerMove.enabled = false;
+            _playerAttack.enabled = false;
             _playerAnimator.PlayDeathAnimation();
-
-            Instantiate(_deathFx, transform.position + Vector3.up * 1f, Quaternion.identity);
 
             OnDeath?.Invoke();
         }

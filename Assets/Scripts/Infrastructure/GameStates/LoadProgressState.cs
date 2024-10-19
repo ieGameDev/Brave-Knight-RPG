@@ -38,6 +38,8 @@ namespace Infrastructure.GameStates
             PlayerProgress progress = new PlayerProgress("TestLevel");
             
             progress.PlayerState.MaxHP = 100f;
+            progress.PlayerStats.Damage = 25f;
+            progress.PlayerStats.DamageRadius = 0.5f;
             progress.PlayerState.ResetHP();
             
             return progress;

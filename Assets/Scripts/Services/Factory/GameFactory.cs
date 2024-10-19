@@ -35,11 +35,13 @@ namespace Services.Factory
             IInputService input = DiContainer.Instance.Single<IInputService>();
 
             PlayerMove playerMove = Player.GetComponent<PlayerMove>();
+            PlayerAttack playerAttack = playerMove.GetComponent<PlayerAttack>();
             PlayerData playerData = Resources.Load<PlayerData>(AssetAddress.PlayerDataPath);
 
             float movementSpeed = playerData.MovementSpeed;
 
             playerMove.Construct(camera, input, movementSpeed);
+            playerAttack.Construct(input);
 
             PlayerCreated?.Invoke();
             return Player;
