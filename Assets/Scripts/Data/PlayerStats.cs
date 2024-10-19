@@ -1,14 +1,15 @@
 using System;
-using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Data
 {
     [Serializable]
-    public class State
+    public class PlayerStats
     {
         public float CurrentHP;
         public float MaxHP;
+        
+        public float Damage;
+        public float DamageRadius;
 
         public void ResetHP() =>
             CurrentHP = MaxHP;

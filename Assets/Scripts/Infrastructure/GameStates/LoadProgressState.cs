@@ -35,13 +35,17 @@ namespace Infrastructure.GameStates
 
         private PlayerProgress NewProgress()
         {
-            PlayerProgress progress = new PlayerProgress("TestLevel");
-            
-            progress.PlayerState.MaxHP = 100f;
-            progress.PlayerStats.Damage = 25f;
-            progress.PlayerStats.DamageRadius = 0.5f;
-            progress.PlayerState.ResetHP();
-            
+            PlayerProgress progress = new PlayerProgress("TestLevel")
+            {
+                PlayerStats =
+                {
+                    MaxHP = 100f,
+                    Damage = 25f,
+                    DamageRadius = 0.5f
+                }
+            };
+
+            progress.PlayerStats.ResetHP();
             return progress;
         }
     }

@@ -16,7 +16,7 @@ namespace Characters.Player
 
         private IInputService _inputService;
         private Collider[] _hits = new Collider[3];
-        private Stats _stats;
+        private PlayerStats _playerStats;
 
         public void Construct(IInputService inputService) =>
             _inputService = inputService;
@@ -36,10 +36,10 @@ namespace Characters.Player
         }
 
         public void LoadProgress(PlayerProgress progress) => 
-            _stats = progress.PlayerStats;
+            _playerStats = progress.PlayerStats;
 
         private int Hit() => 
-            Physics.OverlapSphereNonAlloc(StartPoint()+transform.forward, _stats.DamageRadius, _hits, _layerMask);
+            Physics.OverlapSphereNonAlloc(StartPoint()+transform.forward, _playerStats.DamageRadius, _hits, _layerMask);
 
         private Vector3 StartPoint() =>
             new(transform.position.x, _characterController.center.y / 2, transform.position.z);

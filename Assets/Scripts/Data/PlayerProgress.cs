@@ -6,14 +6,12 @@ namespace Data
     public class PlayerProgress
     {
         public WorldData WorldData;
-        public State PlayerState;
-        public Stats PlayerStats;
+        public PlayerStats PlayerStats;
 
         public PlayerProgress(string level)
         {
             WorldData = new WorldData(level);
-            PlayerState = new State();
-            PlayerStats = new Stats();
+            PlayerStats = new PlayerStats();
         }
     }
 }

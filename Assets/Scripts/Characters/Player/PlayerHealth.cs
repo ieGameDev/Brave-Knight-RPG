@@ -10,18 +10,18 @@ namespace Characters.Player
     {
         [SerializeField] private PlayerAnimator _animator;
 
-        private State _state;
+        private PlayerStats _playerStats;
 
         public event Action HealthChanged;
 
         public float Current
         {
-            get => _state.CurrentHP;
+            get => _playerStats.CurrentHP;
             set
             {
-                if (_state.CurrentHP != value)
+                if (_playerStats.CurrentHP != value)
                 {
-                    _state.CurrentHP = value;
+                    _playerStats.CurrentHP = value;
                     HealthChanged?.Invoke();
                 }
             }
@@ -29,20 +29,20 @@ namespace Characters.Player
 
         public float Max
         {
-            get => _state.MaxHP;
-            set => _state.MaxHP = value;
+            get => _playerStats.MaxHP;
+            set => _playerStats.MaxHP = value;
         }
 
         public void LoadProgress(PlayerProgress progress)
         {
-            _state = progress.PlayerState;
+            _playerStats = progress.PlayerStats;
             HealthChanged?.Invoke();
         }
 
         public void UpdateProgress(PlayerProgress progress)
         {
-            progress.PlayerState.CurrentHP = Current;
-            progress.PlayerState.MaxHP = Max;
+            progress.PlayerStats.CurrentHP = Current;
+            progress.PlayerStats.MaxHP = Max;
         }
 
         public void TakeDamage(float damage)
