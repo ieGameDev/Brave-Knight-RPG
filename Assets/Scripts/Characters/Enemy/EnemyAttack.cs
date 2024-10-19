@@ -16,13 +16,15 @@ namespace Characters.Enemy
         [SerializeField] private float _damage;
 
         private IGameFactory _gameFactory;
-        private Transform _playerTransform;
+        private GameObject _player;
+        private PlayerDeath _playerDeath;
 
         private Collider[] _hits = new Collider[1];
         private float _cooldown;
         private bool _isAttacking;
         private int _layerMask;
         private bool _attackIsActive;
+        private bool _playerIsDead;
 
         private void Awake()
         {
@@ -37,16 +39,14 @@ namespace Characters.Enemy
             if (_cooldown > 0)
                 _cooldown -= Time.deltaTime;
 
-            if (_attackIsActive && !_isAttacking && _cooldown <= 0)
+            if (CanAttack())
                 StartAttack();
         }
 
         public void OnAttack()
         {
             if (Hit(out Collider hit))
-            {
                 hit.transform.GetComponent<PlayerHealth>().TakeDamage(_damage);
-            }
         }
 
         public void OnAttackEnded()
@@ -55,9 +55,30 @@ namespace Characters.Enemy
             _isAttacking = false;
         }
 
-        public void EnableAttack() => _attackIsActive = true;
+        public void EnableAttack() => 
+            _attackIsActive = true;
 
-        public void DisableAttack() => _attackIsActive = false;
+        public void DisableAttack() => 
+            _attackIsActive = false;
+
+        private void OnPlayerCreated()
+        {
+            _player = _gameFactory.Player;
+            _playerDeath = _player.GetComponent<PlayerDeath>();
+            _playerDeath.OnDeath += StopAttack;
+        }
+
+        private void OnDestroy()
+        {
+            _gameFactory.PlayerCreated -= OnPlayerCreated;
+            _playerDeath.OnDeath -= StopAttack;
+        }
+
+        private bool CanAttack() =>
+            !_playerIsDead &&
+            _attackIsActive &&
+            !_isAttacking &&
+            _cooldown <= 0;
 
         private bool Hit(out Collider hit)
         {
@@ -73,13 +94,13 @@ namespace Characters.Enemy
 
         private void StartAttack()
         {
-            transform.LookAt(_playerTransform);
-            _enemyAnimator.PlayAttack();
+            transform.LookAt(_player.transform);
+            _enemyAnimator.PlayAttackAnimation();
 
             _isAttacking = true;
         }
 
-        private void OnPlayerCreated() =>
-            _playerTransform = _gameFactory.Player.transform;
+        private void StopAttack() =>
+            _playerIsDead = true;
     }
 }

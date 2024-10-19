@@ -11,16 +11,16 @@ namespace Characters.Enemy
 
         [SerializeField] private Animator _animator;
 
-        public void Move() =>
+        public void MoveAnimation() =>
             _animator.SetBool(IsMoving, true);
 
         public void StopMoving() =>
             _animator.SetBool(IsMoving, false);
 
-        public void PlayDeath() =>
+        public void PlayDeathAnimation() =>
             _animator.SetTrigger(Die);
 
-        public void PlayAttack() =>
+        public void PlayAttackAnimation() =>
             _animator.SetTrigger(Attack);
     }
 }
