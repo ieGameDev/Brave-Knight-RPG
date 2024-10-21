@@ -1,6 +1,7 @@
 using System.Linq;
 using Characters.Player;
 using Infrastructure.DI;
+using Logic;
 using Services.Factory;
 using UnityEngine;
 
@@ -46,7 +47,7 @@ namespace Characters.Enemy
         public void OnAttack()
         {
             if (Hit(out Collider hit))
-                hit.transform.GetComponent<PlayerHealth>().TakeDamage(_damage);
+                hit.transform.GetComponent<IHealth>().TakeDamage(_damage);
         }
 
         public void OnAttackEnded()
@@ -65,13 +66,13 @@ namespace Characters.Enemy
         {
             _player = _gameFactory.Player;
             _playerDeath = _player.GetComponent<PlayerDeath>();
-            _playerDeath.OnDeath += StopAttack;
+            _playerDeath.OnPlayerDeath += StopAttack;
         }
 
         private void OnDestroy()
         {
             _gameFactory.PlayerCreated -= OnPlayerCreated;
-            _playerDeath.OnDeath -= StopAttack;
+            _playerDeath.OnPlayerDeath -= StopAttack;
         }
 
         private bool CanAttack() =>

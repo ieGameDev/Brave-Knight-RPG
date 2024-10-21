@@ -7,7 +7,6 @@ namespace Data
     {
         public float CurrentHP;
         public float MaxHP;
-        
         public float Damage;
         public float DamageRadius;
 

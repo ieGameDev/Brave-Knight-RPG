@@ -20,7 +20,7 @@ namespace UI
 
         private void UpdateHpBar()
         {
-            _hpBar.SetValue(_playerHealth.Current, _playerHealth.Max);
+            _hpBar.SetValue(_playerHealth.CurrentHealth, _playerHealth.MaxHealth);
         }
     }
 }

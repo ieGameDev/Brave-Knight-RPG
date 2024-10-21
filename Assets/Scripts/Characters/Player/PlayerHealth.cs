@@ -1,12 +1,13 @@
 using System;
 using Data;
+using Logic;
 using Services.Progress;
 using UnityEngine;
 
 namespace Characters.Player
 {
     [RequireComponent(typeof(PlayerAnimator))]
-    public class PlayerHealth : MonoBehaviour, ISavedProgress
+    public class PlayerHealth : MonoBehaviour, ISavedProgress, IHealth
     {
         [SerializeField] private PlayerAnimator _animator;
 
@@ -14,7 +15,7 @@ namespace Characters.Player
 
         public event Action HealthChanged;
 
-        public float Current
+        public float CurrentHealth
         {
             get => _playerStats.CurrentHP;
             set
@@ -27,7 +28,7 @@ namespace Characters.Player
             }
         }
 
-        public float Max
+        public float MaxHealth
         {
             get => _playerStats.MaxHP;
             set => _playerStats.MaxHP = value;
@@ -41,16 +42,16 @@ namespace Characters.Player
 
         public void UpdateProgress(PlayerProgress progress)
         {
-            progress.PlayerStats.CurrentHP = Current;
-            progress.PlayerStats.MaxHP = Max;
+            progress.PlayerStats.CurrentHP = CurrentHealth;
+            progress.PlayerStats.MaxHP = MaxHealth;
         }
 
         public void TakeDamage(float damage)
         {
-            if (Current <= 0)
+            if (CurrentHealth <= 0)
                 return;
 
-            Current -= damage;
+            CurrentHealth -= damage;
             _animator.PlayHitAnimation();
         }
     }

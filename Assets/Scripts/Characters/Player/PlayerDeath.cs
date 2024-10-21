@@ -14,7 +14,7 @@ namespace Characters.Player
 
         private bool _isDead;
 
-        public event Action OnDeath;
+        public event Action OnPlayerDeath;
 
         private void Start() =>
             _playerHealth.HealthChanged += OnHealthChanged;
@@ -24,7 +24,7 @@ namespace Characters.Player
 
         private void OnHealthChanged()
         {
-            if (!_isDead && _playerHealth.Current <= 0)
+            if (!_isDead && _playerHealth.CurrentHealth <= 0)
                 Die();
         }
 
@@ -40,7 +40,7 @@ namespace Characters.Player
             _playerAttack.enabled = false;
             _playerAnimator.PlayDeathAnimation();
 
-            OnDeath?.Invoke();
+            OnPlayerDeath?.Invoke();
         }
     }
 }

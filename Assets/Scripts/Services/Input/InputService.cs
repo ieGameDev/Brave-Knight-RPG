@@ -10,9 +10,9 @@ namespace Services.Input
         public abstract Vector2 Axis { get; }
 
         public bool IsAttackButtonDown() =>
-            UnityEngine.Input.GetMouseButtonDown(0);
-        
-        protected static Vector2 SimpleInputAxis() => 
+            AttackButton.FireAxis;
+
+        protected static Vector2 SimpleInputAxis() =>
             new(SimpleInput.GetAxis(Horizontal), SimpleInput.GetAxis(Vertical));
     }
 }

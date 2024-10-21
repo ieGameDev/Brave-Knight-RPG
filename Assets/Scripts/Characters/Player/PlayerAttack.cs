@@ -1,4 +1,5 @@
 using Data;
+using Logic;
 using Services.Input;
 using Services.Progress;
 using UnityEngine;
@@ -21,25 +22,27 @@ namespace Characters.Player
         public void Construct(IInputService inputService) =>
             _inputService = inputService;
 
-        private void Awake() => 
+        private void Awake() =>
             _layerMask = 1 << LayerMask.NameToLayer("Hittable");
 
         private void Update()
         {
-            if(_inputService.IsAttackButtonDown() && !_animator.IsAttacking)
+            if (_inputService.IsAttackButtonDown() && !_animator.IsAttacking)
                 _animator.PlayAttackAnimation();
         }
 
         public void OnAttack()
         {
-            Debug.Log("Attack");
+            for (int i = 0; i < Hit(); i++)
+                _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(_playerStats.Damage);
         }
 
-        public void LoadProgress(PlayerProgress progress) => 
+        public void LoadProgress(PlayerProgress progress) =>
             _playerStats = progress.PlayerStats;
 
-        private int Hit() => 
-            Physics.OverlapSphereNonAlloc(StartPoint()+transform.forward, _playerStats.DamageRadius, _hits, _layerMask);
+        private int Hit() =>
+            Physics.OverlapSphereNonAlloc(StartPoint() + transform.forward, _playerStats.DamageRadius, _hits,
+                _layerMask);
 
         private Vector3 StartPoint() =>
             new(transform.position.x, _characterController.center.y / 2, transform.position.z);
