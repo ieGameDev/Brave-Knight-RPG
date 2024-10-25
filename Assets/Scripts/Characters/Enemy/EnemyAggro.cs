@@ -1,4 +1,3 @@
-using System.Collections;
 using Logic.EnemyStates;
 using UnityEngine;
 
@@ -9,13 +8,11 @@ namespace Characters.Enemy
         [SerializeField] private EnemyTrigger _trigger;
         [SerializeField] private EnemyMoveToPlayer _moveToPlayer;
         [SerializeField] private EnemyPatrol _patrol;
-        [SerializeField] private float _coolDown;
 
         private EnemyStateMachine _stateMachine;
-        private Coroutine _coroutine;
         private bool _hasAggroTarget;
 
-        private void Awake() => 
+        private void Awake() =>
             _stateMachine = new EnemyStateMachine();
 
         private void Start()
@@ -23,6 +20,7 @@ namespace Characters.Enemy
             _trigger.TriggerEnter += TriggerEnter;
             _trigger.TriggerExit += TriggerExit;
 
+            _stateMachine.SetState(_patrol);
             _moveToPlayer.enabled = false;
             _patrol.enabled = true;
         }
@@ -37,29 +35,20 @@ namespace Characters.Enemy
         {
             if (_hasAggroTarget) return;
             _hasAggroTarget = true;
-                
-            if (_coroutine != null)
-                StopCoroutine(StopFollow());
             
+            _stateMachine.SetState(_moveToPlayer); 
             _moveToPlayer.enabled = true;
             _patrol.enabled = false;
-            _stateMachine.SetState(_moveToPlayer);
         }
 
         private void TriggerExit(Collider obj)
         {
             if (!_hasAggroTarget) return;
             _hasAggroTarget = false;
-                
-            _coroutine = StartCoroutine(StopFollow());
-        }
 
-        private IEnumerator StopFollow()
-        {
-            yield return new WaitForSeconds(_coolDown);
+            _stateMachine.SetState(_patrol);
             _moveToPlayer.enabled = false;
             _patrol.enabled = true;
-            _stateMachine.SetState(_patrol);
         }
     }
 }

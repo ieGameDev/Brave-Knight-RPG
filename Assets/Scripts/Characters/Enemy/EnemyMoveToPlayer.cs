@@ -9,9 +9,9 @@ namespace Characters.Enemy
     [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyMoveToPlayer : MonoBehaviour, IEnemyState
     {
-        [SerializeField] private NavMeshAgent _enemy;
+        [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private float _minimalDistance;
-        [SerializeField] private float _moveSpeed;
+        [SerializeField] private float _moveSpeed = 4f;
 
         private Transform _player;
         private IGameFactory _gameFactory;
@@ -29,18 +29,18 @@ namespace Characters.Enemy
         private void Update()
         {
             if (_player && StopDistanceReached())
-                _enemy.destination = _player.position;
+                _navMeshAgent.destination = _player.position;
         }
 
         public void Enter()
         {
-            Debug.Log("MoveToPlayerState");
-            
-            _enemy.speed = _moveSpeed;
+            _navMeshAgent.speed = _moveSpeed;
+            Debug.Log($"Enter MoveToPlayer State, move speed: {_navMeshAgent.speed}");
         }
 
         public void Exit()
         {
+            Debug.Log($"Exit MoveToPlayer State");
         }
 
         private void InitializePLayerTransform() =>

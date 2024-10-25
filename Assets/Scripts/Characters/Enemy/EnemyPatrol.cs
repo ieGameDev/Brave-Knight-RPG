@@ -9,15 +9,21 @@ namespace Characters.Enemy
     public class EnemyPatrol : MonoBehaviour, IEnemyState
     {
         [SerializeField] private NavMeshAgent _navMeshAgent;
-        [SerializeField] private float _moveSpeed;
         [SerializeField] private float _cooldown;
         [SerializeField] private Transform[] _points;
+        [SerializeField] private float _moveSpeed = 2f;
 
         private int _currentPointIndex;
         private bool _waiting;
 
-        private void Start() => 
-            _navMeshAgent.speed = _moveSpeed;
+        private void Start()
+        {
+            _currentPointIndex = 0;
+            if (_points.Length > 0)
+                _navMeshAgent.SetDestination(_points[_currentPointIndex].position);
+
+            _waiting = false;
+        }
 
         private void Update()
         {
@@ -27,17 +33,13 @@ namespace Characters.Enemy
 
         public void Enter()
         {
-            Debug.Log("PatrolState");
-            
-            _currentPointIndex = 0;
-            if (_points.Length > 0)
-                _navMeshAgent.SetDestination(_points[_currentPointIndex].position);
-
-            _waiting = false;
+            _navMeshAgent.speed = _moveSpeed;
+            Debug.Log($"Enter Patrol State, move speed: {_navMeshAgent.speed}");
         }
 
         public void Exit()
         {
+            Debug.Log($"Exit Patrol State");
         }
 
         private IEnumerator WaitAtPoint()

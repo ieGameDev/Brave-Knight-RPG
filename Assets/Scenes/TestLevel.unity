@@ -393,11 +393,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 810861038437961681, guid: cca479931cd5a4e7a904bd4815e5303b,
-        type: 3}
-      propertyPath: _moveSpeed
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 1052687289530638906, guid: cca479931cd5a4e7a904bd4815e5303b,
         type: 3}
       propertyPath: '_points.Array.data[0]'
