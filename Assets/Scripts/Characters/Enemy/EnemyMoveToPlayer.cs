@@ -1,4 +1,3 @@
-using Infrastructure.DI;
 using Logic.EnemyStates;
 using Services.Factory;
 using UnityEngine;
@@ -14,17 +13,9 @@ namespace Characters.Enemy
         [SerializeField] private float _moveSpeed = 4f;
 
         private Transform _player;
-        private IGameFactory _gameFactory;
 
-        private void Start()
-        {
-            _gameFactory = DiContainer.Instance.Single<IGameFactory>();
-
-            if (_gameFactory.Player != null)
-                InitializePLayerTransform();
-            else
-                _gameFactory.PlayerCreated += InitializePLayerTransform;
-        }
+        public void Construct(GameObject player) => 
+            _player = player.transform;
 
         private void Update()
         {
@@ -38,13 +29,8 @@ namespace Characters.Enemy
             Debug.Log($"Enter MoveToPlayer State, move speed: {_navMeshAgent.speed}");
         }
 
-        public void Exit()
-        {
+        public void Exit() => 
             Debug.Log($"Exit MoveToPlayer State");
-        }
-
-        private void InitializePLayerTransform() =>
-            _player = _gameFactory.Player.transform;
 
         private bool StopDistanceReached() =>
             Vector3.Distance(_player.position, transform.position) >= _minimalDistance;

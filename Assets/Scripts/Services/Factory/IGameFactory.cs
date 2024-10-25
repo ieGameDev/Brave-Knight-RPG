@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Characters.Enemy;
 using Infrastructure.DI;
 using Services.Progress;
 using UnityEngine;
@@ -11,11 +12,10 @@ namespace Services.Factory
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
         GameObject Player { get; set; }
-
-        event Action PlayerCreated;
         
         GameObject CreatePlayer(GameObject initialPoint);
         GameObject CreatePlayerHUD();
+        GameObject CreateEnemy(EnemyInitialPoint initialPoint);
 
         void CleanUp();
     }

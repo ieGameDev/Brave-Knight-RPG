@@ -6,6 +6,7 @@ TagManager:
   tags:
   - PlayerInitialPoint
   - FxTemporaire
+  - EnemyInitialPoint
   layers:
   - Default
   - TransparentFX

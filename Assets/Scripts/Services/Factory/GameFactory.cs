@@ -1,5 +1,5 @@
-using System;
 using System.Collections.Generic;
+using Characters.Enemy;
 using Characters.Player;
 using Infrastructure.DI;
 using ScriptableObjects;
@@ -17,7 +17,6 @@ namespace Services.Factory
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         public GameObject Player { get; set; }
-        public event Action PlayerCreated;
 
         public GameFactory(IAssetsProvider assetProvider)
         {
@@ -28,7 +27,7 @@ namespace Services.Factory
         {
             Player = _assetProvider.Instantiate(AssetAddress.PlayerPath,
                 initialPoint.transform.position + Vector3.up * 0.2f);
-            
+
             RegisterProgressWatchers(Player);
 
             Camera camera = Camera.main;
@@ -43,12 +42,25 @@ namespace Services.Factory
             playerMove.Construct(camera, input, movementSpeed);
             playerAttack.Construct(input);
 
-            PlayerCreated?.Invoke();
             return Player;
         }
 
         public GameObject CreatePlayerHUD() =>
             _assetProvider.Instantiate(AssetAddress.HUDPath);
+
+        public GameObject CreateEnemy(EnemyInitialPoint initialPoint)
+        {
+            GameObject enemy = _assetProvider.Instantiate("Enemies/Skeleton/Skeleton",
+                initialPoint.transform.position + Vector3.up * 0.2f);
+
+            PlayerDeath playerDeath = Player.GetComponent<PlayerDeath>();
+            
+            enemy.GetComponent<EnemyMoveToPlayer>().Construct(Player);
+            enemy.GetComponent<EnemyPatrol>().Construct(initialPoint);
+            enemy.GetComponent<EnemyAttack>().Construct(Player, playerDeath);
+            
+            return enemy;
+        }
 
         public void CleanUp()
         {

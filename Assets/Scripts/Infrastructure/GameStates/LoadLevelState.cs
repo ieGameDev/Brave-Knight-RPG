@@ -1,4 +1,5 @@
 using CameraLogic;
+using Characters.Enemy;
 using Characters.Player;
 using Services.Factory;
 using Services.Progress;
@@ -11,6 +12,7 @@ namespace Infrastructure.GameStates
     public class LoadLevelState : IPayLoadedState<string>
     {
         private const string PlayerInitialPointTag = "PlayerInitialPoint";
+        private const string EnemyInitialPointTag = "EnemyInitialPoint";
 
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
@@ -57,6 +59,7 @@ namespace Infrastructure.GameStates
             GameObject player = InitialPlayer();
             InitialHUD(player);
             CameraFollow(player);
+            InitialEnemy();
         }
 
         private GameObject InitialPlayer() =>
@@ -65,9 +68,12 @@ namespace Infrastructure.GameStates
         private void InitialHUD(GameObject player)
         {
             GameObject hud = _gameFactory.CreatePlayerHUD();
-
             hud.GetComponentInChildren<ActorUI>().Construct(player.GetComponent<PlayerHealth>());
         }
+
+        private void InitialEnemy() =>
+            _gameFactory.CreateEnemy(GameObject.FindWithTag(EnemyInitialPointTag)
+                .GetComponent<EnemyInitialPoint>());
 
         private void CameraFollow(GameObject player) =>
             Camera.main?.GetComponent<CameraFollow>().Follow(player);

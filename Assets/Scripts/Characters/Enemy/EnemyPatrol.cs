@@ -10,17 +10,20 @@ namespace Characters.Enemy
     {
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private float _cooldown;
-        [SerializeField] private Transform[] _points;
         [SerializeField] private float _moveSpeed = 2f;
-
+        
+        private EnemyInitialPoint _initialPoint;
         private int _currentPointIndex;
         private bool _waiting;
+
+        public void Construct(EnemyInitialPoint initialPoint) => 
+            _initialPoint = initialPoint;
 
         private void Start()
         {
             _currentPointIndex = 0;
-            if (_points.Length > 0)
-                _navMeshAgent.SetDestination(_points[_currentPointIndex].position);
+            if (_initialPoint.PatrolWayPoints.Length > 0)
+                _navMeshAgent.SetDestination(_initialPoint.PatrolWayPoints[_currentPointIndex].position);
 
             _waiting = false;
         }
@@ -47,8 +50,8 @@ namespace Characters.Enemy
             _waiting = true;
 
             yield return new WaitForSeconds(_cooldown);
-            _currentPointIndex = (_currentPointIndex + 1) % _points.Length;
-            _navMeshAgent.SetDestination(_points[_currentPointIndex].position);
+            _currentPointIndex = (_currentPointIndex + 1) % _initialPoint.PatrolWayPoints.Length;
+            _navMeshAgent.SetDestination(_initialPoint.PatrolWayPoints[_currentPointIndex].position);
             _waiting = false;
         }
     }

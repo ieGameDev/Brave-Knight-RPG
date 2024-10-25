@@ -27,13 +27,16 @@ namespace Characters.Enemy
         private bool _attackIsActive;
         private bool _playerIsDead;
 
-        private void Awake()
+        public void Construct(GameObject player, PlayerDeath playerDeath)
         {
-            _gameFactory = DiContainer.Instance.Single<IGameFactory>();
-            _gameFactory.PlayerCreated += OnPlayerCreated;
-
-            _layerMask = 1 << LayerMask.NameToLayer("Player");
+            _player = player;
+            _playerDeath = playerDeath;
+            
+            _playerDeath.OnPlayerDeath += StopAttack;
         }
+
+        private void Awake() => 
+            _layerMask = 1 << LayerMask.NameToLayer("Player");
 
         private void Update()
         {
@@ -56,30 +59,14 @@ namespace Characters.Enemy
             _isAttacking = false;
         }
 
+        private void OnDestroy() => 
+            _playerDeath.OnPlayerDeath -= StopAttack;
+
         public void EnableAttack() => 
             _attackIsActive = true;
 
         public void DisableAttack() => 
             _attackIsActive = false;
-
-        private void OnPlayerCreated()
-        {
-            _player = _gameFactory.Player;
-            _playerDeath = _player.GetComponent<PlayerDeath>();
-            _playerDeath.OnPlayerDeath += StopAttack;
-        }
-
-        private void OnDestroy()
-        {
-            _gameFactory.PlayerCreated -= OnPlayerCreated;
-            _playerDeath.OnPlayerDeath -= StopAttack;
-        }
-
-        private bool CanAttack() =>
-            !_playerIsDead &&
-            _attackIsActive &&
-            !_isAttacking &&
-            _cooldown <= 0;
 
         private bool Hit(out Collider hit)
         {
@@ -103,5 +90,8 @@ namespace Characters.Enemy
 
         private void StopAttack() =>
             _playerIsDead = true;
+
+        private bool CanAttack() => 
+            !_playerIsDead && _attackIsActive && !_isAttacking && _cooldown <= 0;
     }
 }
