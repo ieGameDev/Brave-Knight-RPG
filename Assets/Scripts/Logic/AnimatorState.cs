@@ -2,10 +2,10 @@ namespace Logic
 {
     public enum AnimatorState
     {
-        Unknown,
-        Idle,
-        Attack,
-        Run, 
-        Died
+        Unknown = 0,
+        Idle = 1,
+        Attack = 2,
+        Run = 3,
+        Died = 4
     }
 }

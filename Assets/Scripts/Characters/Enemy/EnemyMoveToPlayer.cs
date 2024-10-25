@@ -1,4 +1,5 @@
 using Infrastructure.DI;
+using Logic.EnemyStates;
 using Services.Factory;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,10 +7,11 @@ using UnityEngine.AI;
 namespace Characters.Enemy
 {
     [RequireComponent(typeof(NavMeshAgent))]
-    public class EnemyMoveToPlayer : MonoBehaviour
+    public class EnemyMoveToPlayer : MonoBehaviour, IEnemyState
     {
         [SerializeField] private NavMeshAgent _enemy;
         [SerializeField] private float _minimalDistance;
+        [SerializeField] private float _moveSpeed;
 
         private Transform _player;
         private IGameFactory _gameFactory;
@@ -28,6 +30,17 @@ namespace Characters.Enemy
         {
             if (_player && StopDistanceReached())
                 _enemy.destination = _player.position;
+        }
+
+        public void Enter()
+        {
+            Debug.Log("MoveToPlayerState");
+            
+            _enemy.speed = _moveSpeed;
+        }
+
+        public void Exit()
+        {
         }
 
         private void InitializePLayerTransform() =>

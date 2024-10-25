@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 9089141545411083992}
   - component: {fileID: 5467240716617670820}
   - component: {fileID: 8159010288814683163}
+  - component: {fileID: 1123647112889396680}
   m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -251,6 +252,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 8623853387907811551}
   _minimalDistance: 1.7
+  _moveSpeed: 4
 --- !u!114 &7652921634955370260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,6 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _trigger: {fileID: 5322707479971136782}
   _moveToPlayer: {fileID: 742209152820707363}
+  _patrol: {fileID: 1123647112889396680}
   _coolDown: 2
 --- !u!114 &3154492711147045077
 MonoBehaviour:
@@ -354,6 +357,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hpBar: {fileID: 7566533892896602299}
+--- !u!114 &1123647112889396680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1696834749189059949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aeacfe77b7146038fa1b4a32f4d48d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _navMeshAgent: {fileID: 8623853387907811551}
+  _moveSpeed: 2
+  _cooldown: 1
+  _points: []
 --- !u!1 &2665071276124302928
 GameObject:
   m_ObjectHideFlags: 0

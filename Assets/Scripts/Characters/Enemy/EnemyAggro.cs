@@ -1,4 +1,5 @@
 using System.Collections;
+using Logic.EnemyStates;
 using UnityEngine;
 
 namespace Characters.Enemy
@@ -7,10 +8,15 @@ namespace Characters.Enemy
     {
         [SerializeField] private EnemyTrigger _trigger;
         [SerializeField] private EnemyMoveToPlayer _moveToPlayer;
+        [SerializeField] private EnemyPatrol _patrol;
         [SerializeField] private float _coolDown;
 
+        private EnemyStateMachine _stateMachine;
         private Coroutine _coroutine;
         private bool _hasAggroTarget;
+
+        private void Awake() => 
+            _stateMachine = new EnemyStateMachine();
 
         private void Start()
         {
@@ -18,6 +24,7 @@ namespace Characters.Enemy
             _trigger.TriggerExit += TriggerExit;
 
             _moveToPlayer.enabled = false;
+            _patrol.enabled = true;
         }
 
         private void OnDestroy()
@@ -33,8 +40,10 @@ namespace Characters.Enemy
                 
             if (_coroutine != null)
                 StopCoroutine(StopFollow());
-
+            
             _moveToPlayer.enabled = true;
+            _patrol.enabled = false;
+            _stateMachine.SetState(_moveToPlayer);
         }
 
         private void TriggerExit(Collider obj)
@@ -49,6 +58,8 @@ namespace Characters.Enemy
         {
             yield return new WaitForSeconds(_coolDown);
             _moveToPlayer.enabled = false;
+            _patrol.enabled = true;
+            _stateMachine.SetState(_patrol);
         }
     }
 }

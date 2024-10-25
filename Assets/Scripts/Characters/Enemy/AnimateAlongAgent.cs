@@ -13,7 +13,7 @@ namespace Characters.Enemy
         private void Update()
         {
             if (_agent.velocity.magnitude > 1f && _agent.remainingDistance > _agent.radius)
-                _enemyAnimator.MoveAnimation();
+                _enemyAnimator.MoveAnimation(_agent.velocity.magnitude);
             else
                 _enemyAnimator.StopMoving();
         }
