@@ -359,6 +359,8 @@ MonoBehaviour:
   _enemyHealth: {fileID: 9089141545411083992}
   _enemyAnimator: {fileID: 6920212905721971716}
   _enemyMove: {fileID: 742209152820707363}
+  _deathFx: {fileID: 2433282508537954060, guid: 3ef3ae421f71c5c4e97fe12dc2fc6312,
+    type: 3}
 --- !u!114 &8159010288814683163
 MonoBehaviour:
   m_ObjectHideFlags: 0

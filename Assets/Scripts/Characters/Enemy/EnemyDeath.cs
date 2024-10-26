@@ -11,7 +11,7 @@ namespace Characters.Enemy
         [SerializeField] private EnemyHealth _enemyHealth;
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private EnemyMoveToPlayer _enemyMove;
-        // [SerializeField] private GameObject _deathFx;
+        [SerializeField] private GameObject _deathFx;
 
         public event Action OnEnemyDeath;
 
@@ -42,7 +42,7 @@ namespace Characters.Enemy
         {
             yield return new WaitForSeconds(1.5f);
 
-            // Instantiate(_deathFx, transform.position, quaternion.identity);
+            Instantiate(_deathFx, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
