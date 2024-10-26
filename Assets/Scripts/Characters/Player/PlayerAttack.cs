@@ -1,4 +1,5 @@
 using Data;
+using DG.Tweening;
 using Logic;
 using Services.Input;
 using Services.Progress;
@@ -16,11 +17,15 @@ namespace Characters.Player
         private static int _layerMask;
 
         private IInputService _inputService;
+        private Camera _camera;
         private Collider[] _hits = new Collider[3];
         private PlayerStats _playerStats;
 
-        public void Construct(IInputService inputService) =>
+        public void Construct(IInputService inputService, Camera mainCamera)
+        {
             _inputService = inputService;
+            _camera = mainCamera;
+        }
 
         private void Awake() =>
             _layerMask = 1 << LayerMask.NameToLayer("Hittable");
@@ -34,7 +39,10 @@ namespace Characters.Player
         public void OnAttack()
         {
             for (int i = 0; i < Hit(); i++)
+            {
                 _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(_playerStats.Damage);
+                AttackShakeCamera();
+            }
         }
 
         public void LoadProgress(PlayerProgress progress) =>
@@ -46,5 +54,16 @@ namespace Characters.Player
 
         private Vector3 StartPoint() =>
             new(transform.position.x, _characterController.center.y / 2, transform.position.z);
+
+        private void AttackShakeCamera()
+        {
+            _camera?
+                .DOShakePosition(0.12f, 0.1f, 2, 90f, true, ShakeRandomnessMode.Harmonic)
+                .SetEase(Ease.InOutBounce);
+            
+            _camera?
+                .DOShakeRotation(0.12f, 0.1f, 2, 90f, true, ShakeRandomnessMode.Harmonic)
+                .SetEase(Ease.InOutBounce);
+        }
     }
 }

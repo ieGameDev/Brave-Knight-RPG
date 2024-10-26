@@ -2,6 +2,7 @@ using System;
 using Data;
 using Logic;
 using Services.Progress;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Characters.Player
@@ -12,6 +13,7 @@ namespace Characters.Player
         [SerializeField] private PlayerAnimator _animator;
 
         private PlayerStats _playerStats;
+        private Camera _camera;
 
         public event Action HealthChanged;
 
@@ -34,6 +36,9 @@ namespace Characters.Player
             set => _playerStats.MaxHP = value;
         }
 
+        public void Construct(Camera mainCamera) =>
+            _camera = mainCamera;
+
         public void LoadProgress(PlayerProgress progress)
         {
             _playerStats = progress.PlayerStats;
@@ -53,6 +58,12 @@ namespace Characters.Player
 
             CurrentHealth -= damage;
             _animator.PlayHitAnimation();
+            HitShakeCamera();
         }
+
+        private void HitShakeCamera() =>
+            _camera?
+                .DOShakePosition(0.12f, 0.3f, 3, 90f, true, ShakeRandomnessMode.Harmonic)
+                .SetEase(Ease.InOutBounce);
     }
 }

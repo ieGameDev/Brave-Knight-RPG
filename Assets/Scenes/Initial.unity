@@ -344,6 +344,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3636362391997757314, guid: 6ea13fadf6f924616a82aceea69d47ce,
         type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3636362391997757314, guid: 6ea13fadf6f924616a82aceea69d47ce,
+        type: 3}
       propertyPath: m_VertexColorAlwaysGammaSpace
       value: 0
       objectReference: {fileID: 0}

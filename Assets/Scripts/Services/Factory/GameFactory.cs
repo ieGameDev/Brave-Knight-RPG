@@ -36,15 +36,18 @@ namespace Services.Factory
             RegisterProgressWatchers(Player);
             
             IInputService input = DiContainer.Instance.Single<IInputService>();
-
+            Camera mainCamera = Camera.main;
+            
             PlayerMove playerMove = Player.GetComponent<PlayerMove>();
             PlayerAttack playerAttack = playerMove.GetComponent<PlayerAttack>();
+            PlayerHealth playerHealth = Player.GetComponent<PlayerHealth>();
             PlayerData playerData = Resources.Load<PlayerData>(AssetAddress.PlayerDataPath);
 
             float movementSpeed = playerData.MovementSpeed;
 
             playerMove.Construct(CameraContainer, input, movementSpeed);
-            playerAttack.Construct(input);
+            playerAttack.Construct(input, mainCamera);
+            playerHealth.Construct(mainCamera);
 
             return Player;
         }
