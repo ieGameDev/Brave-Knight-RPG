@@ -17,10 +17,15 @@ namespace Services.Factory
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         public GameObject Player { get; set; }
+        public GameObject CameraContainer { get; set; }
 
-        public GameFactory(IAssetsProvider assetProvider)
-        {
+        public GameFactory(IAssetsProvider assetProvider) => 
             _assetProvider = assetProvider;
+
+        public GameObject CreateCameraContainer()
+        {
+            CameraContainer = _assetProvider.Instantiate(AssetAddress.CameraContainerPath);
+            return CameraContainer;
         }
 
         public GameObject CreatePlayer(GameObject initialPoint)
@@ -29,8 +34,7 @@ namespace Services.Factory
                 initialPoint.transform.position + Vector3.up * 0.2f);
 
             RegisterProgressWatchers(Player);
-
-            Camera camera = Camera.main;
+            
             IInputService input = DiContainer.Instance.Single<IInputService>();
 
             PlayerMove playerMove = Player.GetComponent<PlayerMove>();
@@ -39,7 +43,7 @@ namespace Services.Factory
 
             float movementSpeed = playerData.MovementSpeed;
 
-            playerMove.Construct(camera, input, movementSpeed);
+            playerMove.Construct(CameraContainer, input, movementSpeed);
             playerAttack.Construct(input);
 
             return Player;

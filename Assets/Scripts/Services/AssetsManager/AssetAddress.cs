@@ -4,6 +4,7 @@ namespace Services.AssetsManager
     {
         public const string PlayerPath = "PLayer/PLayer";
         public const string HUDPath = "PLayer/HUD";
+        public const string CameraContainerPath = "Camera/CameraContainer";
         public const string PlayerDataPath = "ScriptableObjects/PlayerData";
     }
 }

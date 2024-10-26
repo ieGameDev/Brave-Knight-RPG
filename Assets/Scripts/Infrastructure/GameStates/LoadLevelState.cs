@@ -48,19 +48,17 @@ namespace Infrastructure.GameStates
             _stateMachine.Enter<GameLoopState>();
         }
 
-        private void InformProgressReaders()
-        {
-            foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders)
-                progressReader.LoadProgress(_progressService.Progress);
-        }
-
         private void InitGameWorld()
         {
+            GameObject cameraContainer = InitialCameraContainer();
             GameObject player = InitialPlayer();
             InitialHUD(player);
-            CameraFollow(player);
+            CameraFollow(cameraContainer, player);
             InitialEnemy();
         }
+
+        private GameObject InitialCameraContainer() =>
+            _gameFactory.CreateCameraContainer();
 
         private GameObject InitialPlayer() =>
             _gameFactory.CreatePlayer(GameObject.FindWithTag(PlayerInitialPointTag));
@@ -71,11 +69,21 @@ namespace Infrastructure.GameStates
             hud.GetComponentInChildren<ActorUI>().Construct(player.GetComponent<PlayerHealth>());
         }
 
-        private void InitialEnemy() =>
-            _gameFactory.CreateEnemy(GameObject.FindWithTag(EnemyInitialPointTag)
-                .GetComponent<EnemyInitialPoint>());
+        private void InitialEnemy()
+        {
+            EnemyInitialPoint enemyInitialPoint =
+                GameObject.FindWithTag(EnemyInitialPointTag).GetComponent<EnemyInitialPoint>();
 
-        private void CameraFollow(GameObject player) =>
-            Camera.main?.GetComponent<CameraFollow>().Follow(player);
+            _gameFactory.CreateEnemy(enemyInitialPoint);
+        }
+
+        private void CameraFollow(GameObject cameraContainer, GameObject player) =>
+            cameraContainer.GetComponent<CameraFollow>().Follow(player);
+
+        private void InformProgressReaders()
+        {
+            foreach (ISavedProgressReader progressReader in _gameFactory.ProgressReaders)
+                progressReader.LoadProgress(_progressService.Progress);
+        }
     }
 }

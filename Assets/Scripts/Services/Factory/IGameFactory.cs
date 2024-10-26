@@ -12,7 +12,9 @@ namespace Services.Factory
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
         GameObject Player { get; set; }
-        
+        GameObject CameraContainer { get; set; }
+
+        GameObject CreateCameraContainer();
         GameObject CreatePlayer(GameObject initialPoint);
         GameObject CreatePlayerHUD();
         GameObject CreateEnemy(EnemyInitialPoint initialPoint);

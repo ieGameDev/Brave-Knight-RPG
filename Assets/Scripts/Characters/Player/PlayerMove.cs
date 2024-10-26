@@ -12,13 +12,13 @@ namespace Characters.Player
     {
         [SerializeField] private CharacterController _characterController;
 
-        private Camera _camera;
+        private GameObject _camera;
         private IInputService _inputService;
         private float _movementSpeed;
 
-        public void Construct(Camera mainCamera, IInputService inputService, float movementSpeed)
+        public void Construct(GameObject followCamera, IInputService inputService, float movementSpeed)
         {
-            _camera = mainCamera;
+            _camera = followCamera;
             _inputService = inputService;
             _movementSpeed = movementSpeed;
         }
