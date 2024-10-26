@@ -250,7 +250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56b28cffb7d64d038486eaefbec906c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 8623853387907811551}
+  _navMeshAgent: {fileID: 8623853387907811551}
   _minimalDistance: 1.7
   _moveSpeed: 4
 --- !u!114 &1123647112889396680
@@ -266,9 +266,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _navMeshAgent: {fileID: 8623853387907811551}
-  _moveSpeed: 2
   _cooldown: 1
-  _points: []
+  _moveSpeed: 2
 --- !u!114 &7652921634955370260
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -284,7 +283,6 @@ MonoBehaviour:
   _trigger: {fileID: 5322707479971136782}
   _moveToPlayer: {fileID: 742209152820707363}
   _patrol: {fileID: 1123647112889396680}
-  _coolDown: 2
 --- !u!114 &3154492711147045077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -312,6 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyAnimator: {fileID: 6920212905721971716}
+  _enemyHealth: {fileID: 9089141545411083992}
   _attackCooldown: 1.5
   _cleavage: 0.5
   _effectiveDistance: 0.5

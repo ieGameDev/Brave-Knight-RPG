@@ -11,6 +11,7 @@ namespace Characters.Enemy
     public class EnemyAttack : MonoBehaviour
     {
         [SerializeField] private EnemyAnimator _enemyAnimator;
+        [SerializeField] private EnemyHealth _enemyHealth;
         [SerializeField] private float _attackCooldown;
         [SerializeField] private float _cleavage;
         [SerializeField] private float _effectiveDistance;
@@ -35,8 +36,11 @@ namespace Characters.Enemy
             _playerDeath.OnPlayerDeath += StopAttack;
         }
 
-        private void Awake() => 
+        private void Awake()
+        {
             _layerMask = 1 << LayerMask.NameToLayer("Player");
+            _enemyHealth.HealthChanged += OnAttackEnded;
+        }
 
         private void Update()
         {
@@ -59,8 +63,11 @@ namespace Characters.Enemy
             _isAttacking = false;
         }
 
-        private void OnDestroy() => 
+        private void OnDestroy()
+        {
             _playerDeath.OnPlayerDeath -= StopAttack;
+            _enemyHealth.HealthChanged -= OnAttackEnded;
+        }
 
         public void EnableAttack() => 
             _attackIsActive = true;
