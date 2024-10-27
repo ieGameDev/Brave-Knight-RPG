@@ -2,13 +2,12 @@ using Data;
 using Extensions;
 using Services.Factory;
 using UnityEngine;
+using Utils;
 
 namespace Services.Progress
 {
     public class SaveLoadService : ISaveLoadService
     {
-        private const string ProgressKey = "Progress";
-
         private readonly IProgressService _progressService;
         private readonly IGameFactory _factory;
 
@@ -23,10 +22,10 @@ namespace Services.Progress
             foreach (ISavedProgress progressWriter in _factory.ProgressWriters)
                 progressWriter.UpdateProgress(_progressService.Progress);
             
-            PlayerPrefs.SetString(ProgressKey, _progressService.Progress.ToJson());
+            PlayerPrefs.SetString(Constants.ProgressKey, _progressService.Progress.ToJson());
         }
 
         public PlayerProgress LoadProgress() =>
-            PlayerPrefs.GetString(ProgressKey)?.ToDeserialized<PlayerProgress>();
+            PlayerPrefs.GetString(Constants.ProgressKey)?.ToDeserialized<PlayerProgress>();
     }
 }

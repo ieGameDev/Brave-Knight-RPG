@@ -11,9 +11,6 @@ namespace Infrastructure.GameStates
 {
     public class LoadLevelState : IPayLoadedState<string>
     {
-        private const string PlayerInitialPointTag = "PlayerInitialPoint";
-        private const string EnemyInitialPointTag = "EnemyInitialPoint";
-
         private readonly GameStateMachine _stateMachine;
         private readonly SceneLoader _sceneLoader;
         private readonly LoadingScreen _loadingScreen;
@@ -61,7 +58,7 @@ namespace Infrastructure.GameStates
             _gameFactory.CreateCameraContainer();
 
         private GameObject InitialPlayer() =>
-            _gameFactory.CreatePlayer(GameObject.FindWithTag(PlayerInitialPointTag));
+            _gameFactory.CreatePlayer(GameObject.FindWithTag(Constants.PlayerInitialPointTag));
 
         private void InitialHUD(GameObject player)
         {
@@ -72,7 +69,7 @@ namespace Infrastructure.GameStates
         private void InitialEnemy()
         {
             EnemyInitialPoint enemyInitialPoint =
-                GameObject.FindWithTag(EnemyInitialPointTag).GetComponent<EnemyInitialPoint>();
+                GameObject.FindWithTag(Constants.EnemyInitialPointTag).GetComponent<EnemyInitialPoint>();
 
             _gameFactory.CreateEnemy(enemyInitialPoint);
         }

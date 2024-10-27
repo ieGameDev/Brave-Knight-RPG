@@ -34,15 +34,11 @@ namespace Characters.Enemy
                 StartCoroutine(WaitAtPoint());
         }
 
-        public void Enter()
-        {
+        public void Enter() => 
             _navMeshAgent.speed = _moveSpeed;
-            Debug.Log($"Enter Patrol State, move speed: {_navMeshAgent.speed}");
-        }
 
         public void Exit()
         {
-            Debug.Log($"Exit Patrol State");
         }
 
         private IEnumerator WaitAtPoint()

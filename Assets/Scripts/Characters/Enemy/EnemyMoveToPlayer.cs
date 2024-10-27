@@ -14,7 +14,7 @@ namespace Characters.Enemy
 
         private Transform _player;
 
-        public void Construct(GameObject player) => 
+        public void Construct(GameObject player) =>
             _player = player.transform;
 
         private void Update()
@@ -23,14 +23,12 @@ namespace Characters.Enemy
                 _navMeshAgent.destination = _player.position;
         }
 
-        public void Enter()
-        {
+        public void Enter() =>
             _navMeshAgent.speed = _moveSpeed;
-            Debug.Log($"Enter MoveToPlayer State, move speed: {_navMeshAgent.speed}");
-        }
 
-        public void Exit() => 
-            Debug.Log($"Exit MoveToPlayer State");
+        public void Exit()
+        {
+        }
 
         private bool StopDistanceReached() =>
             Vector3.Distance(_player.position, transform.position) >= _minimalDistance;

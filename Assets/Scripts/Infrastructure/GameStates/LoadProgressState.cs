@@ -1,5 +1,6 @@
 using Data;
 using Services.Progress;
+using Utils;
 
 namespace Infrastructure.GameStates
 {
@@ -33,7 +34,7 @@ namespace Infrastructure.GameStates
 
         private PlayerProgress NewProgress()
         {
-            PlayerProgress progress = new PlayerProgress("TestLevel")
+            PlayerProgress progress = new PlayerProgress(Constants.TestLevel)
             {
                 PlayerStats =
                 {

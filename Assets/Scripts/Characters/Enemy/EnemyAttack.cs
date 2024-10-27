@@ -1,9 +1,9 @@
 using System.Linq;
 using Characters.Player;
-using Infrastructure.DI;
 using Logic;
 using Services.Factory;
 using UnityEngine;
+using Utils;
 
 namespace Characters.Enemy
 {
@@ -38,7 +38,7 @@ namespace Characters.Enemy
 
         private void Awake()
         {
-            _layerMask = 1 << LayerMask.NameToLayer("Player");
+            _layerMask = 1 << LayerMask.NameToLayer(Constants.PlayerLayer);
             _enemyHealth.HealthChanged += OnAttackEnded;
         }
 
