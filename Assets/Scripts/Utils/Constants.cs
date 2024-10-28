@@ -7,6 +7,7 @@ namespace Utils
         public const string ProgressKey = "Progress";
         public const string PlayerInitialPointTag = "PlayerInitialPoint";
         public const string EnemyInitialPointTag = "EnemyInitialPoint";
+        public const string EnemySpawnerTag = "EnemySpawner";
         public const string PlayerLayer = "Player";
     }
 }

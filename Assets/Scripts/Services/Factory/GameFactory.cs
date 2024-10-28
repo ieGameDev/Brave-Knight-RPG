@@ -10,7 +10,7 @@ using UnityEngine;
 
 namespace Services.Factory
 {
-    public class GameFactory : IGameFactory
+    public class  GameFactory : IGameFactory
     {
         private readonly IAssetsProvider _assetProvider;
 
@@ -81,7 +81,7 @@ namespace Services.Factory
                 Register(progressReader);
         }
 
-        private void Register(ISavedProgressReader progressReader)
+        public void Register(ISavedProgressReader progressReader)
         {
             if (progressReader is ISavedProgress progressWriter)
                 ProgressWriters.Add(progressWriter);

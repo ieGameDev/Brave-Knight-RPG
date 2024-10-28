@@ -1,6 +1,7 @@
 using CameraLogic;
 using Characters.Enemy;
 using Characters.Player;
+using Logic;
 using Services.Factory;
 using Services.Progress;
 using UI;
@@ -51,6 +52,7 @@ namespace Infrastructure.GameStates
             GameObject player = InitialPlayer();
             InitialHUD(player);
             CameraFollow(cameraContainer, player);
+            InitSpawners();
             InitialEnemy();
         }
 
@@ -66,6 +68,18 @@ namespace Infrastructure.GameStates
             hud.GetComponentInChildren<ActorUI>().Construct(player.GetComponent<PlayerHealth>());
         }
 
+        private void CameraFollow(GameObject cameraContainer, GameObject player) =>
+            cameraContainer.GetComponent<CameraFollow>().Follow(player);
+
+        private void InitSpawners()
+        {
+            foreach (GameObject spawnerObj in GameObject.FindGameObjectsWithTag(Constants.EnemySpawnerTag))
+            {
+                var spawner = spawnerObj.GetComponent<EnemySpawner>();
+                _gameFactory.Register(spawner);
+            }
+        }
+
         private void InitialEnemy()
         {
             EnemyInitialPoint enemyInitialPoint =
@@ -73,9 +87,6 @@ namespace Infrastructure.GameStates
 
             _gameFactory.CreateEnemy(enemyInitialPoint);
         }
-
-        private void CameraFollow(GameObject cameraContainer, GameObject player) =>
-            cameraContainer.GetComponent<CameraFollow>().Follow(player);
 
         private void InformProgressReaders()
         {

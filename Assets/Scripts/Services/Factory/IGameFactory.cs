@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Characters.Enemy;
 using Infrastructure.DI;
+using Logic;
 using Services.Progress;
 using UnityEngine;
 
@@ -20,5 +21,6 @@ namespace Services.Factory
         GameObject CreateEnemy(EnemyInitialPoint initialPoint);
 
         void CleanUp();
+        void Register(ISavedProgressReader progressReader);
     }
 }
