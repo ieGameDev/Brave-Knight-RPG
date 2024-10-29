@@ -1,8 +1,8 @@
 using UnityEngine;
 
-namespace ScriptableObjects
+namespace StaticData
 {
-    [CreateAssetMenu(fileName = "PlayerData", menuName = "ScriptableObjects")]
+    [CreateAssetMenu(fileName = "PlayerData", menuName = "ScriptableObjects/Player")]
     public class PlayerData : ScriptableObject
     {
         public float MovementSpeed;

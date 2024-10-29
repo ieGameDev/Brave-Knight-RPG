@@ -12,10 +12,11 @@ namespace Characters.Enemy
     {
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private EnemyHealth _enemyHealth;
-        [SerializeField] private float _attackCooldown;
         [SerializeField] private float _cleavage;
-        [SerializeField] private float _effectiveDistance;
-        [SerializeField] private float _damage;
+
+        private float _attackCooldown;
+        private float _effectiveDistance;
+        private float _damage;
 
         private IGameFactory _gameFactory;
         private GameObject _player;
@@ -23,16 +24,20 @@ namespace Characters.Enemy
 
         private Collider[] _hits = new Collider[1];
         private float _cooldown;
-        private bool _isAttacking;
         private int _layerMask;
+        private bool _isAttacking;
         private bool _attackIsActive;
         private bool _playerIsDead;
 
-        public void Construct(GameObject player, PlayerDeath playerDeath)
+        public void Construct(GameObject player, PlayerDeath playerDeath, float attackCooldown, float damage,
+            float effectiveDistance)
         {
             _player = player;
             _playerDeath = playerDeath;
-            
+            _attackCooldown = attackCooldown;
+            _damage = damage;
+            _effectiveDistance = effectiveDistance;
+
             _playerDeath.OnPlayerDeath += StopAttack;
         }
 
@@ -69,10 +74,10 @@ namespace Characters.Enemy
             _enemyHealth.HealthChanged -= OnAttackEnded;
         }
 
-        public void EnableAttack() => 
+        public void EnableAttack() =>
             _attackIsActive = true;
 
-        public void DisableAttack() => 
+        public void DisableAttack() =>
             _attackIsActive = false;
 
         private bool Hit(out Collider hit)
@@ -98,7 +103,7 @@ namespace Characters.Enemy
         private void StopAttack() =>
             _playerIsDead = true;
 
-        private bool CanAttack() => 
+        private bool CanAttack() =>
             !_playerIsDead && _attackIsActive && !_isAttacking && _cooldown <= 0;
     }
 }

@@ -1,5 +1,4 @@
 using Logic.EnemyStates;
-using Services.Factory;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,12 +9,15 @@ namespace Characters.Enemy
     {
         [SerializeField] private NavMeshAgent _navMeshAgent;
         [SerializeField] private float _minimalDistance;
-        [SerializeField] private float _moveSpeed = 4f;
 
+        private float _moveSpeed;
         private Transform _player;
 
-        public void Construct(GameObject player) =>
+        public void Construct(GameObject player, float moveSpeed)
+        {
             _player = player.transform;
+            _moveSpeed = moveSpeed;
+        }
 
         private void Update()
         {

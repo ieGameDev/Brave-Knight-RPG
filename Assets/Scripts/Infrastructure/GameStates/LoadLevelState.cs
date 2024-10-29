@@ -48,12 +48,11 @@ namespace Infrastructure.GameStates
 
         private void InitGameWorld()
         {
+            InitSpawners();
             GameObject cameraContainer = InitialCameraContainer();
             GameObject player = InitialPlayer();
             InitialHUD(player);
             CameraFollow(cameraContainer, player);
-            InitSpawners();
-            InitialEnemy();
         }
 
         private GameObject InitialCameraContainer() =>
@@ -78,14 +77,6 @@ namespace Infrastructure.GameStates
                 var spawner = spawnerObj.GetComponent<EnemySpawner>();
                 _gameFactory.Register(spawner);
             }
-        }
-
-        private void InitialEnemy()
-        {
-            EnemyInitialPoint enemyInitialPoint =
-                GameObject.FindWithTag(Constants.EnemyInitialPointTag).GetComponent<EnemyInitialPoint>();
-
-            _gameFactory.CreateEnemy(enemyInitialPoint);
         }
 
         private void InformProgressReaders()

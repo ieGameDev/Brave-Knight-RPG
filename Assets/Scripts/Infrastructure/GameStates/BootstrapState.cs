@@ -3,6 +3,8 @@ using Services.AssetsManager;
 using Services.Factory;
 using Services.Input;
 using Services.Progress;
+using Services.StaticData;
+using StaticData;
 using UnityEngine;
 using Utils;
 
@@ -35,12 +37,21 @@ namespace Infrastructure.GameStates
 
         private void RegisterServices()
         {
+            RegisterStaticData();
             _container.RegisterSingle(InitialInputService());
             _container.RegisterSingle<IAssetsProvider>(new AssetsProvider());
-            _container.RegisterSingle<IGameFactory>(new GameFactory(_container.Single<IAssetsProvider>()));
+            _container.RegisterSingle<IGameFactory>(new GameFactory(_container.Single<IAssetsProvider>(),
+                _container.Single<IStaticDataService>()));
             _container.RegisterSingle<IProgressService>(new ProgressService());
             _container.RegisterSingle<ISaveLoadService>(new SaveLoadService(_container.Single<IProgressService>(),
                 _container.Single<IGameFactory>()));
+        }
+
+        private void RegisterStaticData()
+        {
+            IStaticDataService staticData = new StaticDataService();
+            staticData.LoadEnemies();
+            _container.RegisterSingle(staticData);
         }
 
         private static IInputService InitialInputService()

@@ -4,6 +4,7 @@ using Characters.Enemy;
 using Infrastructure.DI;
 using Logic;
 using Services.Progress;
+using StaticData;
 using UnityEngine;
 
 namespace Services.Factory
@@ -18,7 +19,8 @@ namespace Services.Factory
         GameObject CreateCameraContainer();
         GameObject CreatePlayer(GameObject initialPoint);
         GameObject CreatePlayerHUD();
-        GameObject CreateEnemy(EnemyInitialPoint initialPoint);
+        // GameObject CreateEnemy(EnemyInitialPoint initialPoint);
+        GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints);
 
         void CleanUp();
         void Register(ISavedProgressReader progressReader);

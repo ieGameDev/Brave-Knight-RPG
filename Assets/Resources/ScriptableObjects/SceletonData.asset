@@ -9,9 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e7d80c72e4bb4c71b9b0f4668446050b, type: 3}
-  m_Name: PlayerData
+  m_Script: {fileID: 11500000, guid: 7207774d064c4dda9021f465db1f2d5b, type: 3}
+  m_Name: SceletonData
   m_EditorClassIdentifier: 
-  MovementSpeed: 5
+  EnemyTypeId: 0
+  MoveSpeed: 4
+  PatrolSpeed: 2
   Health: 100
   Damage: 25
+  AttackCooldown: 1.5
+  PatrolCooldown: 1.5
+  EffectiveDistance: 0.5
+  EnemyPrefab: {fileID: 1621371377474042527, guid: cca479931cd5a4e7a904bd4815e5303b,
+    type: 3}
