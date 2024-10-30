@@ -14,13 +14,12 @@ namespace Characters.Player
 
         private GameObject _camera;
         private IInputService _inputService;
-        private float _movementSpeed;
+        private PlayerStats _playerStats;
 
-        public void Construct(GameObject followCamera, IInputService inputService, float movementSpeed)
+        public void Construct(GameObject followCamera, IInputService inputService)
         {
             _camera = followCamera;
             _inputService = inputService;
-            _movementSpeed = movementSpeed;
         }
 
         private void Update() =>
@@ -37,6 +36,8 @@ namespace Characters.Player
             
             if (savedPosition != null)
                 TransferPlayer(position: savedPosition);
+            
+            _playerStats = progress.PlayerStats;
         }
 
         private void TransferPlayer(Vector3Data position)
@@ -61,7 +62,7 @@ namespace Characters.Player
 
             movementVector += Physics.gravity;
 
-            _characterController.Move(movementVector * (_movementSpeed * Time.deltaTime));
+            _characterController.Move(movementVector * (_playerStats.MoveSpeed * Time.deltaTime));
         }
 
         private static string CurrentLevel() =>

@@ -47,11 +47,8 @@ namespace Services.Factory
             PlayerMove playerMove = Player.GetComponent<PlayerMove>();
             PlayerAttack playerAttack = playerMove.GetComponent<PlayerAttack>();
             PlayerHealth playerHealth = Player.GetComponent<PlayerHealth>();
-            PlayerData playerData = Resources.Load<PlayerData>(AssetAddress.PlayerDataPath);
 
-            float movementSpeed = playerData.MovementSpeed;
-
-            playerMove.Construct(CameraContainer, _input, movementSpeed);
+            playerMove.Construct(CameraContainer, _input);
             playerAttack.Construct(_input, mainCamera);
             playerHealth.Construct(mainCamera);
 
