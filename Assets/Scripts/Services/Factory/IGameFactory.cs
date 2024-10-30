@@ -4,7 +4,7 @@ using Characters.Enemy;
 using Infrastructure.DI;
 using Logic;
 using Services.Progress;
-using StaticData;
+using Services.StaticData;
 using UnityEngine;
 
 namespace Services.Factory

@@ -1,4 +1,4 @@
-namespace StaticData
+namespace Services.StaticData
 {
     public enum MonsterTypeId
     {

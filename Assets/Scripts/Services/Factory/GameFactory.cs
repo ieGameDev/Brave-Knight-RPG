@@ -7,7 +7,6 @@ using Services.AssetsManager;
 using Services.Input;
 using Services.Progress;
 using Services.StaticData;
-using StaticData;
 using UI;
 using UnityEngine;
 
@@ -17,16 +16,18 @@ namespace Services.Factory
     {
         private readonly IAssetsProvider _assetProvider;
         private readonly IStaticDataService _staticData;
+        private readonly IInputService _input;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         public GameObject Player { get; set; }
         public GameObject CameraContainer { get; set; }
 
-        public GameFactory(IAssetsProvider assetProvider, IStaticDataService staticData)
+        public GameFactory(IAssetsProvider assetProvider, IStaticDataService staticData, IInputService input)
         {
             _assetProvider = assetProvider;
             _staticData = staticData;
+            _input = input;
         }
 
         public GameObject CreateCameraContainer()
@@ -41,8 +42,6 @@ namespace Services.Factory
                 initialPoint.transform.position + Vector3.up * 0.2f);
 
             RegisterProgressWatchers(Player);
-
-            IInputService input = DiContainer.Instance.Single<IInputService>();
             Camera mainCamera = Camera.main;
 
             PlayerMove playerMove = Player.GetComponent<PlayerMove>();
@@ -52,8 +51,8 @@ namespace Services.Factory
 
             float movementSpeed = playerData.MovementSpeed;
 
-            playerMove.Construct(CameraContainer, input, movementSpeed);
-            playerAttack.Construct(input, mainCamera);
+            playerMove.Construct(CameraContainer, _input, movementSpeed);
+            playerAttack.Construct(_input, mainCamera);
             playerHealth.Construct(mainCamera);
 
             return Player;

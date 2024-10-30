@@ -5,6 +5,7 @@ namespace Data
     [Serializable]
     public class PlayerStats
     {
+        public float MoveSpeed;
         public float CurrentHP;
         public float MaxHP;
         public float Damage;

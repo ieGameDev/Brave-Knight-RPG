@@ -1,7 +1,6 @@
-using Logic;
 using UnityEngine;
 
-namespace StaticData
+namespace Services.StaticData
 {
     [CreateAssetMenu(fileName = "EnemyData", menuName = "ScriptableObjects/Enemy")]
     public class EnemyData : ScriptableObject

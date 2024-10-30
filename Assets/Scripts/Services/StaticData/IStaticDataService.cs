@@ -1,5 +1,4 @@
 using Infrastructure.DI;
-using StaticData;
 
 namespace Services.StaticData
 {

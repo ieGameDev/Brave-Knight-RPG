@@ -38,6 +38,7 @@ namespace Infrastructure.GameStates
             {
                 PlayerStats =
                 {
+                    MoveSpeed = 5f,
                     MaxHP = 100f,
                     Damage = 25f,
                     DamageRadius = 0.5f

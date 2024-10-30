@@ -3,7 +3,7 @@ using Data;
 using Infrastructure.DI;
 using Services.Factory;
 using Services.Progress;
-using StaticData;
+using Services.StaticData;
 using UnityEngine;
 using UnityEngine.Serialization;
 
