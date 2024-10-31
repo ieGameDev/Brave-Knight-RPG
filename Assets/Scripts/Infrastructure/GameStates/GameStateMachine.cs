@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Infrastructure.DI;
 using Services.Factory;
 using Services.Progress;
+using Services.StaticData;
 using Utils;
 
 namespace Infrastructure.GameStates
@@ -19,11 +20,15 @@ namespace Infrastructure.GameStates
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, container),
 
                 [typeof(LoadProgressState)] =
-                    new LoadProgressState(this, container.Single<IProgressService>(),
-                        container.Single<ISaveLoadService>()),
+                    new LoadProgressState(this, 
+                        container.Single<IProgressService>(),
+                        container.Single<ISaveLoadService>(),
+                        container.Single<IStaticDataService>()
+                        ),
 
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingScreen,
-                    container.Single<IGameFactory>(), container.Single<IProgressService>()),
+                    container.Single<IGameFactory>(), 
+                    container.Single<IProgressService>()),
 
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };

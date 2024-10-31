@@ -30,14 +30,14 @@ namespace Characters.Player
 
         public void LoadProgress(PlayerProgress progress)
         {
+            _playerStats = progress.PlayerStats;
+            
             if (CurrentLevel() != progress.WorldData.PositionOnLevel.Level) return;
             
             Vector3Data savedPosition = progress.WorldData.PositionOnLevel.Position;
             
             if (savedPosition != null)
                 TransferPlayer(position: savedPosition);
-            
-            _playerStats = progress.PlayerStats;
         }
 
         private void TransferPlayer(Vector3Data position)

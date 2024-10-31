@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Services.StaticData
 {
-    [CreateAssetMenu(fileName = "EnemyData", menuName = "ScriptableObjects/Enemy")]
+    [CreateAssetMenu(fileName = "EnemyData", menuName = "ScriptableObjects/Enemies")]
     public class EnemyData : ScriptableObject
     {
         public MonsterTypeId EnemyTypeId;

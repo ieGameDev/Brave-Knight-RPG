@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Characters.Enemy;
 using Characters.Player;
+using Data;
 using Infrastructure.DI;
 using Logic;
 using Services.AssetsManager;
@@ -17,17 +18,20 @@ namespace Services.Factory
         private readonly IAssetsProvider _assetProvider;
         private readonly IStaticDataService _staticData;
         private readonly IInputService _input;
+        private readonly IProgressService _progressService;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
         public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
         public GameObject Player { get; set; }
         public GameObject CameraContainer { get; set; }
 
-        public GameFactory(IAssetsProvider assetProvider, IStaticDataService staticData, IInputService input)
+        public GameFactory(IAssetsProvider assetProvider, IStaticDataService staticData, IInputService input,
+            IProgressService progressService)
         {
             _assetProvider = assetProvider;
             _staticData = staticData;
             _input = input;
+            _progressService = progressService;
         }
 
         public GameObject CreateCameraContainer()
@@ -41,9 +45,7 @@ namespace Services.Factory
             Player = _assetProvider.Instantiate(AssetAddress.PlayerPath,
                 initialPoint.transform.position + Vector3.up * 0.2f);
 
-            RegisterProgressWatchers(Player);
             Camera mainCamera = Camera.main;
-
             PlayerMove playerMove = Player.GetComponent<PlayerMove>();
             PlayerAttack playerAttack = playerMove.GetComponent<PlayerAttack>();
             PlayerHealth playerHealth = Player.GetComponent<PlayerHealth>();
@@ -51,6 +53,8 @@ namespace Services.Factory
             playerMove.Construct(CameraContainer, _input);
             playerAttack.Construct(_input, mainCamera);
             playerHealth.Construct(mainCamera);
+
+            RegisterProgressWatchers(Player);
 
             return Player;
         }
@@ -62,13 +66,14 @@ namespace Services.Factory
         {
             PlayerDeath playerDeath = Player.GetComponent<PlayerDeath>();
             EnemyData enemyData = _staticData.ForEnemy(typeId);
+            
             GameObject enemy =
                 Object.Instantiate(enemyData.EnemyPrefab, transform.position, Quaternion.identity, transform);
 
             IHealth health = enemy.GetComponent<IHealth>();
             health.CurrentHealth = enemyData.Health;
             health.MaxHealth = enemyData.Health;
-            
+
             float moveSpeed = enemyData.MoveSpeed;
             float patrolSpeed = enemyData.PatrolSpeed;
             float patrolCooldown = enemyData.PatrolCooldown;
@@ -80,7 +85,7 @@ namespace Services.Factory
             enemy.GetComponent<EnemyMoveToPlayer>().Construct(Player, moveSpeed);
             enemy.GetComponent<EnemyPatrol>().Construct(patrolPoints, patrolSpeed, patrolCooldown);
             enemy.GetComponent<EnemyAttack>().Construct(Player, playerDeath, attackCooldown, damage, effectiveDistance);
-            
+
             return enemy;
         }
 

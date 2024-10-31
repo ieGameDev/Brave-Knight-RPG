@@ -8,5 +8,6 @@ namespace Services.StaticData
         public float MovementSpeed;
         public float Health;
         public float Damage;
+        public float DamageRadius;
     }
 }

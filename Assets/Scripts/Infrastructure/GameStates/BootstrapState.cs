@@ -40,16 +40,17 @@ namespace Infrastructure.GameStates
 
             _container.RegisterSingle(InitialInputService());
             _container.RegisterSingle<IAssetsProvider>(new AssetsProvider());
+            _container.RegisterSingle<IProgressService>(new ProgressService());
 
             _container.RegisterSingle<IGameFactory>(new GameFactory
                 (
                     _container.Single<IAssetsProvider>(),
                     _container.Single<IStaticDataService>(),
-                    _container.Single<IInputService>()
+                    _container.Single<IInputService>(),
+                    _container.Single<IProgressService>()
                 )
             );
 
-            _container.RegisterSingle<IProgressService>(new ProgressService());
 
             _container.RegisterSingle<ISaveLoadService>(new SaveLoadService
                 (
@@ -63,6 +64,7 @@ namespace Infrastructure.GameStates
         {
             IStaticDataService staticData = new StaticDataService();
             staticData.LoadEnemies();
+            staticData.LoadPlayer();
             _container.RegisterSingle(staticData);
         }
 
