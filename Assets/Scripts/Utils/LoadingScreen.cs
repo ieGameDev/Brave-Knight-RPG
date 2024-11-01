@@ -23,8 +23,8 @@ namespace Utils
         {
             while (_screen.alpha > 0)
             {
-                _screen.alpha -= 0.03f;
-                yield return new WaitForSeconds(0.03f);
+                _screen.alpha -= 0.06f;
+                yield return new WaitForSeconds(0.015f);
             }
             
             gameObject.SetActive(false);
