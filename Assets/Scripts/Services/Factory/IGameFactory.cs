@@ -19,7 +19,6 @@ namespace Services.Factory
         GameObject CreateCameraContainer();
         GameObject CreatePlayer(GameObject initialPoint);
         GameObject CreatePlayerHUD();
-        // GameObject CreateEnemy(EnemyInitialPoint initialPoint);
         GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints);
 
         void CleanUp();

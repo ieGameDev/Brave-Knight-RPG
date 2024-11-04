@@ -59,7 +59,7 @@ namespace Services.Factory
             return Player;
         }
 
-        public GameObject CreatePlayerHUD() =>
+        public GameObject CreatePlayerHUD() => 
             _assetProvider.Instantiate(AssetAddress.HUDPath);
 
         public GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints)

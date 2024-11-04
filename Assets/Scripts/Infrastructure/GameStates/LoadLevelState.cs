@@ -3,6 +3,7 @@ using Characters.Enemy;
 using Characters.Player;
 using Logic;
 using Services.Factory;
+using Services.Input;
 using Services.Progress;
 using UI;
 using UnityEngine;
@@ -65,6 +66,7 @@ namespace Infrastructure.GameStates
         {
             GameObject hud = _gameFactory.CreatePlayerHUD();
             hud.GetComponentInChildren<ActorUI>().Construct(player.GetComponent<PlayerHealth>());
+            hud.GetComponentInChildren<AttackButton>().Construct(player.GetComponent<PlayerAttack>());
         }
 
         private void CameraFollow(GameObject cameraContainer, GameObject player) =>

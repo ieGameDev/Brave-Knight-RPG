@@ -1,25 +1,25 @@
+using Characters.Player;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace Services.Input
 {
-    public class AttackButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class AttackButton : MonoBehaviour
     {
-        public static bool FireAxis { get; private set; }
+        [SerializeField] private Button _fireButton;
+        
+        private PlayerAttack _player;
 
-        [SerializeField] private Image _fireButton;
+        public void Construct(PlayerAttack playerAttack) => 
+            _player = playerAttack;
 
-        public void OnPointerDown(PointerEventData eventData)
-        {
-            if (_fireButton != null)
-                FireAxis = true;
-        }
+        private void Awake() => 
+            _fireButton?.onClick.AddListener(OnAttackButtonClick);
 
-        public void OnPointerUp(PointerEventData eventData)
-        {
-            if (_fireButton != null)
-                FireAxis = false;
-        }
+        private void OnDestroy() => 
+            _fireButton?.onClick.RemoveListener(OnAttackButtonClick);
+
+        private void OnAttackButtonClick() => 
+            _player.AttackButtonClick();
     }
 }

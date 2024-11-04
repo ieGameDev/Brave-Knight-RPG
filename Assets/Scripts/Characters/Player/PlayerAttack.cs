@@ -27,13 +27,9 @@ namespace Characters.Player
             _camera = mainCamera;
         }
 
-        private void Awake() =>
-            _layerMask = 1 << LayerMask.NameToLayer("Hittable");
-
-        private void Update()
+        private void Awake()
         {
-            if (_inputService.IsAttackButtonDown() && !_animator.IsAttacking)
-                _animator.PlayAttackAnimation();
+            _layerMask = 1 << LayerMask.NameToLayer("Hittable");
         }
 
         public void OnAttack()
@@ -44,6 +40,9 @@ namespace Characters.Player
                 AttackShakeCamera();
             }
         }
+
+        public void AttackButtonClick() => 
+            _animator.PlayAttackAnimation();
 
         public void LoadProgress(PlayerProgress progress) =>
             _playerStats = progress.PlayerStats;
