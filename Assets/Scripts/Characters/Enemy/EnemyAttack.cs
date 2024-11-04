@@ -59,7 +59,10 @@ namespace Characters.Enemy
         public void OnAttack()
         {
             if (Hit(out Collider hit))
+            {
                 hit.transform.GetComponent<IHealth>().TakeDamage(_damage);
+                HitVFX(hit.transform.position + Vector3.up * 1.2f);
+            }
         }
 
         public void OnAttackEnded()
@@ -105,5 +108,8 @@ namespace Characters.Enemy
 
         private bool CanAttack() =>
             !_playerIsDead && _attackIsActive && !_isAttacking && _cooldown <= 0;
+
+        private void HitVFX(Vector3 position) =>
+            Instantiate(Resources.Load<GameObject>("FX/PlayerHitFX"), position, Quaternion.identity);
     }
 }

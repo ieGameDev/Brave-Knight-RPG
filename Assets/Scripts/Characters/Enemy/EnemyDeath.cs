@@ -40,7 +40,7 @@ namespace Characters.Enemy
 
         private IEnumerator DeathRoutine()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(1f);
 
             Instantiate(_deathFx, transform.position, Quaternion.identity);
             Destroy(gameObject);

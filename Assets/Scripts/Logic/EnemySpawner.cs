@@ -12,7 +12,7 @@ namespace Logic
     public class EnemySpawner : MonoBehaviour, ISavedProgress
     {
         [SerializeField] private MonsterTypeId _monsterTypeId;
-        [FormerlySerializedAs("_initialPoint")] [SerializeField] private EnemyPatrolPoints _patrolPoints;
+        [SerializeField] private EnemyPatrolPoints _patrolPoints;
 
         private string _id;
         private bool _isSlain;

@@ -38,6 +38,7 @@ namespace Characters.Player
             {
                 _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(_playerStats.Damage);
                 AttackShakeCamera();
+                HitVFX(_hits[i].transform.position);
             }
         }
 
@@ -64,5 +65,8 @@ namespace Characters.Player
                 .DOShakeRotation(0.12f, 0.1f, 2, 90f, true, ShakeRandomnessMode.Harmonic)
                 .SetEase(Ease.InOutBounce);
         }
+        
+        private void HitVFX(Vector3 position) =>
+            Instantiate(Resources.Load<GameObject>("FX/EnemyHitFX"), position, Quaternion.identity);
     }
 }
