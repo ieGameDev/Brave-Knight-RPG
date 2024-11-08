@@ -18,20 +18,17 @@ namespace Services.Factory
         private readonly IAssetsProvider _assetProvider;
         private readonly IStaticDataService _staticData;
         private readonly IInputService _input;
-        private readonly IProgressService _progressService;
 
-        public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
-        public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
+        public List<ISavedProgressReader> ProgressReaders { get; } = new();
+        public List<ISavedProgress> ProgressWriters { get; } = new();
         public GameObject Player { get; set; }
         public GameObject CameraContainer { get; set; }
 
-        public GameFactory(IAssetsProvider assetProvider, IStaticDataService staticData, IInputService input,
-            IProgressService progressService)
+        public GameFactory(IAssetsProvider assetProvider, IStaticDataService staticData, IInputService input)
         {
             _assetProvider = assetProvider;
             _staticData = staticData;
             _input = input;
-            _progressService = progressService;
         }
 
         public GameObject CreateCameraContainer()
@@ -59,14 +56,14 @@ namespace Services.Factory
             return Player;
         }
 
-        public GameObject CreatePlayerHUD() => 
+        public GameObject CreatePlayerHUD() =>
             _assetProvider.Instantiate(AssetAddress.HUDPath);
 
         public GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints)
         {
             PlayerDeath playerDeath = Player.GetComponent<PlayerDeath>();
             EnemyData enemyData = _staticData.ForEnemy(typeId);
-            
+
             GameObject enemy =
                 Object.Instantiate(enemyData.EnemyPrefab, transform.position, Quaternion.identity, transform);
 

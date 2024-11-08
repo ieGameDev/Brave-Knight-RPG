@@ -372,6 +372,28 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4150483266807043372, guid: 6ea13fadf6f924616a82aceea69d47ce,
+        type: 3}
+      propertyPath: m_text
+      value: loading...
+      objectReference: {fileID: 0}
+    - target: {fileID: 4150483266807043372, guid: 6ea13fadf6f924616a82aceea69d47ce,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3fa34da0af7b944d1adfd29431eafdd7,
+        type: 2}
+    - target: {fileID: 4150483266807043372, guid: 6ea13fadf6f924616a82aceea69d47ce,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -1377976153931744431, guid: 3fa34da0af7b944d1adfd29431eafdd7,
+        type: 2}
+    - target: {fileID: 4150483266807043372, guid: 6ea13fadf6f924616a82aceea69d47ce,
+        type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6097546761497074317, guid: 6ea13fadf6f924616a82aceea69d47ce,
         type: 3}
       propertyPath: m_PreserveAspect

@@ -46,11 +46,9 @@ namespace Infrastructure.GameStates
                 (
                     _container.Single<IAssetsProvider>(),
                     _container.Single<IStaticDataService>(),
-                    _container.Single<IInputService>(),
-                    _container.Single<IProgressService>()
+                    _container.Single<IInputService>()
                 )
             );
-
 
             _container.RegisterSingle<ISaveLoadService>(new SaveLoadService
                 (
