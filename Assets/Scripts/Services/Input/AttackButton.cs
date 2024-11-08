@@ -1,25 +1,17 @@
 using Characters.Player;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 namespace Services.Input
 {
-    public class AttackButton : MonoBehaviour
+    public class AttackButton : MonoBehaviour, IPointerDownHandler
     {
-        [SerializeField] private Button _fireButton;
-        
         private PlayerAttack _player;
 
         public void Construct(PlayerAttack playerAttack) => 
             _player = playerAttack;
 
-        private void Awake() => 
-            _fireButton?.onClick.AddListener(OnAttackButtonClick);
-
-        private void OnDestroy() => 
-            _fireButton?.onClick.RemoveListener(OnAttackButtonClick);
-
-        private void OnAttackButtonClick() => 
+        public void OnPointerDown(PointerEventData eventData) => 
             _player.AttackButtonClick();
     }
 }

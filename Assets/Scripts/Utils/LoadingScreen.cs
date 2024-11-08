@@ -1,5 +1,5 @@
-using System.Collections;
 using UnityEngine;
+using DG.Tweening;
 
 namespace Utils
 {
@@ -17,17 +17,6 @@ namespace Utils
         }
 
         public void Hide() => 
-            StartCoroutine(FadeIn());
-
-        private IEnumerator FadeIn()
-        {
-            while (_screen.alpha > 0)
-            {
-                _screen.alpha -= 0.06f;
-                yield return new WaitForSeconds(0.015f);
-            }
-            
-            gameObject.SetActive(false);
-        }
+            _screen.DOFade(0, 0.9f).OnComplete(() => gameObject.SetActive(false));
     }
 }
