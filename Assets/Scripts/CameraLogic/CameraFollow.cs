@@ -7,14 +7,15 @@ namespace CameraLogic
         [SerializeField] private float _distance;
         [SerializeField] private float _offSetY;
         [SerializeField] private float _rotationAngleX;
+        [SerializeField] private float _smoothTime;
 
         private Transform _target;
+        private Vector3 _currentVelocity;
         
         private void LateUpdate()
         {
-            if (!_target)
-                return;
-
+            if (!_target) return;
+            
             CameraFollowing();
         }
         
@@ -25,9 +26,10 @@ namespace CameraLogic
         {
             Quaternion rotation = Quaternion.Euler(_rotationAngleX, 0, 0);
             Vector3 position = rotation * new Vector3(0, 0, -_distance) + FollowingPointPosition();
-
-            transform.position = position;
-            transform.rotation = rotation;
+            
+            transform.position =
+                Vector3.SmoothDamp(transform.position, position, ref _currentVelocity, _smoothTime);
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _smoothTime);
         }
         
         private Vector3 FollowingPointPosition()

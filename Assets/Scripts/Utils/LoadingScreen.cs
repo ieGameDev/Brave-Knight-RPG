@@ -17,6 +17,6 @@ namespace Utils
         }
 
         public void Hide() => 
-            _screen.DOFade(0, 0.9f).OnComplete(() => gameObject.SetActive(false));
+            _screen.DOFade(0, 0.5f).OnComplete(() => gameObject.SetActive(false));
     }
 }

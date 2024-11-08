@@ -51,7 +51,7 @@ namespace Services.Factory
             PlayerHealth playerHealth = Player.GetComponent<PlayerHealth>();
 
             playerMove.Construct(CameraContainer, _input);
-            playerAttack.Construct(_input, mainCamera);
+            playerAttack.Construct(mainCamera);
             playerHealth.Construct(mainCamera);
 
             RegisterProgressWatchers(Player);

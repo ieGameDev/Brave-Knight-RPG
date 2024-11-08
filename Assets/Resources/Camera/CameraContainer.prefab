@@ -48,6 +48,7 @@ MonoBehaviour:
   _distance: 20
   _offSetY: 2
   _rotationAngleX: 50
+  _smoothTime: 0.15
 --- !u!1 &7391678734251428059
 GameObject:
   m_ObjectHideFlags: 0

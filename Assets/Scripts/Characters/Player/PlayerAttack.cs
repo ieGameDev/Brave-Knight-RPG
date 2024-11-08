@@ -1,7 +1,6 @@
 using Data;
 using DG.Tweening;
 using Logic;
-using Services.Input;
 using Services.Progress;
 using UnityEngine;
 
@@ -16,21 +15,15 @@ namespace Characters.Player
 
         private static int _layerMask;
 
-        private IInputService _inputService;
         private Camera _camera;
         private Collider[] _hits = new Collider[3];
         private PlayerStats _playerStats;
 
-        public void Construct(IInputService inputService, Camera mainCamera)
-        {
-            _inputService = inputService;
+        public void Construct(Camera mainCamera) =>
             _camera = mainCamera;
-        }
 
-        private void Awake()
-        {
+        private void Awake() =>
             _layerMask = 1 << LayerMask.NameToLayer("Hittable");
-        }
 
         public void OnAttack()
         {
@@ -42,7 +35,7 @@ namespace Characters.Player
             }
         }
 
-        public void AttackButtonClick() => 
+        public void AttackButtonClick() =>
             _animator.PlayAttackAnimation();
 
         public void LoadProgress(PlayerProgress progress) =>
@@ -60,12 +53,12 @@ namespace Characters.Player
             _camera?
                 .DOShakePosition(0.12f, 0.1f, 2, 90f, true, ShakeRandomnessMode.Harmonic)
                 .SetEase(Ease.InOutBounce);
-            
+
             _camera?
                 .DOShakeRotation(0.12f, 0.1f, 2, 90f, true, ShakeRandomnessMode.Harmonic)
                 .SetEase(Ease.InOutBounce);
         }
-        
+
         private void HitVFX(Vector3 position) =>
             Instantiate(Resources.Load<GameObject>("FX/EnemyHitFX"), position, Quaternion.identity);
     }
