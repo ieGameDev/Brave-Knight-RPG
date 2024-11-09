@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using Characters.Enemy;
+using Characters.Enemy.EnemyLoot;
 using Characters.Player;
-using Data;
-using Infrastructure.DI;
 using Logic;
 using Services.AssetsManager;
 using Services.Input;
@@ -18,17 +17,20 @@ namespace Services.Factory
         private readonly IAssetsProvider _assetProvider;
         private readonly IStaticDataService _staticData;
         private readonly IInputService _input;
+        private readonly IProgressService _progressService;
 
         public List<ISavedProgressReader> ProgressReaders { get; } = new();
         public List<ISavedProgress> ProgressWriters { get; } = new();
         public GameObject Player { get; set; }
         public GameObject CameraContainer { get; set; }
 
-        public GameFactory(IAssetsProvider assetProvider, IStaticDataService staticData, IInputService input)
+        public GameFactory(IAssetsProvider assetProvider, IStaticDataService staticData, IInputService input,
+            IProgressService progressService)
         {
             _assetProvider = assetProvider;
             _staticData = staticData;
             _input = input;
+            _progressService = progressService;
         }
 
         public GameObject CreateCameraContainer()
@@ -77,13 +79,28 @@ namespace Services.Factory
             float attackCooldown = enemyData.AttackCooldown;
             float damage = enemyData.Damage;
             float effectiveDistance = enemyData.EffectiveDistance;
+            int lootCount = enemyData.LootCount;
 
             enemy.GetComponent<ActorUI>().Construct(health);
             enemy.GetComponent<EnemyMoveToPlayer>().Construct(Player, moveSpeed);
             enemy.GetComponent<EnemyPatrol>().Construct(patrolPoints, patrolSpeed, patrolCooldown);
             enemy.GetComponent<EnemyAttack>().Construct(Player, playerDeath, attackCooldown, damage, effectiveDistance);
 
+            LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
+            lootSpawner.SetLoot(lootCount);
+            lootSpawner.Construct(this);
+
             return enemy;
+        }
+
+        public LootItem CreateLoot()
+        {
+            GameObject loot = _assetProvider.Instantiate(AssetAddress.LootPath);
+            RegisterProgressWatchers(loot);
+            
+            LootItem lootItem = loot.GetComponent<LootItem>();
+            lootItem.Construct(_progressService.Progress.WorldData, Player.transform);
+            return lootItem;
         }
 
         public void CleanUp()

@@ -1,8 +1,7 @@
-using System;
 using System.Collections.Generic;
 using Characters.Enemy;
+using Characters.Enemy.EnemyLoot;
 using Infrastructure.DI;
-using Logic;
 using Services.Progress;
 using Services.StaticData;
 using UnityEngine;
@@ -20,6 +19,7 @@ namespace Services.Factory
         GameObject CreatePlayer(GameObject initialPoint);
         GameObject CreatePlayerHUD();
         GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints);
+        LootItem CreateLoot();
 
         void CleanUp();
         void Register(ISavedProgressReader progressReader);

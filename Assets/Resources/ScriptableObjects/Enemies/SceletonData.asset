@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: SceletonData
   m_EditorClassIdentifier: 
   EnemyTypeId: 0
-  MoveSpeed: 4
-  PatrolSpeed: 2
-  Health: 70
-  Damage: 7
-  AttackCooldown: 1.5
-  PatrolCooldown: 1.5
-  EffectiveDistance: 0.5
   EnemyPrefab: {fileID: 1621371377474042527, guid: cca479931cd5a4e7a904bd4815e5303b,
     type: 3}
+  Health: 70
+  MoveSpeed: 4
+  PatrolSpeed: 2
+  PatrolCooldown: 1.5
+  Damage: 7
+  AttackCooldown: 1.5
+  EffectiveDistance: 0.5
+  LootCount: 0

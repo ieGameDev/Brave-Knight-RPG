@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3b15d44e5bd542e4082f22e11cf9b6de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 176571
+  packageName: Cool Visual Effects - Part 1 - URP Support
+  packageVersion: 2.0
+  assetPath: Assets/Cool Visual Effects - Part 1/Scripts/EffectManager.cs
+  uploadId: 388834
