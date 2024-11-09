@@ -56,7 +56,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 15
+  m_Radius: 22
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &690719713875991266
 TrailRenderer:
@@ -113,7 +113,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.32706833
+        value: 0.27280807
         inSlope: 0
         outSlope: 0
         tangentMode: 0

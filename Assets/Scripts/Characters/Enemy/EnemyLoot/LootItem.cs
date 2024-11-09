@@ -20,7 +20,7 @@ namespace Characters.Enemy.EnemyLoot
             _player = playerTransform;
         }
 
-        public void Initialize(Loot loot) => 
+        public void Initialize(Loot loot) =>
             _loot = loot;
 
         private void Update()
@@ -40,15 +40,16 @@ namespace Characters.Enemy.EnemyLoot
 
         private void MoveToPlayer()
         {
-            if (!_player) 
+            if (!_player)
                 return;
 
             _lootHover.StopHover();
-            
-            transform.position = Vector3.MoveTowards(
-                transform.position, _player.position, _lootMoveSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, _player.position) < 0.1f)
+            Vector3 targetPosition = _player.position + Vector3.up;
+            transform.position = Vector3.MoveTowards(
+                transform.position, targetPosition, _lootMoveSpeed * Time.deltaTime);
+
+            if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
                 CollectLoot();
         }
 

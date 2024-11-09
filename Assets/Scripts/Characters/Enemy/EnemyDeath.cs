@@ -34,8 +34,6 @@ namespace Characters.Enemy
             _enemyMove.enabled = false;
             _enemyAnimator.PlayDeathAnimation();
             StartCoroutine(DeathRoutine());
-
-            OnEnemyDeath?.Invoke();
         }
 
         private IEnumerator DeathRoutine()
@@ -43,6 +41,7 @@ namespace Characters.Enemy
             yield return new WaitForSeconds(1f);
 
             Instantiate(_deathFx, transform.position, Quaternion.identity);
+            OnEnemyDeath?.Invoke();
             Destroy(gameObject);
         }
     }
