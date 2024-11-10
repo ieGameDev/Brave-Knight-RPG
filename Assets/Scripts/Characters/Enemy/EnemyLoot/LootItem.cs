@@ -5,7 +5,7 @@ namespace Characters.Enemy.EnemyLoot
 {
     public class LootItem : MonoBehaviour
     {
-        // [SerializeField] private GameObject _pickUpVFX;
+        [SerializeField] private GameObject _pickUpVFX;
         [SerializeField] private LootHover _lootHover;
         [SerializeField] private float _lootMoveSpeed;
 
@@ -57,7 +57,7 @@ namespace Characters.Enemy.EnemyLoot
         {
             _worldData.LootData.Collect(_loot);
 
-            // Instantiate(_pickUpVFX, transform.position, Quaternion.identity);
+            Instantiate(_pickUpVFX, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

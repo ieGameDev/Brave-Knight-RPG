@@ -287,5 +287,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f4ccc459e04f71880ed4b2c07153fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _pickUpVFX: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd,
+    type: 3}
   _lootHover: {fileID: 5473370913980441934}
   _lootMoveSpeed: 7
