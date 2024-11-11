@@ -58,8 +58,14 @@ namespace Services.Factory
             return Player;
         }
 
-        public GameObject CreatePlayerHUD() =>
-            _assetProvider.Instantiate(AssetAddress.HUDPath);
+        public GameObject CreatePlayerHUD()
+        {
+            GameObject hud = InstantiateRegistered(AssetAddress.HUDPath);
+            LootCounter loot = hud.GetComponentInChildren<LootCounter>();
+            loot.Construct(_progressService.Progress.WorldData);
+            
+            return hud;
+        }
 
         public GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints)
         {
@@ -95,11 +101,10 @@ namespace Services.Factory
 
         public LootItem CreateLoot()
         {
-            GameObject loot = _assetProvider.Instantiate(AssetAddress.LootPath);
-            RegisterProgressWatchers(loot);
-            
+            GameObject loot = InstantiateRegistered(AssetAddress.LootPath);
             LootItem lootItem = loot.GetComponent<LootItem>();
             lootItem.Construct(_progressService.Progress.WorldData, Player.transform);
+            
             return lootItem;
         }
 
@@ -107,6 +112,14 @@ namespace Services.Factory
         {
             ProgressReaders.Clear();
             ProgressWriters.Clear();
+        }
+
+        private GameObject InstantiateRegistered(string prefabPath)
+        {
+            GameObject gameObject = _assetProvider.Instantiate(prefabPath);
+            RegisterProgressWatchers(gameObject);
+            
+            return gameObject;
         }
 
         private void RegisterProgressWatchers(GameObject player)

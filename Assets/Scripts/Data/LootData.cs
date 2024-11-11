@@ -6,8 +6,12 @@ namespace Data
     public class LootData
     {
         public int Collected;
+        public event Action OnChanged;
 
-        public void Collect(Loot loot) => 
+        public void Collect(Loot loot)
+        {
             Collected += loot.Value;
+            OnChanged?.Invoke();
+        }
     }
 }
