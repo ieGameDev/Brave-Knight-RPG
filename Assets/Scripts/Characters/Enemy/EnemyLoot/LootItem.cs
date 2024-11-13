@@ -1,4 +1,5 @@
 using Data;
+using Logic;
 using UnityEngine;
 
 namespace Characters.Enemy.EnemyLoot
@@ -8,6 +9,7 @@ namespace Characters.Enemy.EnemyLoot
         [SerializeField] private GameObject _pickUpVFX;
         [SerializeField] private float _lootMoveSpeed;
 
+        private PoolBase<LootItem> _lootPool;
         private LootValue _lootValue;
         private bool _picked;
         private WorldData _worldData;
@@ -19,8 +21,11 @@ namespace Characters.Enemy.EnemyLoot
             _player = playerTransform;
         }
 
-        public void Initialize(LootValue lootValue) =>
+        public void Initialize(LootValue lootValue, PoolBase<LootItem> pool )
+        {
             _lootValue = lootValue;
+            _lootPool = pool;
+        }
 
         private void Update()
         {
@@ -36,6 +41,9 @@ namespace Characters.Enemy.EnemyLoot
             _picked = true;
             MoveToPlayer();
         }
+        
+        public void ResetState() => 
+            _picked = false;
 
         private void MoveToPlayer()
         {
@@ -55,7 +63,7 @@ namespace Characters.Enemy.EnemyLoot
             _worldData.LootData.Collect(_lootValue);
 
             Instantiate(_pickUpVFX, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            _lootPool.Return(this);
         }
     }
 }
