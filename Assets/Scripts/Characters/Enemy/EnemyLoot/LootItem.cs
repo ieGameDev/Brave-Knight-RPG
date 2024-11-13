@@ -6,10 +6,9 @@ namespace Characters.Enemy.EnemyLoot
     public class LootItem : MonoBehaviour
     {
         [SerializeField] private GameObject _pickUpVFX;
-        [SerializeField] private LootHover _lootHover;
         [SerializeField] private float _lootMoveSpeed;
 
-        private Loot _loot;
+        private LootValue _lootValue;
         private bool _picked;
         private WorldData _worldData;
         private Transform _player;
@@ -20,8 +19,8 @@ namespace Characters.Enemy.EnemyLoot
             _player = playerTransform;
         }
 
-        public void Initialize(Loot loot) =>
-            _loot = loot;
+        public void Initialize(LootValue lootValue) =>
+            _lootValue = lootValue;
 
         private void Update()
         {
@@ -43,8 +42,6 @@ namespace Characters.Enemy.EnemyLoot
             if (!_player)
                 return;
 
-            _lootHover.StopHover();
-
             Vector3 targetPosition = _player.position + Vector3.up;
             transform.position = Vector3.MoveTowards(
                 transform.position, targetPosition, _lootMoveSpeed * Time.deltaTime);
@@ -55,7 +52,7 @@ namespace Characters.Enemy.EnemyLoot
 
         private void CollectLoot()
         {
-            _worldData.LootData.Collect(_loot);
+            _worldData.LootData.Collect(_lootValue);
 
             Instantiate(_pickUpVFX, transform.position, Quaternion.identity);
             Destroy(gameObject);

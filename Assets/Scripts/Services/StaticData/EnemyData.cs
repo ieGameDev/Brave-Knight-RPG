@@ -23,6 +23,7 @@ namespace Services.StaticData
         public float EffectiveDistance;
         
         [Header("Loot")]
-        public int LootCount;
+        [Range(1,15)] public int LootValue;
+        [Range(3,10)] public int LootCount;
     }
 }

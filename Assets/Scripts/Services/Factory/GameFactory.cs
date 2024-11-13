@@ -63,7 +63,7 @@ namespace Services.Factory
             GameObject hud = InstantiateRegistered(AssetAddress.HUDPath);
             LootCounter loot = hud.GetComponentInChildren<LootCounter>();
             loot.Construct(_progressService.Progress.WorldData);
-            
+
             return hud;
         }
 
@@ -85,6 +85,7 @@ namespace Services.Factory
             float attackCooldown = enemyData.AttackCooldown;
             float damage = enemyData.Damage;
             float effectiveDistance = enemyData.EffectiveDistance;
+            int lootValue = enemyData.LootValue;
             int lootCount = enemyData.LootCount;
 
             enemy.GetComponent<ActorUI>().Construct(health);
@@ -93,7 +94,7 @@ namespace Services.Factory
             enemy.GetComponent<EnemyAttack>().Construct(Player, playerDeath, attackCooldown, damage, effectiveDistance);
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
-            lootSpawner.SetLoot(lootCount);
+            lootSpawner.SetLoot(lootValue, lootCount);
             lootSpawner.Construct(this);
 
             return enemy;
@@ -104,7 +105,7 @@ namespace Services.Factory
             GameObject loot = InstantiateRegistered(AssetAddress.LootPath);
             LootItem lootItem = loot.GetComponent<LootItem>();
             lootItem.Construct(_progressService.Progress.WorldData, Player.transform);
-            
+
             return lootItem;
         }
 
@@ -118,7 +119,7 @@ namespace Services.Factory
         {
             GameObject gameObject = _assetProvider.Instantiate(prefabPath);
             RegisterProgressWatchers(gameObject);
-            
+
             return gameObject;
         }
 

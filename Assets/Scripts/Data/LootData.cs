@@ -8,9 +8,9 @@ namespace Data
         public int Collected;
         public event Action OnChanged;
 
-        public void Collect(Loot loot)
+        public void Collect(LootValue lootValue)
         {
-            Collected += loot.Value;
+            Collected += lootValue.Value;
             OnChanged?.Invoke();
         }
     }

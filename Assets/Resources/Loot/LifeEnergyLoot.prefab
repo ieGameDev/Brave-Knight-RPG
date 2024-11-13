@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 5010726722711982344}
   - component: {fileID: 690719713875991266}
   - component: {fileID: 1772737621435945779}
-  - component: {fileID: 5473370913980441934}
   - component: {fileID: 1417244650598476109}
   - component: {fileID: 6693195791441450096}
   m_Layer: 0
@@ -32,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.37, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,7 +55,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 17
+  m_Radius: 15
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!96 &690719713875991266
 TrailRenderer:
@@ -103,7 +102,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.3
+  m_Time: 0.1
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
@@ -113,7 +112,7 @@ TrailRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.27280807
+        value: 0.15898514
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -221,20 +220,6 @@ VisualEffect:
       m_Array: []
     m_Bool:
       m_Array: []
---- !u!114 &5473370913980441934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8302506313961223154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4bf93584f53e842d387e687e3e2f513a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _hoverHeight: 0.3
-  _hoverDuration: 0.5
 --- !u!73398921 &1417244650598476109
 VFXRenderer:
   serializedVersion: 1
@@ -292,5 +277,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pickUpVFX: {fileID: 8771972552311404799, guid: bbf9e36a48d6c5648a13889afab076fd,
     type: 3}
-  _lootHover: {fileID: 5473370913980441934}
   _lootMoveSpeed: 10
