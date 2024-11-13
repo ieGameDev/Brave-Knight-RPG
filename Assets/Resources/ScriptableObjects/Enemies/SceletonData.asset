@@ -23,4 +23,4 @@ MonoBehaviour:
   AttackCooldown: 1.5
   EffectiveDistance: 0.5
   LootValue: 1
-  LootCount: 3
+  LootCount: 1

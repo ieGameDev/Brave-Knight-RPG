@@ -24,6 +24,6 @@ namespace Services.StaticData
         
         [Header("Loot")]
         [Range(1,15)] public int LootValue;
-        [Range(3,10)] public int LootCount;
+        [Range(1,6)] public int LootCount;
     }
 }

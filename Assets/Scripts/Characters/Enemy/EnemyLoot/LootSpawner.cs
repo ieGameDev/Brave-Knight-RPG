@@ -49,7 +49,7 @@ namespace Characters.Enemy.EnemyLoot
         {
             Vector3 randomDirection = Random.insideUnitSphere.normalized;
             randomDirection.y = 0;
-            float distance = 5.0f;
+            float distance = 4.0f;
 
             Vector3 targetPosition = loot.transform.position + randomDirection * distance;
             loot?.transform.DOJump(targetPosition, 3f, 1, 0.5f).SetEase(Ease.OutQuad);
