@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using Characters.Enemy.EnemyLoot;
+using Logic;
 using UnityEngine;
 
 namespace Characters.Enemy
@@ -12,7 +14,7 @@ namespace Characters.Enemy
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private EnemyMoveToPlayer _enemyMove;
         [SerializeField] private GameObject _deathFx;
-
+        
         public event Action OnEnemyDeath;
 
         private void Start() =>

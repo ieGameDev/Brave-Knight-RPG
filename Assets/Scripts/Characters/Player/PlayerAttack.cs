@@ -3,6 +3,7 @@ using DG.Tweening;
 using Logic;
 using Services.Progress;
 using UnityEngine;
+using Utils;
 
 namespace Characters.Player
 {
@@ -23,7 +24,7 @@ namespace Characters.Player
             _camera = mainCamera;
 
         private void Awake() =>
-            _layerMask = 1 << LayerMask.NameToLayer("Hittable");
+            _layerMask = 1 << LayerMask.NameToLayer(Constants.HittableLayer);
 
         public void OnAttack()
         {

@@ -4,10 +4,13 @@ namespace Utils
     {
         public const string InitialScene = "Initial";
         public const string TestLevel = "TestLevel";
+        
         public const string ProgressKey = "Progress";
+        
         public const string PlayerInitialPointTag = "PlayerInitialPoint";
-        public const string EnemyInitialPointTag = "EnemyInitialPoint";
-        public const string EnemySpawnerTag = "EnemySpawner";
         public const string PlayerLayer = "Player";
+        public const string HittableLayer = "Hittable";
+        
+        public const string EnemySpawnerTag = "EnemySpawner";
     }
 }
