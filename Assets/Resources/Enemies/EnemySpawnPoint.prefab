@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 5001670428239868025}
   - component: {fileID: 8067040349320098606}
   - component: {fileID: 6958423547062910666}
-  - component: {fileID: -7694608554180619924}
   m_Layer: 0
-  m_Name: EnemySpawner
-  m_TagString: EnemySpawner
+  m_Name: EnemySpawnPoint
+  m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,13 +26,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 453144385990758010}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 11.13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &8067040349320098606
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58,18 +57,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87cf2ce16e7c421a8c58d5c2d85212a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _monsterTypeId: 0
-  _patrolPoints: {fileID: 0}
---- !u!114 &-7694608554180619924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 453144385990758010}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d9024786d8545b7a950365c30e877d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Id: TestLevel_50ecdc66-df3f-43e8-9e11-29b452e252b5
+  _patrolPoints: {fileID: 8067040349320098606}

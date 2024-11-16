@@ -77,6 +77,11 @@ PrefabInstance:
       propertyPath: _minimalDistance
       value: 2.7
       objectReference: {fileID: 0}
+    - target: {fileID: 928965115317134903, guid: 4a46e821c58b5cd42b14eaab6d197266,
+        type: 3}
+      propertyPath: _poolSize
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1116371902028168016, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}
       propertyPath: m_Avatar
@@ -110,7 +115,7 @@ PrefabInstance:
     - target: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}
@@ -120,7 +125,7 @@ PrefabInstance:
     - target: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}
@@ -135,7 +140,7 @@ PrefabInstance:
     - target: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}

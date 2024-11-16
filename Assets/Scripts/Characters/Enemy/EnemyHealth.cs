@@ -8,29 +8,18 @@ namespace Characters.Enemy
     public class EnemyHealth : MonoBehaviour, IHealth
     {
         [SerializeField] private EnemyAnimator _enemyAnimator;
-        [SerializeField] private float _currentHealth;
-        [SerializeField] private float _maxHealth;
 
         public event Action HealthChanged;
 
-        public float CurrentHealth
-        {
-            get => _currentHealth;
-            set => _currentHealth = value;
-        }
-
-        public float MaxHealth
-        {
-            get => _maxHealth;
-            set => _maxHealth = value;
-        }
+        public float CurrentHealth { get; set; }
+        public float MaxHealth { get; set; }
 
         public void TakeDamage(float damage)
         {
-            if (_currentHealth <= 0)
+            if (CurrentHealth <= 0)
                 return;
 
-            _currentHealth -= damage;
+            CurrentHealth -= damage;
             _enemyAnimator.PlayHitAnimation();
 
             HealthChanged?.Invoke();

@@ -8,7 +8,6 @@ TagManager:
   - FxTemporaire
   - EnemyInitialPoint
   - CameraContainer
-  - EnemySpawner
   layers:
   - Default
   - TransparentFX

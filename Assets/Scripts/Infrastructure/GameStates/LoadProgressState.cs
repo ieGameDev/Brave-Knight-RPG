@@ -38,7 +38,7 @@ namespace Infrastructure.GameStates
 
         private PlayerProgress NewProgress()
         {
-            PlayerData staticData = _staticDataService.ForPlayer();
+            PlayerData staticData = _staticDataService.DataForPlayer();
             PlayerProgress progress = new PlayerProgress(Constants.TestLevel)
             {
                 PlayerStats =

@@ -19,16 +19,17 @@ namespace Infrastructure.GameStates
             {
                 [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, container),
 
-                [typeof(LoadProgressState)] =
-                    new LoadProgressState(this, 
-                        container.Single<IProgressService>(),
-                        container.Single<ISaveLoadService>(),
-                        container.Single<IStaticDataService>()
-                        ),
+                [typeof(LoadProgressState)] = new LoadProgressState(this,
+                    container.Single<IProgressService>(),
+                    container.Single<ISaveLoadService>(),
+                    container.Single<IStaticDataService>()
+                ),
 
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingScreen,
-                    container.Single<IGameFactory>(), 
-                    container.Single<IProgressService>()),
+                    container.Single<IGameFactory>(),
+                    container.Single<IProgressService>(),
+                    container.Single<IStaticDataService>()
+                ),
 
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };

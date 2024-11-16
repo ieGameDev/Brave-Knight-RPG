@@ -6,7 +6,8 @@ namespace Services.StaticData
     {
         void LoadEnemies();
         void LoadPlayer();
-        EnemyData ForEnemy(MonsterTypeId typeId);
-        PlayerData ForPlayer();
+        EnemyData DataForEnemy(MonsterTypeId typeId);
+        PlayerData DataForPlayer();
+        LevelStaticData DataForLevel(string sceneKey);
     }
 }

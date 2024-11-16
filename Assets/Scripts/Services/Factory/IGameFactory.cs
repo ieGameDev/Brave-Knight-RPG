@@ -12,8 +12,6 @@ namespace Services.Factory
     {
         List<ISavedProgressReader> ProgressReaders { get; }
         List<ISavedProgress> ProgressWriters { get; }
-        GameObject Player { get; set; }
-        GameObject CameraContainer { get; set; }
 
         GameObject CreateCameraContainer();
         GameObject CreatePlayer(GameObject initialPoint);
@@ -21,7 +19,9 @@ namespace Services.Factory
         GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints);
         LootItem CreateLoot();
 
+        void CreateEnemySpawner(Vector3 spawnerPosition, string spawnerId,
+            MonsterTypeId monsterTypeId);
+
         void CleanUp();
-        void Register(ISavedProgressReader progressReader);
     }
 }

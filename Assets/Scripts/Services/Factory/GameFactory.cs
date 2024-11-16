@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Characters.Enemy;
 using Characters.Enemy.EnemyLoot;
+using Characters.Enemy.EnemySpawners;
 using Characters.Player;
 using Logic;
 using Services.AssetsManager;
@@ -70,10 +71,10 @@ namespace Services.Factory
         public GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints)
         {
             PlayerDeath playerDeath = Player.GetComponent<PlayerDeath>();
-            EnemyData enemyData = _staticData.ForEnemy(typeId);
+            EnemyData enemyData = _staticData.DataForEnemy(typeId);
 
             GameObject enemy =
-                Object.Instantiate(enemyData.EnemyPrefab, transform.position, Quaternion.identity, transform);
+                Object.Instantiate(enemyData.EnemyPrefab, transform.position, transform.rotation, transform);
 
             IHealth health = enemy.GetComponent<IHealth>();
             health.CurrentHealth = enemyData.Health;
@@ -111,6 +112,16 @@ namespace Services.Factory
             return lootItem;
         }
 
+        public void CreateEnemySpawner(Vector3 spawnerPosition, string spawnerId, MonsterTypeId monsterTypeId)
+        {
+            EnemySpawnPoint spawnPoint = InstantiateRegistered(AssetAddress.SpawnerPath, spawnerPosition)
+                .GetComponent<EnemySpawnPoint>();
+
+            spawnPoint.Construct(this);
+            spawnPoint.Id = spawnerId;
+            spawnPoint.MonsterTypeId = monsterTypeId;
+        }
+
         public void CleanUp()
         {
             ProgressReaders.Clear();
@@ -120,6 +131,14 @@ namespace Services.Factory
         private GameObject InstantiateRegistered(string prefabPath)
         {
             GameObject gameObject = _assetProvider.Instantiate(prefabPath);
+            RegisterProgressWatchers(gameObject);
+
+            return gameObject;
+        }
+
+        private GameObject InstantiateRegistered(string prefabPath, Vector3 position)
+        {
+            GameObject gameObject = _assetProvider.Instantiate(prefabPath, position);
             RegisterProgressWatchers(gameObject);
 
             return gameObject;

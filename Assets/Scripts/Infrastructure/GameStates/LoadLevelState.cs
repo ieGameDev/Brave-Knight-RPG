@@ -1,12 +1,12 @@
 using CameraLogic;
-using Characters.Enemy;
 using Characters.Player;
-using Logic;
 using Services.Factory;
 using Services.Input;
 using Services.Progress;
+using Services.StaticData;
 using UI;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utils;
 
 namespace Infrastructure.GameStates
@@ -18,15 +18,17 @@ namespace Infrastructure.GameStates
         private readonly LoadingScreen _loadingScreen;
         private readonly IGameFactory _gameFactory;
         private readonly IProgressService _progressService;
+        private readonly IStaticDataService _staticData;
 
         public LoadLevelState(GameStateMachine stateMachine, SceneLoader sceneLoader, LoadingScreen loadingScreen,
-            IGameFactory gameFactory, IProgressService progressService)
+            IGameFactory gameFactory, IProgressService progressService, IStaticDataService staticData)
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
             _loadingScreen = loadingScreen;
             _gameFactory = gameFactory;
             _progressService = progressService;
+            _staticData = staticData;
         }
 
         public void Enter(string sceneName)
@@ -74,11 +76,11 @@ namespace Infrastructure.GameStates
 
         private void InitSpawners()
         {
-            foreach (GameObject spawnerObj in GameObject.FindGameObjectsWithTag(Constants.EnemySpawnerTag))
-            {
-                var spawner = spawnerObj.GetComponent<EnemySpawner>();
-                _gameFactory.Register(spawner);
-            }
+            string sceneKey = SceneManager.GetActiveScene().name;
+            LevelStaticData levelData = _staticData.DataForLevel(sceneKey);
+
+            foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
+                _gameFactory.CreateEnemySpawner(spawnerData.Position, spawnerData.Id, spawnerData.MonsterTypeId);
         }
 
         private void InformProgressReaders()

@@ -15,7 +15,7 @@ MonoBehaviour:
   EnemyTypeId: 1
   EnemyPrefab: {fileID: 6942956146585051866, guid: f300694b316d1491882a2809ed155b79,
     type: 3}
-  Health: 90
+  Health: 100
   MoveSpeed: 4
   PatrolSpeed: 2
   PatrolCooldown: 1.2

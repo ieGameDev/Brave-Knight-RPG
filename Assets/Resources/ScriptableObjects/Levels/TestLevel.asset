@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e7877c7794e44d397ce7bd2b3dba3c5, type: 3}
+  m_Name: TestLevel
+  m_EditorClassIdentifier: 
+  LevelKey: TestLevel
+  EnemySpawners:
+  - Id: TestLevel_d60c412b-10ae-465f-a037-360b5ff18a5b
+    MonsterTypeId: 0
+    Position: {x: -14.33, y: 0, z: 8.16}
+  - Id: TestLevel_ff7121bc-8902-490e-af0f-dabd79d22085
+    MonsterTypeId: 1
+    Position: {x: 2, y: 0, z: 11.459999}
+  - Id: TestLevel_248668c6-115e-473f-b002-97febae386ae
+    MonsterTypeId: 0
+    Position: {x: 10.819999, y: 0, z: 3.01}
