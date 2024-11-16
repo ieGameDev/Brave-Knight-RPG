@@ -80,7 +80,8 @@ namespace Infrastructure.GameStates
             LevelStaticData levelData = _staticData.DataForLevel(sceneKey);
 
             foreach (EnemySpawnerData spawnerData in levelData.EnemySpawners)
-                _gameFactory.CreateEnemySpawner(spawnerData.Position, spawnerData.Id, spawnerData.MonsterTypeId);
+                _gameFactory.CreateEnemySpawner(spawnerData.Position, spawnerData.PatrolPoint, spawnerData.Id,
+                    spawnerData.MonsterTypeId);
         }
 
         private void InformProgressReaders()

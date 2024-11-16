@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Data;
 using Services.Factory;
 using Services.Progress;
@@ -8,8 +9,7 @@ namespace Characters.Enemy.EnemySpawners
 {
     public class EnemySpawnPoint : MonoBehaviour, ISavedProgress
     {
-        [SerializeField] private EnemyPatrolPoints _patrolPoints;
-
+        private List<Vector3> _patrolPoints;
         private bool _isSlain;
         private IGameFactory _factory;
         private EnemyDeath _enemyDeath;
@@ -17,8 +17,11 @@ namespace Characters.Enemy.EnemySpawners
         public string Id { get; set; }
         public MonsterTypeId MonsterTypeId { get; set; }
 
-        public void Construct(IGameFactory factory) => 
+        public void Construct(IGameFactory factory, List<Vector3> patrolPoints)
+        {
             _factory = factory;
+            _patrolPoints = patrolPoints;
+        }
 
         public void LoadProgress(PlayerProgress progress)
         {
@@ -37,6 +40,8 @@ namespace Characters.Enemy.EnemySpawners
         private void Spawn()
         {
             GameObject enemy = _factory.CreateEnemy(MonsterTypeId, transform, _patrolPoints);
+            enemy.transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            
             _enemyDeath = enemy.GetComponent<EnemyDeath>();
             _enemyDeath.OnEnemyDeath += Slay;
         }

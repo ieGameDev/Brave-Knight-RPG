@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using Characters.Enemy;
 using Characters.Enemy.EnemyLoot;
 using Infrastructure.DI;
 using Services.Progress;
@@ -16,10 +15,10 @@ namespace Services.Factory
         GameObject CreateCameraContainer();
         GameObject CreatePlayer(GameObject initialPoint);
         GameObject CreatePlayerHUD();
-        GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints);
+        GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, List<Vector3> patrolPoints);
         LootItem CreateLoot();
 
-        void CreateEnemySpawner(Vector3 spawnerPosition, string spawnerId,
+        void CreateEnemySpawner(Vector3 spawnerPosition, Vector3 patrolPoint, string spawnerId,
             MonsterTypeId monsterTypeId);
 
         void CleanUp();

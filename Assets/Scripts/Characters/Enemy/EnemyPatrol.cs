@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Logic.EnemyStates;
 using UnityEngine;
 using UnityEngine.AI;
@@ -9,14 +10,14 @@ namespace Characters.Enemy
     public class EnemyPatrol : MonoBehaviour, IEnemyState
     {
         [SerializeField] private NavMeshAgent _navMeshAgent;
-        
-        private EnemyPatrolPoints _patrolPoints;
+
+        private List<Vector3> _patrolPoints;
         private float _moveSpeed;
         private float _cooldown;
         private int _currentPointIndex;
         private bool _waiting;
 
-        public void Construct(EnemyPatrolPoints patrolPoints, float moveSpeed, float cooldown)
+        public void Construct(List<Vector3> patrolPoints, float moveSpeed, float cooldown)
         {
             _patrolPoints = patrolPoints;
             _moveSpeed = moveSpeed;
@@ -26,8 +27,8 @@ namespace Characters.Enemy
         private void Start()
         {
             _currentPointIndex = 0;
-            if (_patrolPoints.PatrolWayPoints.Length > 0)
-                _navMeshAgent.SetDestination(_patrolPoints.PatrolWayPoints[_currentPointIndex].position);
+            if (_patrolPoints.Count > 0)
+                _navMeshAgent.SetDestination(_patrolPoints[_currentPointIndex]);
 
             _waiting = false;
         }
@@ -38,7 +39,7 @@ namespace Characters.Enemy
                 StartCoroutine(WaitAtPoint());
         }
 
-        public void Enter() => 
+        public void Enter() =>
             _navMeshAgent.speed = _moveSpeed;
 
         public void Exit()
@@ -50,8 +51,8 @@ namespace Characters.Enemy
             _waiting = true;
 
             yield return new WaitForSeconds(_cooldown);
-            _currentPointIndex = (_currentPointIndex + 1) % _patrolPoints.PatrolWayPoints.Length;
-            _navMeshAgent.SetDestination(_patrolPoints.PatrolWayPoints[_currentPointIndex].position);
+            _currentPointIndex = (_currentPointIndex + 1) % _patrolPoints.Count;
+            _navMeshAgent.SetDestination(_patrolPoints[_currentPointIndex]);
             _waiting = false;
         }
     }

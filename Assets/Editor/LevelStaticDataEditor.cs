@@ -21,9 +21,19 @@ namespace Editor
             {
                 levelData.EnemySpawners = FindObjectsByType<EnemySpawnMarker>(FindObjectsSortMode.None)
                     .Select(x =>
-                        new EnemySpawnerData(x.GetComponent<UniqueId>().Id,
+                    {
+                        PatrolPoint patrolPoint = x.GetComponentInChildren<PatrolPoint>();
+                        Vector3 patrolPointPosition =
+                            patrolPoint != null ? patrolPoint.transform.position : x.transform.position;
+
+                        return new EnemySpawnerData
+                        (
+                            x.GetComponent<UniqueId>().Id,
                             x.MonsterTypeId,
-                            x.transform.position))
+                            x.transform.position,
+                            patrolPointPosition
+                        );
+                    })
                     .ToList();
 
                 levelData.LevelKey = SceneManager.GetActiveScene().name;

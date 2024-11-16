@@ -68,7 +68,7 @@ namespace Services.Factory
             return hud;
         }
 
-        public GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, EnemyPatrolPoints patrolPoints)
+        public GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, List<Vector3> patrolPoints)
         {
             PlayerDeath playerDeath = Player.GetComponent<PlayerDeath>();
             EnemyData enemyData = _staticData.DataForEnemy(typeId);
@@ -112,12 +112,15 @@ namespace Services.Factory
             return lootItem;
         }
 
-        public void CreateEnemySpawner(Vector3 spawnerPosition, string spawnerId, MonsterTypeId monsterTypeId)
+        public void CreateEnemySpawner(Vector3 spawnerPosition, Vector3 patrolPoint, string spawnerId,
+            MonsterTypeId monsterTypeId)
         {
             EnemySpawnPoint spawnPoint = InstantiateRegistered(AssetAddress.SpawnerPath, spawnerPosition)
                 .GetComponent<EnemySpawnPoint>();
 
-            spawnPoint.Construct(this);
+            List<Vector3> patrolPoints = new List<Vector3> { spawnerPosition, patrolPoint };
+
+            spawnPoint.Construct(this, patrolPoints);
             spawnPoint.Id = spawnerId;
             spawnPoint.MonsterTypeId = monsterTypeId;
         }
