@@ -1,7 +1,5 @@
-using System;
+ using System;
 using System.Collections;
-using Characters.Enemy.EnemyLoot;
-using Logic;
 using UnityEngine;
 
 namespace Characters.Enemy
@@ -40,7 +38,7 @@ namespace Characters.Enemy
 
         private IEnumerator DeathRoutine()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1.2f);
 
             Instantiate(_deathFx, transform.position, Quaternion.identity);
             OnEnemyDeath?.Invoke();

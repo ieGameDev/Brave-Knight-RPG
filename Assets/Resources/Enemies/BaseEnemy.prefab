@@ -309,7 +309,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyAnimator: {fileID: 6920212905721971716}
   _enemyHealth: {fileID: 9089141545411083992}
-  _cleavage: 0.5
 --- !u!114 &5553946456576199589
 MonoBehaviour:
   m_ObjectHideFlags: 0

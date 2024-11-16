@@ -1534,6 +1534,16 @@ PrefabInstance:
       propertyPath: _navMeshAgent
       value: 
       objectReference: {fileID: 8548410902639789869}
+    - target: {fileID: 742209152820707363, guid: 4a46e821c58b5cd42b14eaab6d197266,
+        type: 3}
+      propertyPath: _minimalDistance
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 928965115317134903, guid: 4a46e821c58b5cd42b14eaab6d197266,
+        type: 3}
+      propertyPath: _poolSize
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1123647112889396680, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}
       propertyPath: _cooldown
@@ -1603,6 +1613,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Radius
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8622891323298770726, guid: 4a46e821c58b5cd42b14eaab6d197266,
+        type: 3}
+      propertyPath: m_Radius
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8623853387907811551, guid: 4a46e821c58b5cd42b14eaab6d197266,
+        type: 3}
+      propertyPath: m_StoppingDistance
+      value: 1.7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7207774d064c4dda9021f465db1f2d5b, type: 3}
-  m_Name: SceletonData
+  m_Name: SoldierData
   m_EditorClassIdentifier: 
-  EnemyTypeId: 0
-  EnemyPrefab: {fileID: 1621371377474042527, guid: cca479931cd5a4e7a904bd4815e5303b,
+  EnemyTypeId: 1
+  EnemyPrefab: {fileID: 6942956146585051866, guid: f300694b316d1491882a2809ed155b79,
     type: 3}
-  Health: 70
+  Health: 90
   MoveSpeed: 4
   PatrolSpeed: 2
-  PatrolCooldown: 1.5
-  Cleavage: 0.5
-  Damage: 7
-  AttackCooldown: 1.5
+  PatrolCooldown: 1.2
+  Cleavage: 2
+  Damage: 9
+  AttackCooldown: 1.2
   EffectiveDistance: 0.5
   LootValue: 1
-  LootCount: 1
+  LootCount: 2

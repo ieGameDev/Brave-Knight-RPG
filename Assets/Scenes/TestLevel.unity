@@ -315,6 +315,11 @@ PrefabInstance:
       propertyPath: _patrolPoints
       value: 
       objectReference: {fileID: 594178393}
+    - target: {fileID: 6958423547062910666, guid: 67ae9fdd5fcc34e69852446c031ed112,
+        type: 3}
+      propertyPath: _monsterTypeId
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:

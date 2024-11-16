@@ -16,8 +16,9 @@ namespace Services.StaticData
         public float MoveSpeed;
         public float PatrolSpeed;
         public float PatrolCooldown;
-        
-        [Header("Attack")]
+
+        [Header("Attack")] 
+        public float Cleavage;
         public float Damage;
         public float AttackCooldown;
         public float EffectiveDistance;

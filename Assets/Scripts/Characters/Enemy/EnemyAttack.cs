@@ -12,11 +12,11 @@ namespace Characters.Enemy
     {
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private EnemyHealth _enemyHealth;
-        [SerializeField] private float _cleavage;
 
         private float _attackCooldown;
         private float _effectiveDistance;
         private float _damage;
+        private float _cleavage;
 
         private IGameFactory _gameFactory;
         private GameObject _player;
@@ -30,12 +30,13 @@ namespace Characters.Enemy
         private bool _playerIsDead;
 
         public void Construct(GameObject player, PlayerDeath playerDeath, float attackCooldown, float damage,
-            float effectiveDistance)
+            float effectiveDistance, float cleavage)
         {
             _player = player;
             _playerDeath = playerDeath;
             _attackCooldown = attackCooldown;
             _damage = damage;
+            _cleavage = cleavage;
             _effectiveDistance = effectiveDistance;
 
             _playerDeath.OnPlayerDeath += StopAttack;
