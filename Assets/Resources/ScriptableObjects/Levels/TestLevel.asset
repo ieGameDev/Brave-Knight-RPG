@@ -14,15 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LevelKey: TestLevel
   EnemySpawners:
-  - Id: TestLevel_ff7121bc-8902-490e-af0f-dabd79d22085
-    MonsterTypeId: 1
-    Position: {x: 2, y: 0, z: 11.459999}
-    PatrolPoint: {x: 2, y: 0, z: 11.459999}
-  - Id: TestLevel_d60c412b-10ae-465f-a037-360b5ff18a5b
-    MonsterTypeId: 0
-    Position: {x: -14.33, y: 0, z: 8.16}
-    PatrolPoint: {x: -1.4200001, y: 0, z: 8.16}
   - Id: TestLevel_248668c6-115e-473f-b002-97febae386ae
     MonsterTypeId: 0
-    Position: {x: 10.819999, y: 0, z: 3.01}
-    PatrolPoint: {x: -1.3700008, y: 0, z: 3.01}
+    Position: {x: -12.75, y: 0, z: 6.37}
+    PatrolPoint: {x: 13.39, y: 0, z: 6.37}
+  - Id: TestLevel_ff7121bc-8902-490e-af0f-dabd79d22085
+    MonsterTypeId: 1
+    Position: {x: 10.14, y: 0, z: 11.059999}
+    PatrolPoint: {x: -9.249999, y: 0, z: -1.8499999}

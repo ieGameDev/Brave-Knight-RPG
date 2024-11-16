@@ -1,10 +1,9 @@
-using System.Linq;
+using System.Collections.Generic;
 using Characters.Enemy.EnemySpawners;
 using Logic;
 using Services.StaticData;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Editor
 {
@@ -19,24 +18,27 @@ namespace Editor
 
             if (GUILayout.Button("Collect Spawners"))
             {
-                levelData.EnemySpawners = FindObjectsByType<EnemySpawnMarker>(FindObjectsSortMode.None)
-                    .Select(x =>
-                    {
-                        PatrolPoint patrolPoint = x.GetComponentInChildren<PatrolPoint>();
-                        Vector3 patrolPointPosition =
-                            patrolPoint != null ? patrolPoint.transform.position : x.transform.position;
+                EnemySpawnMarker[] spawnMarkers = FindObjectsByType<EnemySpawnMarker>(FindObjectsSortMode.None);
 
-                        return new EnemySpawnerData
-                        (
-                            x.GetComponent<UniqueId>().Id,
-                            x.MonsterTypeId,
-                            x.transform.position,
-                            patrolPointPosition
-                        );
-                    })
-                    .ToList();
+                levelData.EnemySpawners = new List<EnemySpawnerData>(spawnMarkers.Length);
 
-                levelData.LevelKey = SceneManager.GetActiveScene().name;
+                foreach (var spawnMarker in spawnMarkers)
+                {
+                    PatrolPoint patrolPoint = spawnMarker.GetComponentInChildren<PatrolPoint>();
+                    Vector3 patrolPointPosition = patrolPoint != null
+                        ? patrolPoint.transform.position
+                        : spawnMarker.transform.position;
+
+                    UniqueId uniqueId = spawnMarker.GetComponent<UniqueId>();
+
+                    levelData.EnemySpawners.Add(new EnemySpawnerData
+                    (
+                        uniqueId.Id,
+                        spawnMarker.MonsterTypeId,
+                        spawnMarker.transform.position,
+                        patrolPointPosition
+                    ));
+                }
             }
 
             EditorUtility.SetDirty(target);
