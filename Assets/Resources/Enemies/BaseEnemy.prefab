@@ -540,6 +540,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyDeath: {fileID: 5467240716617670820}
   _poolSize: 15
+  _spreadDistance: 3
 --- !u!1 &8386123846218807052
 GameObject:
   m_ObjectHideFlags: 0

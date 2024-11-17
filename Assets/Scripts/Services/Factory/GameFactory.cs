@@ -98,7 +98,7 @@ namespace Services.Factory
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
             lootSpawner.SetLoot(lootValue, lootCount);
-            lootSpawner.Construct(this);
+            lootSpawner.Construct(this, lootCount);
 
             return enemy;
         }

@@ -9,17 +9,17 @@ namespace Characters.Enemy.EnemyLoot
     public class LootSpawner : MonoBehaviour
     {
         [SerializeField] private EnemyDeath _enemyDeath;
-        [SerializeField] private int _poolSize;
+        [SerializeField] private float _spreadDistance;
 
         private IGameFactory _factory;
         private PoolBase<LootItem> _lootPool;
         private int _lootValue;
         private int _lootCount;
 
-        public void Construct(IGameFactory factory)
+        public void Construct(IGameFactory factory, int poolSize)
         {
             _factory = factory;
-            _lootPool = new PoolBase<LootItem>(PreloadLootItem, GetAction, ReturnAction, _poolSize);
+            _lootPool = new PoolBase<LootItem>(PreloadLootItem, GetAction, ReturnAction, poolSize);
         }
 
         private void Start() =>
@@ -45,13 +45,12 @@ namespace Characters.Enemy.EnemyLoot
             }
         }
 
-        private static void LootSpread(LootItem loot)
+        private void LootSpread(LootItem loot)
         {
             Vector3 randomDirection = Random.insideUnitSphere.normalized;
             randomDirection.y = 0;
-            float distance = 4.0f;
 
-            Vector3 targetPosition = loot.transform.position + randomDirection * distance;
+            Vector3 targetPosition = loot.transform.position + randomDirection * _spreadDistance;
             loot?.transform.DOJump(targetPosition, 3f, 1, 0.5f).SetEase(Ease.OutQuad);
         }
 
