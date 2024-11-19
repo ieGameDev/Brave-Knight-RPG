@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7207774d064c4dda9021f465db1f2d5b, type: 3}
+  m_Name: LishData
+  m_EditorClassIdentifier: 
+  EnemyTypeId: 2
+  EnemyPrefab: {fileID: 3790221844927145813, guid: 9f0e9e807dad14890953b78f130727b0,
+    type: 3}
+  Health: 90
+  MoveSpeed: 4
+  PatrolSpeed: 2
+  PatrolCooldown: 1.5
+  Cleavage: 0
+  Damage: 0
+  AttackCooldown: 2
+  EffectiveDistance: 0
+  RangedDamage: 0
+  RangedAttackCooldown: 0
+  LootValue: 1
+  LootCount: 3

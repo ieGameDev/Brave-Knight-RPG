@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Characters.Enemy;
+using Characters.Enemy.Attack;
 using Characters.Enemy.EnemyLoot;
 using Characters.Enemy.EnemySpawners;
 using Characters.Player;
@@ -93,7 +94,7 @@ namespace Services.Factory
             enemy.GetComponent<ActorUI>().Construct(health);
             enemy.GetComponent<EnemyMoveToPlayer>().Construct(Player, moveSpeed);
             enemy.GetComponent<EnemyPatrol>().Construct(patrolPoints, patrolSpeed, patrolCooldown);
-            enemy.GetComponent<EnemyMeleeAttack>()
+            enemy.GetComponent<EnemyAttack>()
                 .Construct(Player, playerDeath, attackCooldown, damage, effectiveDistance, cleavage);
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();

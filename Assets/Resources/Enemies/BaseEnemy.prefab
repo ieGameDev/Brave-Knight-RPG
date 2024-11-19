@@ -321,7 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335e73f60f5a440a9ffcc348eb29851e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyAttack: {fileID: 4164035655562394032}
+  _enemyMeleeAttack: {fileID: 4164035655562394032}
   _trigger: {fileID: 368996247708670661}
 --- !u!114 &9089141545411083992
 MonoBehaviour:
@@ -539,7 +539,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _enemyDeath: {fileID: 5467240716617670820}
-  _poolSize: 15
   _spreadDistance: 3
 --- !u!1 &8386123846218807052
 GameObject:

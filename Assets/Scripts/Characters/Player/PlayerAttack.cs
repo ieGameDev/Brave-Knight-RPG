@@ -29,7 +29,7 @@ namespace Characters.Player
         public void OnAttack()
         {
             if (Hit() <= 0) return;
-            
+
             TurnPlayerTowardsEnemy(_hits[0].transform.position);
 
             for (int i = 0; i < Hit(); i++)

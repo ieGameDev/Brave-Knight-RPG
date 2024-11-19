@@ -1,33 +1,31 @@
 using System.Linq;
 using Characters.Player;
 using Logic;
-using Services.Factory;
 using UnityEngine;
 using Utils;
 
-namespace Characters.Enemy
+namespace Characters.Enemy.Attack
 {
     [RequireComponent(typeof(EnemyAnimator))]
-    public class EnemyMeleeAttack : MonoBehaviour
+    public class EnemyAttack : MonoBehaviour
     {
-        [SerializeField] private EnemyAnimator _enemyAnimator;
-        [SerializeField] private EnemyHealth _enemyHealth;
+        [SerializeField] protected EnemyAnimator _enemyAnimator;
+        [SerializeField] protected EnemyHealth _enemyHealth;
 
-        private float _attackCooldown;
-        private float _effectiveDistance;
-        private float _damage;
-        private float _cleavage;
+        protected float _attackCooldown;
+        protected float _effectiveDistance;
+        protected float _damage;
+        protected float _cleavage;
 
-        private IGameFactory _gameFactory;
-        private GameObject _player;
-        private PlayerDeath _playerDeath;
+        protected GameObject _player;
+        protected PlayerDeath _playerDeath;
 
-        private Collider[] _hits = new Collider[1];
-        private float _cooldown;
-        private int _layerMask;
-        private bool _isAttacking;
-        private bool _attackIsActive;
-        private bool _playerIsDead;
+        protected Collider[] _hits = new Collider[1];
+        protected float _cooldown;
+        protected int _layerMask;
+        protected bool _isAttacking;
+        protected bool _attackIsActive;
+        protected bool _playerIsDead;
 
         public void Construct(GameObject player, PlayerDeath playerDeath, float attackCooldown, float damage,
             float effectiveDistance, float cleavage)
@@ -42,13 +40,13 @@ namespace Characters.Enemy
             _playerDeath.OnPlayerDeath += StopAttack;
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _layerMask = 1 << LayerMask.NameToLayer(Constants.PlayerLayer);
             _enemyHealth.HealthChanged += OnAttackEnded;
         }
 
-        private void Update()
+        protected void Update()
         {
             if (_cooldown > 0)
                 _cooldown -= Time.deltaTime;
@@ -57,7 +55,7 @@ namespace Characters.Enemy
                 StartAttack();
         }
 
-        public void OnAttack()
+        public virtual void OnAttack()
         {
             if (Hit(out Collider hit))
             {
@@ -72,7 +70,7 @@ namespace Characters.Enemy
             _isAttacking = false;
         }
 
-        private void OnDestroy()
+        protected void OnDestroy()
         {
             _playerDeath.OnPlayerDeath -= StopAttack;
             _enemyHealth.HealthChanged -= OnAttackEnded;
@@ -96,7 +94,7 @@ namespace Characters.Enemy
             new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) +
             transform.forward * _effectiveDistance;
 
-        private void StartAttack()
+        protected void StartAttack()
         {
             transform.LookAt(_player.transform);
             _enemyAnimator.PlayAttackAnimation();
@@ -104,10 +102,10 @@ namespace Characters.Enemy
             _isAttacking = true;
         }
 
-        private void StopAttack() =>
+        protected void StopAttack() =>
             _playerIsDead = true;
 
-        private bool CanAttack() =>
+        protected bool CanAttack() =>
             !_playerIsDead && _attackIsActive && !_isAttacking && _cooldown <= 0;
 
         private void HitVFX(Vector3 position) =>

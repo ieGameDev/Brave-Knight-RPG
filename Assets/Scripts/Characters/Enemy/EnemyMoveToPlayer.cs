@@ -21,8 +21,10 @@ namespace Characters.Enemy
 
         private void Update()
         {
-            if (_player && StopDistanceReached())
+            if (_player && IsPlayerOutOfReached())
                 _navMeshAgent.destination = _player.position;
+            else
+                _navMeshAgent.ResetPath();
         }
 
         public void Enter() =>
@@ -32,7 +34,7 @@ namespace Characters.Enemy
         {
         }
 
-        private bool StopDistanceReached() =>
+        private bool IsPlayerOutOfReached() =>
             Vector3.Distance(_player.position, transform.position) >= _minimalDistance;
     }
 }
