@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Logic
+namespace Logic.ObjectPool
 {
     public class PoolBase<T>
     {

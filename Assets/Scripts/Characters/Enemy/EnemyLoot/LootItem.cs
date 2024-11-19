@@ -1,5 +1,6 @@
 using Data;
 using Logic;
+using Logic.ObjectPool;
 using UnityEngine;
 
 namespace Characters.Enemy.EnemyLoot

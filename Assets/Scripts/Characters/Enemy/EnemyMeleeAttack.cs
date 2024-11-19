@@ -8,7 +8,7 @@ using Utils;
 namespace Characters.Enemy
 {
     [RequireComponent(typeof(EnemyAnimator))]
-    public class EnemyAttack : MonoBehaviour
+    public class EnemyMeleeAttack : MonoBehaviour
     {
         [SerializeField] private EnemyAnimator _enemyAnimator;
         [SerializeField] private EnemyHealth _enemyHealth;

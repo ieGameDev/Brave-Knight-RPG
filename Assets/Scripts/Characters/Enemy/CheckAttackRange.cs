@@ -1,11 +1,12 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Characters.Enemy
 {
-    [RequireComponent(typeof(EnemyAttack))]
+    [RequireComponent(typeof(EnemyMeleeAttack))]
     public class CheckAttackRange : MonoBehaviour
     {
-        [SerializeField] private EnemyAttack _enemyAttack;
+        [FormerlySerializedAs("_enemyAttack")] [SerializeField] private EnemyMeleeAttack _enemyMeleeAttack;
         [SerializeField] private EnemyTrigger _trigger;
 
         private void Start()
@@ -13,17 +14,17 @@ namespace Characters.Enemy
             _trigger.TriggerEnter += OnTriggerEnter;
             _trigger.TriggerExit += OnTriggerExit;
             
-            _enemyAttack.DisableAttack();
+            _enemyMeleeAttack.DisableAttack();
         }
 
         private void OnTriggerEnter(Collider obj)
         {
-            _enemyAttack.EnableAttack();
+            _enemyMeleeAttack.EnableAttack();
         }
 
         private void OnTriggerExit(Collider obj)
         {
-            _enemyAttack.DisableAttack();
+            _enemyMeleeAttack.DisableAttack();
         }
     }
 }

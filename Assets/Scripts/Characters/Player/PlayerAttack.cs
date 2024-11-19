@@ -28,6 +28,10 @@ namespace Characters.Player
 
         public void OnAttack()
         {
+            if (Hit() <= 0) return;
+            
+            TurnPlayerTowardsEnemy(_hits[0].transform.position);
+
             for (int i = 0; i < Hit(); i++)
             {
                 _hits[i].transform.parent.GetComponent<IHealth>().TakeDamage(_playerStats.Damage);
@@ -48,6 +52,15 @@ namespace Characters.Player
 
         private Vector3 StartPoint() =>
             new(transform.position.x, _characterController.center.y / 2, transform.position.z);
+
+        private void TurnPlayerTowardsEnemy(Vector3 targetPosition)
+        {
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            direction.y = 0;
+
+            if (direction != Vector3.zero)
+                transform.rotation = Quaternion.LookRotation(direction);
+        }
 
         private void AttackShakeCamera()
         {

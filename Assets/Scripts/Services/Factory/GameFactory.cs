@@ -93,7 +93,7 @@ namespace Services.Factory
             enemy.GetComponent<ActorUI>().Construct(health);
             enemy.GetComponent<EnemyMoveToPlayer>().Construct(Player, moveSpeed);
             enemy.GetComponent<EnemyPatrol>().Construct(patrolPoints, patrolSpeed, patrolCooldown);
-            enemy.GetComponent<EnemyAttack>()
+            enemy.GetComponent<EnemyMeleeAttack>()
                 .Construct(Player, playerDeath, attackCooldown, damage, effectiveDistance, cleavage);
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();

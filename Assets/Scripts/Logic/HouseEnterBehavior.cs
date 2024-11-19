@@ -8,11 +8,6 @@ namespace Logic
     {
         [SerializeField] private GameObject _roof;
         [SerializeField] private GameObject _poofFx;
-        [SerializeField] private float _offsetY;
-        [SerializeField] private float _duration;
-        [SerializeField] private float _shakeDuration;
-        [SerializeField] private float _shakeStrength;
-        [SerializeField] private int _shakeVibrato;
         [SerializeField] private List<Transform> _fxPoints;
 
         private Camera _mainCamera;
@@ -24,15 +19,18 @@ namespace Logic
             _mainCamera = Camera.main;
         }
 
-        private void OnTriggerEnter(Collider other) =>
-            _roof.transform.DOMoveY(_initialPosition.y + _offsetY, _duration);
+        private void OnTriggerEnter(Collider other)
+        {
+            _mainCamera.transform.DOShakePosition(0.2f, 0.2f, 2);
+            _roof.transform.DOMoveY(_initialPosition.y + 50, 0.7f);
+        }
 
         private void OnTriggerExit(Collider other)
         {
-            _roof.transform.DOMoveY(_initialPosition.y, _duration)
+            _roof.transform.DOMoveY(_initialPosition.y, 0.5f)
                 .OnComplete(() =>
                 {
-                    _mainCamera.transform.DOShakePosition(_shakeDuration, _shakeStrength, _shakeVibrato);
+                    _mainCamera.transform.DOShakePosition(0.2f, 1, 10);
                     
                     foreach (Transform point in _fxPoints)
                         Instantiate(_poofFx, point.transform.position, Quaternion.identity);
