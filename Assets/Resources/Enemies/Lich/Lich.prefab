@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1617464237297239001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6391522274619473778}
+  m_Layer: 0
+  m_Name: FirePoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6391522274619473778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617464237297239001}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.788, z: 2.38}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 96421323028595815}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2528151725173183032
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111,6 +142,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4268245636111369055}
+    - targetCorrespondingSourceObject: {fileID: 2468889828458600031, guid: 4a46e821c58b5cd42b14eaab6d197266,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6391522274619473778}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1696834749189059949, guid: 4a46e821c58b5cd42b14eaab6d197266,
         type: 3}
@@ -143,6 +178,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyAnimator: {fileID: 4835815280651064892}
   _enemyHealth: {fileID: 6716787398011120864}
+  _firePoint: {fileID: 6391522274619473778}
+  _poolSize: 6
+  _fireballPrefab: {fileID: 5274610132380627088, guid: 4c0c09f76009c4b38bcacf82fe474eb9,
+    type: 3}
 --- !u!114 &4835815280651064892 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6920212905721971716, guid: 4a46e821c58b5cd42b14eaab6d197266,

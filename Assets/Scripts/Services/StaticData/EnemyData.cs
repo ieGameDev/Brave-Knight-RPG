@@ -17,15 +17,14 @@ namespace Services.StaticData
         public float PatrolSpeed;
         public float PatrolCooldown;
         
-        [Header("MeleeAttack")] 
+        [Header("Attack")] 
         public float Cleavage;
         public float Damage;
         public float AttackCooldown;
         public float EffectiveDistance;
         
         [Header("RangedAttack")]
-        public float RangedDamage;
-        public float RangedAttackCooldown;
+        public float FireballSpeed;
         
         [Header("Loot")]
         [Range(1,15)] public int LootValue;

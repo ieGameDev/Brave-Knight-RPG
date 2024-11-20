@@ -1,5 +1,3 @@
-using System;
-using Logic;
 using UnityEngine;
 
 namespace Characters.Player
@@ -12,7 +10,7 @@ namespace Characters.Player
         private static readonly int Run = Animator.StringToHash("Run");
         private static readonly int Hit = Animator.StringToHash("Hit");
         private static readonly int Die = Animator.StringToHash("Die");
-        private static readonly int Attack01 = Animator.StringToHash("Attack01");
+        private static readonly int Attack = Animator.StringToHash("Attack");
 
         private void Update() =>
             PlayRunAnimation();
@@ -24,7 +22,7 @@ namespace Characters.Player
             _animator.SetTrigger(Die);
 
         public void PlayAttackAnimation() =>
-            _animator.SetTrigger(Attack01);
+            _animator.SetTrigger(Attack);
 
         private void PlayRunAnimation() =>
             _animator.SetFloat(Run, _characterController.velocity.magnitude, 0.1f, Time.deltaTime);

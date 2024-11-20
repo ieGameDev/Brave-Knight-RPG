@@ -1,6 +1,8 @@
 using System.Linq;
 using Characters.Player;
 using Logic;
+using Logic.ObjectPool;
+using Services.AssetsManager;
 using UnityEngine;
 using Utils;
 
@@ -16,7 +18,9 @@ namespace Characters.Enemy.Attack
         protected float _effectiveDistance;
         protected float _damage;
         protected float _cleavage;
+        protected float _fireballSpeed;
 
+        protected IAssetsProvider _assetProvider;
         protected GameObject _player;
         protected PlayerDeath _playerDeath;
 
@@ -27,15 +31,17 @@ namespace Characters.Enemy.Attack
         protected bool _attackIsActive;
         protected bool _playerIsDead;
 
-        public void Construct(GameObject player, PlayerDeath playerDeath, float attackCooldown, float damage,
-            float effectiveDistance, float cleavage)
+        public void Construct(IAssetsProvider assetProvider, GameObject player, PlayerDeath playerDeath,
+            float attackCooldown, float damage, float effectiveDistance, float cleavage, float fireballSpeed)
         {
+            _assetProvider = assetProvider;
             _player = player;
             _playerDeath = playerDeath;
             _attackCooldown = attackCooldown;
             _damage = damage;
             _cleavage = cleavage;
             _effectiveDistance = effectiveDistance;
+            _fireballSpeed = fireballSpeed;
 
             _playerDeath.OnPlayerDeath += StopAttack;
         }
@@ -46,7 +52,7 @@ namespace Characters.Enemy.Attack
             _enemyHealth.HealthChanged += OnAttackEnded;
         }
 
-        protected void Update()
+        protected virtual void Update()
         {
             if (_cooldown > 0)
                 _cooldown -= Time.deltaTime;

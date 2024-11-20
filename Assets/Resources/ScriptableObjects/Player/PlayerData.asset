@@ -15,4 +15,4 @@ MonoBehaviour:
   MovementSpeed: 5
   Health: 100
   Damage: 25
-  DamageRadius: 0.55
+  DamageRadius: 0.6

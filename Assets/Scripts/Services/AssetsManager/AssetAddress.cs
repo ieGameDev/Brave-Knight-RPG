@@ -2,6 +2,7 @@ namespace Services.AssetsManager
 {
     public static class AssetAddress
     {
+        public const string FireballPath = "Enemies/Lich/FireBall";
         public const string LootPath = "Loot/LifeEnergyLoot";
         public const string PlayerPath = "Player/Player";
         public const string HUDPath = "Player/HUD";

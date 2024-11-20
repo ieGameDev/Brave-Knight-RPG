@@ -8,6 +8,7 @@ namespace Characters.Enemy.EnemyLoot
     public class LootItem : MonoBehaviour
     {
         [SerializeField] private GameObject _pickUpVFX;
+        [SerializeField] private TrailRenderer _trail;
         [SerializeField] private float _lootMoveSpeed;
 
         private PoolBase<LootItem> _lootPool;
@@ -64,6 +65,8 @@ namespace Characters.Enemy.EnemyLoot
             _worldData.LootData.Collect(_lootValue);
 
             Instantiate(_pickUpVFX, transform.position, Quaternion.identity);
+            
+            _trail.Clear();
             _lootPool.Return(this);
         }
     }

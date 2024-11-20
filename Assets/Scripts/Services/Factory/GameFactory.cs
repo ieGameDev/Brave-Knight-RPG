@@ -90,12 +90,13 @@ namespace Services.Factory
             float effectiveDistance = enemyData.EffectiveDistance;
             int lootValue = enemyData.LootValue;
             int lootCount = enemyData.LootCount;
+            float fireballSpeed = enemyData.FireballSpeed;
 
             enemy.GetComponent<ActorUI>().Construct(health);
             enemy.GetComponent<EnemyMoveToPlayer>().Construct(Player, moveSpeed);
             enemy.GetComponent<EnemyPatrol>().Construct(patrolPoints, patrolSpeed, patrolCooldown);
-            enemy.GetComponent<EnemyAttack>()
-                .Construct(Player, playerDeath, attackCooldown, damage, effectiveDistance, cleavage);
+            enemy.GetComponent<EnemyAttack>().Construct(_assetProvider, Player, playerDeath, attackCooldown, damage,
+                effectiveDistance, cleavage, fireballSpeed);
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
             lootSpawner.SetLoot(lootValue, lootCount);
