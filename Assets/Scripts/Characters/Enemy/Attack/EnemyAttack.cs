@@ -3,6 +3,7 @@ using Characters.Player;
 using Logic;
 using Logic.ObjectPool;
 using Services.AssetsManager;
+using Services.Factory;
 using UnityEngine;
 using Utils;
 
@@ -20,7 +21,7 @@ namespace Characters.Enemy.Attack
         protected float _cleavage;
         protected float _fireballSpeed;
 
-        protected IAssetsProvider _assetProvider;
+        protected IGameFactory _gameFactory;
         protected GameObject _player;
         protected PlayerDeath _playerDeath;
 
@@ -31,10 +32,10 @@ namespace Characters.Enemy.Attack
         protected bool _attackIsActive;
         protected bool _playerIsDead;
 
-        public void Construct(IAssetsProvider assetProvider, GameObject player, PlayerDeath playerDeath,
+        public void Construct(IGameFactory gameFactory, GameObject player, PlayerDeath playerDeath,
             float attackCooldown, float damage, float effectiveDistance, float cleavage, float fireballSpeed)
         {
-            _assetProvider = assetProvider;
+            _gameFactory = gameFactory;
             _player = player;
             _playerDeath = playerDeath;
             _attackCooldown = attackCooldown;

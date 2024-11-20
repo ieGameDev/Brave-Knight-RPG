@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Characters.Enemy.Attack;
 using Characters.Enemy.EnemyLoot;
 using Infrastructure.DI;
 using Services.Progress;
@@ -17,6 +18,7 @@ namespace Services.Factory
         GameObject CreatePlayerHUD();
         GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, List<Vector3> patrolPoints);
         LootItem CreateLoot();
+        EnemyFireball CreateFireball();
 
         void CreateEnemySpawner(Vector3 spawnerPosition, Vector3 patrolPoint, string spawnerId,
             MonsterTypeId monsterTypeId);

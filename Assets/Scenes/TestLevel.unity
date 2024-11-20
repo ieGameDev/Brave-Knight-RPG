@@ -6127,6 +6127,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SaveTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 7900946214097818516, guid: 34e504ce04fe441c7afc17eee98fbdea,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8459859728075293257, guid: 34e504ce04fe441c7afc17eee98fbdea,
         type: 3}
       propertyPath: m_LocalPosition.x

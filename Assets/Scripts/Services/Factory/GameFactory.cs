@@ -95,7 +95,7 @@ namespace Services.Factory
             enemy.GetComponent<ActorUI>().Construct(health);
             enemy.GetComponent<EnemyMoveToPlayer>().Construct(Player, moveSpeed);
             enemy.GetComponent<EnemyPatrol>().Construct(patrolPoints, patrolSpeed, patrolCooldown);
-            enemy.GetComponent<EnemyAttack>().Construct(_assetProvider, Player, playerDeath, attackCooldown, damage,
+            enemy.GetComponent<EnemyAttack>().Construct(this, Player, playerDeath, attackCooldown, damage,
                 effectiveDistance, cleavage, fireballSpeed);
 
             LootSpawner lootSpawner = enemy.GetComponentInChildren<LootSpawner>();
@@ -112,6 +112,14 @@ namespace Services.Factory
             lootItem.Construct(_progressService.Progress.WorldData, Player.transform);
 
             return lootItem;
+        }
+
+        public EnemyFireball CreateFireball()
+        {
+            GameObject fireballObject = InstantiateRegistered(AssetAddress.FireballPath);
+            EnemyFireball fireball = fireballObject.GetComponent<EnemyFireball>();
+
+            return fireball;
         }
 
         public void CreateEnemySpawner(Vector3 spawnerPosition, Vector3 patrolPoint, string spawnerId,

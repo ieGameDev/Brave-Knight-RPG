@@ -1,3 +1,4 @@
+using System;
 using Logic.ObjectPool;
 using Services.AssetsManager;
 using UnityEngine;
@@ -12,11 +13,11 @@ namespace Characters.Enemy.Attack
         
         private PoolBase<EnemyFireball> _fireballPool;
         
-        protected override void Awake()
-        {
-            _fireballPool = new PoolBase<EnemyFireball>(PreloadFireball, GetAction, ReturnAction, _poolSize);
+        protected override void Awake() => 
             _enemyHealth.HealthChanged += OnAttackEnded;
-        }
+
+        private void Start() => 
+            _fireballPool = new PoolBase<EnemyFireball>(PreloadFireball, GetAction, ReturnAction, _poolSize);
 
         protected override void Update()
         {
@@ -28,24 +29,19 @@ namespace Characters.Enemy.Attack
 
         public override void OnAttack()
         {
-            EnemyFireball bullet = _fireballPool.Get();
-            bullet.transform.position = _firePoint.position;
-            bullet.Initialize(_fireballPool, _firePoint.forward, _fireballSpeed, _damage);
-            
-            Debug.Log("Shoot");
+            EnemyFireball fireball = _fireballPool.Get();
+            fireball.transform.position = _firePoint.position;
+            fireball.transform.rotation = _firePoint.rotation;
+            fireball.Initialize(_fireballPool, _firePoint.forward, _fireballSpeed, _damage);
         }
         
-        private EnemyFireball PreloadFireball()
-        {
-            GameObject bulletObject = Instantiate(_fireballPrefab);
-            EnemyFireball bullet = bulletObject.GetComponent<EnemyFireball>();
-            return bullet;
-        }
+        private EnemyFireball PreloadFireball() => 
+            _gameFactory.CreateFireball();
 
-        private void GetAction(EnemyFireball bullet) => 
-            bullet.gameObject.SetActive(true);
+        private void GetAction(EnemyFireball fireball) => 
+            fireball.gameObject.SetActive(true);
 
-        private void ReturnAction(EnemyFireball bullet) => 
-            bullet.gameObject.SetActive(false);
+        private void ReturnAction(EnemyFireball fireball) => 
+            fireball.gameObject.SetActive(false);
     }
 }

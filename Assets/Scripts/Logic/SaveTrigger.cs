@@ -9,7 +9,7 @@ namespace Logic
         private ISaveLoadService _saveLoadService;
 
         [SerializeField] private BoxCollider _boxCollider;
-        
+
         private void Awake()
         {
             _saveLoadService = DiContainer.Instance.Single<ISaveLoadService>();
@@ -17,6 +17,9 @@ namespace Logic
 
         private void OnTriggerEnter(Collider other)
         {
+            if (!other.CompareTag("Player")) 
+                return;
+            
             _saveLoadService.SaveProgress();
             Debug.Log("Progress Saved");
             gameObject.SetActive(false);
@@ -24,9 +27,9 @@ namespace Logic
 
         private void OnDrawGizmos()
         {
-            if (!_boxCollider) 
+            if (!_boxCollider)
                 return;
-            
+
             Gizmos.color = Color.green;
             Gizmos.DrawWireCube(transform.position + _boxCollider.center, _boxCollider.size);
         }

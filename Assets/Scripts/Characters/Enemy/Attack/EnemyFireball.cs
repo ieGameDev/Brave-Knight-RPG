@@ -10,6 +10,7 @@ namespace Characters.Enemy.Attack
     {
         [SerializeField] private Rigidbody _rigidbody;
         [SerializeField] private TrailRenderer _trail;
+        [SerializeField] private GameObject _fireballExplosionVFX;
         
         private PoolBase<EnemyFireball> _pool;
         private float _damage;
@@ -38,6 +39,7 @@ namespace Characters.Enemy.Attack
         private void ReturnFireball()
         {
             _trail.Clear();
+            Instantiate(_fireballExplosionVFX, transform.position, Quaternion.identity);
             _pool.Return(this);
         }
     }
