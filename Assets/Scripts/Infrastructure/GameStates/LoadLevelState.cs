@@ -51,10 +51,11 @@ namespace Infrastructure.GameStates
 
         private void InitGameWorld()
         {
-            InitSpawners();
+            InitialSpawners();
             GameObject cameraContainer = InitialCameraContainer();
             GameObject player = InitialPlayer();
             InitialHUD(player);
+            InitialPlayerStatsWindow();
             CameraFollow(cameraContainer, player);
         }
 
@@ -71,10 +72,17 @@ namespace Infrastructure.GameStates
             hud.GetComponentInChildren<AttackButton>().Construct(player.GetComponent<PlayerAttack>());
         }
 
+        private void InitialPlayerStatsWindow()
+        {
+            GameObject statsWindow = _gameFactory.CreatePlayerStatsWindow();
+            Canvas canvas = statsWindow.GetComponent<Canvas>();
+            canvas.worldCamera = Camera.main;
+        }
+
         private void CameraFollow(GameObject cameraContainer, GameObject player) =>
             cameraContainer.GetComponent<CameraFollow>().Follow(player);
 
-        private void InitSpawners()
+        private void InitialSpawners()
         {
             string sceneKey = SceneManager.GetActiveScene().name;
             LevelStaticData levelData = _staticData.DataForLevel(sceneKey);

@@ -10,10 +10,8 @@ namespace Logic
 
         [SerializeField] private BoxCollider _boxCollider;
 
-        private void Awake()
-        {
+        private void Awake() => 
             _saveLoadService = DiContainer.Instance.Single<ISaveLoadService>();
-        }
 
         private void OnTriggerEnter(Collider other)
         {

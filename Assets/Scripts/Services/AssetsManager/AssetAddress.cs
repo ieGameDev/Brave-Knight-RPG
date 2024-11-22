@@ -6,6 +6,7 @@ namespace Services.AssetsManager
         public const string LootPath = "Loot/LifeEnergyLoot";
         public const string PlayerPath = "Player/Player";
         public const string HUDPath = "Player/HUD";
+        public const string PlayerStatsWindowPath = "Player/PlayerStatsWindow";
         public const string CameraContainerPath = "Camera/CameraContainer";
         public const string PlayerDataPath = "ScriptableObjects/Player/PlayerData";
         public const string EnemiesDataPath = "ScriptableObjects/Enemies";

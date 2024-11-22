@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using CameraLogic;
 using Characters.Enemy;
 using Characters.Enemy.Attack;
 using Characters.Enemy.EnemyLoot;
@@ -37,7 +38,7 @@ namespace Services.Factory
 
         public GameObject CreateCameraContainer()
         {
-            CameraContainer = _assetProvider.Instantiate(AssetAddress.CameraContainerPath);
+            CameraContainer = Object.FindAnyObjectByType<CameraFollow>()?.gameObject;
             return CameraContainer;
         }
 
@@ -67,6 +68,12 @@ namespace Services.Factory
             loot.Construct(_progressService.Progress.WorldData);
 
             return hud;
+        }
+
+        public GameObject CreatePlayerStatsWindow()
+        {
+            GameObject statsWindow = InstantiateRegistered(AssetAddress.PlayerStatsWindowPath);
+            return statsWindow;
         }
 
         public GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, List<Vector3> patrolPoints)
