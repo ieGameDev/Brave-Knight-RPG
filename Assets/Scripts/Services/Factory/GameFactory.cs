@@ -70,10 +70,10 @@ namespace Services.Factory
             return hud;
         }
 
-        public GameObject CreatePlayerStatsWindow()
+        public GameObject CreatePlayerShopWindow()
         {
-            GameObject statsWindow = InstantiateRegistered(AssetAddress.PlayerStatsWindowPath);
-            return statsWindow;
+            GameObject shopWindow = InstantiateRegistered(AssetAddress.PlayerShopWindowPath);
+            return shopWindow;
         }
 
         public GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, List<Vector3> patrolPoints)

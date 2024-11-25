@@ -74,7 +74,7 @@ namespace Infrastructure.GameStates
 
         private void InitialPlayerStatsWindow()
         {
-            GameObject statsWindow = _gameFactory.CreatePlayerStatsWindow();
+            GameObject statsWindow = _gameFactory.CreatePlayerShopWindow();
             Canvas canvas = statsWindow.GetComponent<Canvas>();
             canvas.worldCamera = Camera.main;
         }

@@ -16,7 +16,7 @@ namespace Services.Factory
         GameObject CreateCameraContainer();
         GameObject CreatePlayer(GameObject initialPoint);
         GameObject CreatePlayerHUD();
-        GameObject CreatePlayerStatsWindow();
+        GameObject CreatePlayerShopWindow();
         GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, List<Vector3> patrolPoints);
         LootItem CreateLoot();
         EnemyFireball CreateFireball();
