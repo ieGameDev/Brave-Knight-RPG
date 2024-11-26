@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Logic;
 using Logic.ObjectPool;
@@ -20,6 +21,8 @@ namespace Characters.Enemy.Attack
             _pool = pool;
             _damage = damage;
             _rigidbody.linearVelocity = direction * speed;
+            
+            StartCoroutine(DestroyFireball());
         }
 
         private void OnTriggerEnter(Collider other)
@@ -32,7 +35,7 @@ namespace Characters.Enemy.Attack
 
         private IEnumerator DestroyFireball()
         {
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(3);
             ReturnFireball();
         }
 
