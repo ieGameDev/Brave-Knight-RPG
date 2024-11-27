@@ -28,8 +28,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.1, y: 1.1, z: 1.1}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 9080032501793267263}
   - {fileID: 3552257990641991734}
@@ -71,11 +71,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _roof: {fileID: 4216005128670483640}
   _poofFx: {fileID: 1462327970484030, guid: f01c1eba69de19e44b04d8d651aaac37, type: 3}
-  _offsetY: 100
-  _duration: 0.5
-  _shakeDuration: 0.2
-  _shakeStrength: 1
-  _shakeVibrato: 10
   _fxPoints:
   - {fileID: 3552257990641991734}
   - {fileID: 4278016697739093288}
