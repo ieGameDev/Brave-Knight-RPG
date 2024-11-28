@@ -6120,7 +6120,7 @@ PrefabInstance:
     - target: {fileID: 4186215121423533709, guid: 662dc4fd2aa694e77a0c404d23b19f9b,
         type: 3}
       propertyPath: m_Name
-      value: BlacksmithsAnvil
+      value: BlacksmithsShop
       objectReference: {fileID: 0}
     - target: {fileID: 5322366860991882851, guid: 662dc4fd2aa694e77a0c404d23b19f9b,
         type: 3}

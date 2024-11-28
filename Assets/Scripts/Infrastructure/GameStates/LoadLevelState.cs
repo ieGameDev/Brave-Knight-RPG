@@ -55,7 +55,6 @@ namespace Infrastructure.GameStates
             GameObject cameraContainer = InitialCameraContainer();
             GameObject player = InitialPlayer();
             InitialHUD(player);
-            InitialPlayerStatsWindow();
             CameraFollow(cameraContainer, player);
         }
 
@@ -70,13 +69,6 @@ namespace Infrastructure.GameStates
             GameObject hud = _gameFactory.CreatePlayerHUD();
             hud.GetComponentInChildren<ActorUI>().Construct(player.GetComponent<PlayerHealth>());
             hud.GetComponentInChildren<AttackButton>().Construct(player.GetComponent<PlayerAttack>());
-        }
-
-        private void InitialPlayerStatsWindow()
-        {
-            GameObject statsWindow = _gameFactory.CreatePlayerShopWindow();
-            Canvas canvas = statsWindow.GetComponent<Canvas>();
-            canvas.worldCamera = Camera.main;
         }
 
         private void CameraFollow(GameObject cameraContainer, GameObject player) =>

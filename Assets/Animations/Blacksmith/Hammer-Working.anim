@@ -57248,9 +57248,10 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0.4
-    functionName: AnvilFX
+    functionName: AnvilVFX
     data: 
-    objectReferenceParameter: {fileID: 0}
+    objectReferenceParameter: {fileID: 4186215121423533709, guid: 662dc4fd2aa694e77a0c404d23b19f9b,
+      type: 3}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0

@@ -70,12 +70,6 @@ namespace Services.Factory
             return hud;
         }
 
-        public GameObject CreatePlayerShopWindow()
-        {
-            GameObject shopWindow = InstantiateRegistered(AssetAddress.PlayerShopWindowPath);
-            return shopWindow;
-        }
-
         public GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, List<Vector3> patrolPoints)
         {
             PlayerDeath playerDeath = Player.GetComponent<PlayerDeath>();
