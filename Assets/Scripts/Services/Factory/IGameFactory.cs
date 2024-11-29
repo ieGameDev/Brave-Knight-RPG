@@ -17,6 +17,7 @@ namespace Services.Factory
         GameObject CreatePlayer(GameObject initialPoint);
         GameObject CreatePlayerHUD();
         GameObject CreateEnemy(MonsterTypeId typeId, Transform transform, List<Vector3> patrolPoints);
+        GameObject CreateBlacksmith(GameObject initialPoint);
         LootItem CreateLoot();
         EnemyFireball CreateFireball();
 

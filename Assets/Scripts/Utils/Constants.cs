@@ -8,9 +8,8 @@ namespace Utils
         public const string ProgressKey = "Progress";
         
         public const string PlayerInitialPointTag = "PlayerInitialPoint";
+        public const string BlacksmithPointTag = "BlacksmithSpawner";
         public const string PlayerLayer = "Player";
         public const string HittableLayer = "Hittable";
-        
-        public const string EnemySpawnerTag = "EnemySpawner";
     }
 }

@@ -7,5 +7,6 @@ namespace Services.AssetsManager
     {
         GameObject Instantiate(string path);
         GameObject Instantiate(string path, Vector3 initialPoint);
+        GameObject Instantiate(string path, Vector3 initialPoint, Quaternion rotation);
     }
 }

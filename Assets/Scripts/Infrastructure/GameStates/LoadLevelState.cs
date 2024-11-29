@@ -1,4 +1,5 @@
 using CameraLogic;
+using Characters.Blacksmith;
 using Characters.Player;
 using Services.Factory;
 using Services.Input;
@@ -54,7 +55,8 @@ namespace Infrastructure.GameStates
             InitialSpawners();
             GameObject cameraContainer = InitialCameraContainer();
             GameObject player = InitialPlayer();
-            InitialHUD(player);
+            GameObject hud = InitialHUD(player);
+            InitialBlacksmith(player, hud);
             CameraFollow(cameraContainer, player);
         }
 
@@ -64,11 +66,19 @@ namespace Infrastructure.GameStates
         private GameObject InitialPlayer() =>
             _gameFactory.CreatePlayer(GameObject.FindWithTag(Constants.PlayerInitialPointTag));
 
-        private void InitialHUD(GameObject player)
+        private void InitialBlacksmith(GameObject player, GameObject hud)
+        {
+            GameObject blacksmith = _gameFactory.CreateBlacksmith(GameObject.FindWithTag(Constants.BlacksmithPointTag));
+            blacksmith.GetComponent<BlacksmithsShop>().Construct(player.GetComponent<PlayerMove>(), hud);
+        }
+
+        private GameObject InitialHUD(GameObject player)
         {
             GameObject hud = _gameFactory.CreatePlayerHUD();
             hud.GetComponentInChildren<ActorUI>().Construct(player.GetComponent<PlayerHealth>());
             hud.GetComponentInChildren<AttackButton>().Construct(player.GetComponent<PlayerAttack>());
+
+            return hud;
         }
 
         private void CameraFollow(GameObject cameraContainer, GameObject player) =>

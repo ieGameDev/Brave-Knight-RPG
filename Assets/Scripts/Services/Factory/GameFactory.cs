@@ -106,6 +106,16 @@ namespace Services.Factory
             return enemy;
         }
 
+        public GameObject CreateBlacksmith(GameObject initialPoint)
+        {
+            GameObject blacksmith = InstantiateRegistered(AssetAddress.BlacksmithPath,
+                initialPoint.transform.position,
+                initialPoint.transform.rotation
+            );
+
+            return blacksmith;
+        }
+
         public LootItem CreateLoot()
         {
             GameObject loot = InstantiateRegistered(AssetAddress.LootPath);
@@ -126,7 +136,7 @@ namespace Services.Factory
         public void CreateEnemySpawner(Vector3 spawnerPosition, Vector3 patrolPoint, string spawnerId,
             MonsterTypeId monsterTypeId)
         {
-            EnemySpawnPoint spawnPoint = InstantiateRegistered(AssetAddress.SpawnerPath, spawnerPosition)
+            EnemySpawnPoint spawnPoint = InstantiateRegistered(AssetAddress.EnemySpawnerPath, spawnerPosition)
                 .GetComponent<EnemySpawnPoint>();
 
             List<Vector3> patrolPoints = new List<Vector3> { spawnerPosition, patrolPoint };
@@ -153,6 +163,14 @@ namespace Services.Factory
         private GameObject InstantiateRegistered(string prefabPath, Vector3 position)
         {
             GameObject gameObject = _assetProvider.Instantiate(prefabPath, position);
+            RegisterProgressWatchers(gameObject);
+
+            return gameObject;
+        }
+
+        private GameObject InstantiateRegistered(string prefabPath, Vector3 position, Quaternion rotation)
+        {
+            GameObject gameObject = _assetProvider.Instantiate(prefabPath, position, rotation);
             RegisterProgressWatchers(gameObject);
 
             return gameObject;

@@ -15,5 +15,11 @@ namespace Services.AssetsManager
             GameObject prefab = Resources.Load<GameObject>(path);
             return Object.Instantiate(prefab, initialPoint, Quaternion.identity);
         }
+        
+        public GameObject Instantiate(string path, Vector3 initialPoint, Quaternion rotation)
+        {
+            GameObject prefab = Resources.Load<GameObject>(path);
+            return Object.Instantiate(prefab, initialPoint, rotation * Quaternion.Euler(0, 180, 0));
+        }
     }
 }

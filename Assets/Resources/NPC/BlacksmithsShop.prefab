@@ -247,6 +247,7 @@ GameObject:
   - component: {fileID: 5322366860991882851}
   - component: {fileID: 8222358058574893084}
   - component: {fileID: 4448767546144037711}
+  - component: {fileID: -6184388169542019808}
   m_Layer: 0
   m_Name: BlacksmithsShop
   m_TagString: Untagged
@@ -312,6 +313,22 @@ MonoBehaviour:
   _shopButtonCanvas: {fileID: 2910745501280486048}
   _shopButton: {fileID: 4428162670466309114}
   _closeButton: {fileID: 7737377655073475206}
+--- !u!208 &-6184388169542019808
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4186215121423533709}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5539390289556959651
 GameObject:
   m_ObjectHideFlags: 0

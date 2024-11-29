@@ -1,3 +1,4 @@
+using Characters.Player;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,6 +17,15 @@ namespace Characters.Blacksmith
         [Header("Shop Buttons")]
         [SerializeField] private Button _shopButton;
         [SerializeField] private Button _closeButton;
+        
+        private PlayerMove _playerMove;
+        private GameObject _playerHUD;
+
+        public void Construct(PlayerMove playerMove, GameObject playerHUD)
+        {
+            _playerMove = playerMove;
+            _playerHUD = playerHUD;
+        }
 
         private void Start()
         {
@@ -38,11 +48,15 @@ namespace Characters.Blacksmith
         private void OnOpenShopWindow()
         {
             _shopWindow.SetActive(true);
+            _playerHUD.SetActive(false);
+            _playerMove.enabled = false;
         }
 
         private void OnCloseShopWindow()
         {
             _shopWindow.SetActive(false);
+            _playerHUD.SetActive(true);
+            _playerMove.enabled = true;
         }
 
         private void OnTriggerEnter(Collider other)

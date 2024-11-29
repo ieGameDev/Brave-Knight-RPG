@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3496336903474780615}
   - component: {fileID: 143186334628345789}
   - component: {fileID: 4047640529628030439}
+  - component: {fileID: 7083768362528355003}
   m_Layer: 0
   m_Name: Anvil
   m_TagString: Untagged
@@ -87,6 +88,22 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &7083768362528355003
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6509940058561786318}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.469, y: 0.56600004, z: 0.82100004}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.014, y: 0.56600004, z: 0.075}
+  m_TimeToStationary: 0.5
 --- !u!1001 &1650207476806512536
 PrefabInstance:
   m_ObjectHideFlags: 0

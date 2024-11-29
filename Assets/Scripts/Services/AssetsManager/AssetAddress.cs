@@ -4,13 +4,16 @@ namespace Services.AssetsManager
     {
         public const string FireballPath = "Enemies/Lich/Fireball";
         public const string LootPath = "Loot/LifeEnergyLoot";
-        public const string PlayerPath = "Player/Player";
+
         public const string HUDPath = "Player/HUD";
-        public const string ShopWindowPath = "Player/PlayerShopWindow";
-        public const string CameraContainerPath = "Camera/CameraContainer";
+        public const string PlayerPath = "Player/Player";
+        public const string EnemySpawnerPath = "Enemies/EnemySpawnPoint";
+        public const string BlacksmithPath = "NPC/BlacksmithsShop";
+
         public const string PlayerDataPath = "ScriptableObjects/Player/PlayerData";
         public const string EnemiesDataPath = "ScriptableObjects/Enemies";
         public const string LevelsDataPath = "ScriptableObjects/Levels";
-        public const string SpawnerPath = "Enemies/EnemySpawnPoint";
+        
+        public const string CameraContainerPath = "Camera/CameraContainer";
     }
 }
