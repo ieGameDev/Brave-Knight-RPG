@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d78b46c299de9436ba27c4bd3967b9f2
+guid: 160c0f6f818a047f988fd3469210d293
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - GGS TheRock Black
+  - Digitalt
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

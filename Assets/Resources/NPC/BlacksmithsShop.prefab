@@ -396,8 +396,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: SHOP
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 3fa34da0af7b944d1adfd29431eafdd7, type: 2}
-  m_sharedMaterial: {fileID: -1377976153931744431, guid: 3fa34da0af7b944d1adfd29431eafdd7,
+  m_fontAsset: {fileID: 11400000, guid: 486c3a3eed94e4e79951ac8f7adcd026, type: 2}
+  m_sharedMaterial: {fileID: 8174588741060490898, guid: 486c3a3eed94e4e79951ac8f7adcd026,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -422,8 +422,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.64
-  m_fontSizeBase: 0.64
+  m_fontSize: 1
+  m_fontSizeBase: 1
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
