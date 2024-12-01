@@ -422,13 +422,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 1
-  m_fontSizeBase: 1
+  m_fontSize: 0.8
+  m_fontSizeBase: 0.8
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 17
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -548,10 +548,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5322366860991882851}
     m_Modifications:
+    - target: {fileID: 3490024952128123242, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
+        type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490024952128123242, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: d800c6702dca447bc9eb0d9b6a428427,
+        type: 3}
+    - target: {fileID: 3490024952128123242, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.22352941
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490024952128123242, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.19215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490024952128123242, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.15294118
+      objectReference: {fileID: 0}
     - target: {fileID: 5209433435337655661, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
         type: 3}
       propertyPath: m_Name
       value: ShopWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 5209433435337655661, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7708117242932810271, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
         type: 3}
@@ -652,6 +683,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207578889380650725, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8207578889380650725, guid: e5b7a123421ad4c54bb7e48d4f63cab9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 33
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
