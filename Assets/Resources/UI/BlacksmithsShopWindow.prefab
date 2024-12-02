@@ -422,7 +422,7 @@ GameObject:
   - component: {fileID: 2352067690278454587}
   - component: {fileID: 4939707179837838081}
   m_Layer: 5
-  m_Name: ShopWindow
+  m_Name: BlacksmithsShopWindow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
