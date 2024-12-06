@@ -49,7 +49,7 @@ namespace Services.Factory
 
             Camera mainCamera = Camera.main;
             PlayerMove playerMove = Player.GetComponent<PlayerMove>();
-            PlayerAttack playerAttack = playerMove.GetComponent<PlayerAttack>();
+            PlayerAttack playerAttack = Player.GetComponent<PlayerAttack>();
             PlayerHealth playerHealth = Player.GetComponent<PlayerHealth>();
 
             playerMove.Construct(CameraContainer, _input);
